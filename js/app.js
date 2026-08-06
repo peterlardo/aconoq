@@ -303,11 +303,18 @@ async function loadPartenaires() {
 
     if (error) throw error;
 
-    container.innerHTML = data.map(item => `
+    container.innerHTML = data.map(item => {
+      let inner;
+      if (item.logo_url && item.logo_url.trim() !== '') {
+        inner = `<img src="${item.logo_url}" alt="${item.nom}" class="h-12 w-auto max-w-[120px] object-contain opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">`;
+      } else {
+        inner = `<span class="text-xl font-bold text-gray-400 group-hover:text-primary transition-colors tracking-wider uppercase">${item.nom}</span>`;
+      }
+      return `
       <a href="${item.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-8 py-4 bg-white rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group" title="${item.description || item.nom}">
-        <img src="${item.logo_url}" alt="${item.nom}" class="h-12 w-auto max-w-[120px] object-contain opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
-      </a>
-    `).join('');
+        ${inner}
+      </a>`;
+    }).join('');
 
     clonePartenairesForInfiniteScroll();
   } catch (err) {
