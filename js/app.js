@@ -132,7 +132,7 @@ async function loadDirections() {
 
     container.innerHTML = data.map(item => `
       <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">
-        <i class="${item.icone} w-4 mr-2" style="color: ${item.couleur}"></i>${item.nom}
+        ${item.nom}
       </a>
     `).join('');
   } catch (err) {
