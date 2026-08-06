@@ -327,6 +327,9 @@ function clonePartenairesForInfiniteScroll() {
   if (!track) return;
   const items = track.innerHTML;
   track.innerHTML += items;
+  track.style.animation = 'none';
+  track.offsetHeight;
+  track.style.animation = '';
 }
 
 // ============================================
