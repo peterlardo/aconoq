@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadDirections();
   loadNormes();
   loadEvenements();
-  loadPartenaires();
   initFormulaires();
 });
 
@@ -336,49 +335,6 @@ async function loadEvenements() {
 }
 
 // ============================================
-// 6. PARTENAIRES
-// ============================================
-async function loadPartenaires() {
-  const container = document.getElementById('partenaires-track');
-  if (!container) return;
-
-  try {
-    const { data, error } = await supabaseClient
-      .from('partenaires')
-      .select('*')
-      .order('ordre', { ascending: true });
-
-    if (error) throw error;
-
-    container.innerHTML = data.map(item => {
-      let inner;
-      if (item.logo_url && item.logo_url.trim() !== '') {
-        inner = `<img src="${item.logo_url}" alt="${item.nom}" class="h-12 w-auto max-w-[140px] object-contain">`;
-      } else {
-        inner = `<span class="text-lg font-bold text-gray-800 tracking-wide">${item.nom}</span>`;
-      }
-      return `
-      <a href="${item.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="${item.description || item.nom}">
-        ${inner}
-      </a>`;
-    }).join('');
-
-    clonePartenairesForInfiniteScroll();
-  } catch (err) {
-    console.error('Erreur chargement partenaires:', err);
-  }
-}
-
-function clonePartenairesForInfiniteScroll() {
-  const track = document.getElementById('partenaires-track');
-  if (!track) return;
-  const items = track.innerHTML;
-  track.innerHTML += items;
-  track.style.animation = 'none';
-  track.offsetHeight;
-  track.style.animation = '';
-}
-
 // ============================================
 // FORMULAIRES
 // ============================================
