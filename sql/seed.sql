@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS directions (
   nom TEXT NOT NULL,
   description TEXT NOT NULL,
   icone TEXT NOT NULL,
-  couleur TEXT DEFAULT '#2d5a27',
+  couleur TEXT DEFAULT '#0f7140',
   ordre INT DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -160,7 +160,7 @@ INSERT INTO directeur (nom, titre, photo_url, message) VALUES
 
 -- Directions
 INSERT INTO directions (nom, description, icone, couleur, ordre) VALUES
-('Normalisation', 'Élaboration, adoption et diffusion des normes nationales congolaises NCGO.', 'fas fa-book', '#2d5a27', 1),
+('Normalisation', 'Élaboration, adoption et diffusion des normes nationales congolaises NCGO.', 'fas fa-book', '#0f7140', 1),
 ('Métrologie', 'Assurer l''exactitude et la fiabilité des mesures sur le territoire national.', 'fas fa-ruler-combined', '#1a56db', 2),
 ('Promotion de la Qualité', 'Sensibiliser et accompagner les acteurs économiques dans l''amélioration de la qualité.', 'fas fa-award', '#d97706', 3),
 ('Évaluation de la Conformité', 'Vérifier la conformité des produits aux normes avant leur mise sur le marché.', 'fas fa-clipboard-check', '#dc2626', 4),

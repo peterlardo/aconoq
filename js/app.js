@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   loadDirections();
   loadNormes();
   loadEvenements();
+  loadPartenaires();
+  loadActualites();
+  loadDynamicPcecRoutes();
+  loadDynamicFooter();
   initFormulaires();
   loadDynamicPageHero(slug);
   loadDynamicPageContent(slug);
@@ -566,7 +570,10 @@ async function loadDynamicBanners() {
 
     if (error || !data || data.length === 0) return;
 
-    container.innerHTML = data.map(b => `
+    const filtered = data.filter(b => b.badge !== 'Boutique en ligne');
+    if (filtered.length === 0) { container.remove(); return; }
+
+    container.innerHTML = filtered.map(b => `
       <section class="relative h-[400px] lg:h-[480px] overflow-hidden mb-8">
         <img src="${b.image_url}" alt="${b.title}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-transparent"></div>
@@ -593,7 +600,7 @@ async function loadDynamicBanners() {
 // 10. DYNAMIC PROCESSUS (index)
 // ============================================
 async function loadDynamicProcessus() {
-  const container = document.getElementById('dynamic-processus');
+  const container = document.getElementById('processCarousel') || document.getElementById('dynamic-processCarousel') || document.getElementById('dynamic-processus');
   if (!container) return;
 
   try {
@@ -610,7 +617,7 @@ async function loadDynamicProcessus() {
           <span class="feature-icon"><i class="${item.icon_class}" style="font-size:22px"></i></span>
           <h3>${item.title}</h3>
           <p>${item.description}</p>
-          ${item.link_url && item.link_url !== '#' ? `<a href="${item.link_url}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>` : ''}
+          <a href="${item.link_url || '#'}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
         </div>
       </div>
     `).join('');
@@ -775,6 +782,209 @@ async function loadCertificationSteps() {
     `).join('');
   } catch (err) {
     console.error('Erreur chargement certification steps:', err);
+  }
+}
+
+// ============================================
+// 15. PARTENAIRES (infinite scroll)
+// ============================================
+async function loadPartenaires() {
+  const container = document.getElementById('dynamic-partenaires');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('partenaires')
+      .select('*')
+      .order('ordre', { ascending: true });
+
+    if (error) throw error;
+    if (!data || data.length === 0) return;
+
+    const items = data.map(p => `
+      <a href="${p.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center gap-3 px-10 py-6 bg-white rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[200px]" title="${p.description || ''}">
+        <img src="${p.logo_url || ''}" alt="${p.nom}" class="h-10 w-10 object-contain">
+        <span class="text-base font-bold text-gray-700 group-hover:text-primary transition-colors">${p.nom}</span>
+      </a>
+    `).join('');
+
+    container.innerHTML = items + items;
+  } catch (err) {
+    console.error('Erreur chargement partenaires:', err);
+  }
+}
+
+// ============================================
+// 16. ACTUALITES
+// ============================================
+async function loadActualites() {
+  const container = document.getElementById('dynamic-actualites');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('actualites')
+      .select('*')
+      .order('date_pub', { ascending: false })
+      .limit(6);
+
+    if (error) throw error;
+    if (!data || data.length === 0) {
+      container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune actualité pour le moment.</p>';
+      return;
+    }
+
+    container.innerHTML = data.map(item => `
+      <div class="feature-card group">
+        <div class="overflow-hidden rounded-lg mb-4">
+          <img src="${item.image_url || ''}" alt="${item.titre}" class="w-full h-52 object-cover group-hover:scale-105 transition duration-500">
+        </div>
+        <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-primary-light text-primary mb-2">${item.categorie || ''}</span>
+        <h3 class="font-semibold text-sm text-dark mb-1">${item.titre}</h3>
+        <p class="text-gray-text text-xs leading-relaxed mb-2">${item.contenu || ''}</p>
+        <span class="text-[11px] text-gray-text"><i class="far fa-calendar mr-1"></i>${item.date_pub ? new Date(item.date_pub).toLocaleDateString('fr-FR') : ''}</span>
+        <a href="#" class="text-primary text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all mt-3">Lire la suite <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement actualités:', err);
+  }
+}
+
+// ============================================
+// 17. DYNAMIC PCEC ROUTES (card_grids)
+// ============================================
+async function loadDynamicPcecRoutes() {
+  const container = document.getElementById('dynamic-pcec-routes');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('card_grids')
+      .select('*')
+      .eq('page_slug', 'index')
+      .eq('grid_key', 'pcec-routes')
+      .order('ordre', { ascending: true });
+
+    if (error) throw error;
+    if (!data || data.length === 0) return;
+
+    container.innerHTML = data.map(item => `
+      <div class="feature-card">
+        <span class="feature-icon"><i class="${item.icon_class || 'fas fa-route'}" style="font-size:22px"></i></span>
+        <h3>${item.title}</h3>
+        <p>${item.description || ''}</p>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement PCEC routes:', err);
+  }
+}
+
+// ============================================
+// 18. DYNAMIC FOOTER
+// ============================================
+async function loadDynamicFooter() {
+  const container = document.getElementById('dynamic-footer');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('site_settings')
+      .select('*')
+      .eq('key', 'footer')
+      .single();
+
+    if (error || !data) return;
+
+    const val = data.value || {};
+    const links = val.links || {};
+    const contact = val.contact || {};
+
+    container.innerHTML = `
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+          <div class="col-span-2 md:col-span-1">
+            <a href="/" class="flex items-center gap-2 mb-4">
+              <img src="${val.logo || 'aconoq_logo.png'}" alt="ACONOQ" class="h-10">
+            </a>
+            <p class="text-white/70 text-sm leading-relaxed mb-4">${val.description || ''}</p>
+            <div class="flex gap-3">
+              ${(val.social || []).map(s => `<a href="${s.url}" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition"><i class="${s.icon} text-white text-sm"></i></a>`).join('')}
+            </div>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">ACONOQ</h4>
+            <ul class="space-y-2">
+              ${(links.aconoq || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Directions</h4>
+            <ul class="space-y-2">
+              ${(links.directions || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Services</h4>
+            <ul class="space-y-2">
+              ${(links.services || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Contact</h4>
+            <ul class="space-y-3">
+              ${contact.address ? `<li class="flex items-start gap-2 text-white/70 text-sm"><i class="fas fa-map-marker-alt mt-1"></i><span>${contact.address}</span></li>` : ''}
+              ${contact.phone ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-phone"></i><a href="tel:${contact.phone}" class="hover:text-white transition">${contact.phone}</a></li>` : ''}
+              ${contact.email ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-envelope"></i><a href="mailto:${contact.email}" class="hover:text-white transition">${contact.email}</a></li>` : ''}
+              ${contact.hours ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-clock"></i><span>${contact.hours}</span></li>` : ''}
+            </ul>
+            <div class="mt-4">
+              <form id="footer-newsletter" class="flex gap-2">
+                <input type="email" name="email" placeholder="Votre email" class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded text-white text-sm placeholder-white/50 focus:outline-none focus:border-white/40">
+                <button type="submit" class="px-4 py-2 bg-white text-red-600 rounded text-sm font-semibold hover:bg-gray-100 transition"><i class="fas fa-paper-plane"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-white/50 text-xs">&copy; ${new Date().getFullYear()} ACONOQ. Tous droits réservés.</p>
+          <div class="flex gap-4">
+            ${(val.legal || []).map(l => `<a href="${l.url}" class="text-white/50 text-xs hover:text-white transition">${l.label}</a>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+    const footerNl = document.getElementById('footer-newsletter');
+    if (footerNl) {
+      footerNl.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emailInput = footerNl.querySelector('[name="email"]');
+        const email = emailInput ? emailInput.value.trim() : '';
+        if (!email) return;
+        const btn = footerNl.querySelector('button[type="submit"]');
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        btn.disabled = true;
+        try {
+          const { error: insErr } = await supabaseClient
+            .from('newsletter_subscribers')
+            .insert([{ email }]);
+          if (insErr) throw insErr;
+          btn.innerHTML = '<i class="fas fa-check"></i>';
+          emailInput.value = '';
+          setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane"></i>'; btn.disabled = false; }, 3000);
+        } catch (err) {
+          console.error('Erreur newsletter footer:', err);
+          btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+          setTimeout(() => { btn.innerHTML = '<i class="fas fa-paper-plane"></i>'; btn.disabled = false; }, 3000);
+        }
+      });
+    }
+  } catch (err) {
+    console.error('Erreur chargement footer:', err);
   }
 }
 
