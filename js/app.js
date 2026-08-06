@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   loadChiffresCles();
-  loadDirecteur();
   loadDirections();
   loadNormes();
   loadEvenements();
@@ -120,7 +119,7 @@ async function loadDirecteur() {
 // 3. NOS DIRECTIONS
 // ============================================
 async function loadDirections() {
-  const container = document.getElementById('directions-grid');
+  const container = document.getElementById('nav-directions');
   if (!container) return;
 
   try {
@@ -132,20 +131,13 @@ async function loadDirections() {
     if (error) throw error;
 
     container.innerHTML = data.map(item => `
-      <div class="direction-card">
-        <div class="direction-icon" style="background: ${item.couleur}15; color: ${item.couleur}">
-          <i class="${item.icone}" style="font-size: 26px"></i>
-        </div>
-        <h3 class="font-semibold text-lg text-dark mb-2">${item.nom}</h3>
-        <p class="text-gray-text text-sm leading-relaxed mb-4">${item.description}</p>
-        <a href="#" class="inline-flex items-center gap-2 text-sm font-medium transition-all hover:gap-3" style="color: ${item.couleur}">
-          Découvrir <i class="fas fa-arrow-right text-xs"></i>
-        </a>
-      </div>
+      <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">
+        <i class="${item.icone} w-4 mr-2" style="color: ${item.couleur}"></i>${item.nom}
+      </a>
     `).join('');
   } catch (err) {
     console.error('Erreur chargement directions:', err);
-    container.innerHTML = '<p class="text-gray-text text-center col-span-5">Données temporairement indisponibles</p>';
+    container.innerHTML = '<p class="px-4 py-2 text-xs text-gray-400">Données indisponibles</p>';
   }
 }
 

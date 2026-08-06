@@ -492,6 +492,17 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- NOS DIRECTIONS -->
+                        <div class="relative nav-item">
+                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                                NOS DIRECTIONS <i class="fas fa-chevron-down text-[9px]"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <div id="nav-directions" class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                    <!-- Chargé dynamiquement via Supabase -->
+                                </div>
+                            </div>
+                        </div>
                         <!-- NORMALISATION -->
                         <div class="relative nav-item">
                             <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
@@ -567,10 +578,6 @@
                         <!-- CONTACT -->
                         <a href="#" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
                     </nav>
-                    <!-- CTA Button -->
-                    <a href="#" class="bg-white text-primary border border-primary px-5 py-2.5 rounded text-sm font-medium hover:bg-primary hover:text-white transition hidden sm:inline-block">
-                        Nous Contacter
-                    </a>
                     <!-- Mobile Menu Button -->
                     <button class="lg:hidden text-dark">
                         <i class="fas fa-bars text-xl"></i>
@@ -662,22 +669,6 @@
                     <p>Programmes de formation en normalisation, m&eacute;trologie et promotion de la qualit&eacute;.</p>
                     <a href="#" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- NOS DIRECTIONS -->
-    <section class="py-16 lg:py-24 bg-light-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Organisation</p>
-                <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-4"><strong>Nos Directions</strong></h2>
-                <p class="text-gray-text max-w-2xl mx-auto text-base leading-relaxed">
-                    L'ACONOQ est structurée en cinq directions techniques, chacune spécialisée dans un domaine clé de la normalisation et de la qualité.
-                </p>
-            </div>
-            <div id="directions-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                <!-- Chargé dynamiquement via Supabase -->
             </div>
         </div>
     </section>
@@ -794,15 +785,6 @@
                     <h3>Route C</h3>
                     <p>Concerne les importations des produits sous licence enregistr&eacute;es. L'&eacute;valuation est bas&eacute;e sur l'audit d'usine, le contr&ocirc;le documentaire et l'inspection physique inopin&eacute;e, s'appliquant aux fabricants, distributeurs officiels et propri&eacute;taires de marques.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MOT DU DIRECTEUR -->
-    <section class="py-16 lg:py-24 bg-light-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="directeur-content">
-                <!-- Chargé dynamiquement via Supabase -->
             </div>
         </div>
     </section>
@@ -1027,41 +1009,6 @@
         </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section class="py-16 lg:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left - CTA Content -->
-                <div>
-                    <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-4"><strong>Restez inform&eacute; des derni&egrave;res actualit&eacute;s de l'ACONOQ</strong></h2>
-                    <p class="text-gray-text text-base leading-relaxed mb-8">
-                        Inscrivez-vous &agrave; notre newsletter pour recevoir les nouvelles normes, les calendriers de certification et les &eacute;v &agrave; venir.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#" class="bg-primary text-white px-6 py-3 rounded text-sm font-medium hover:bg-primary-dark transition inline-flex items-center gap-2">
-                            Nos services <i class="fas fa-arrow-right text-xs"></i>
-                        </a>
-                        <a href="#" class="border-2 border-primary text-primary px-6 py-3 rounded text-sm font-medium hover:bg-primary hover:text-white transition">
-                            Nous contacter
-                        </a>
-                    </div>
-                </div>
-                <!-- Right - Newsletter Form -->
-                <div class="bg-white rounded-xl p-8 shadow-lg border border-primary/20">
-                    <h3 class="font-semibold text-dark text-lg mb-2">Newsletter</h3>
-                    <p class="text-gray-text text-sm mb-6">Recevez nos actualit&eacute;s et mise &agrave; jour directement dans votre bo&icirc;te mail.</p>
-                    <form id="newsletter-form" class="space-y-4">
-                        <input type="text" name="nom" placeholder="Votre nom" class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <input type="email" name="email" placeholder="Votre email" class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <button type="submit" class="bg-primary text-white px-6 py-3 rounded text-sm font-medium hover:bg-primary-dark transition w-full inline-flex items-center justify-center gap-2">
-                            S'inscrire <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer class="bg-red-600 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -1145,6 +1092,17 @@
                             <span class="text-gray-400 text-xs">Mon - Fri: 9:00 - 18:00</span>
                         </li>
                     </ul>
+                    <!-- Newsletter -->
+                    <div class="mt-6 pt-4 border-t border-white/10">
+                        <h5 class="font-semibold text-xs mb-3">Newsletter</h5>
+                        <form id="newsletter-form" class="space-y-2">
+                            <input type="text" name="nom" placeholder="Votre nom" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded text-xs text-white placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-primary">
+                            <input type="email" name="email" placeholder="Votre email" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded text-xs text-white placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-primary">
+                            <button type="submit" class="bg-primary text-white px-4 py-2 rounded text-xs font-medium hover:bg-primary-dark transition w-full inline-flex items-center justify-center gap-1">
+                                S'inscrire <i class="fas fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
