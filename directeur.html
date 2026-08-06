@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mot du Directeur Général - ACONOQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2d5a27',
+                        'primary-dark': '#1e3d1a',
+                        'primary-light': '#eef5ed',
+                        'dark': '#111827',
+                        'gray-text': '#6b7280',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #111827; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0;
+            padding-top: 8px;
+            opacity: 0; visibility: hidden;
+            transform: translateY(4px);
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .nav-item:hover .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .nav-item { position: relative; z-index: 50; }
+        .nav-item::after {
+            content: ''; position: absolute; left: 0; right: 0;
+            top: 100%; height: 8px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-badge { animation: float 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Top Bar -->
+    <div class="bg-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
+                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
+                </a>
+                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
+                </a>
+                <span class="hidden sm:inline-flex items-center gap-1.5">
+                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[200]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2020/07/aconoq_logo.png" alt="ACONOQ" class="h-10">
+                </a>
+                <nav class="hidden lg:flex items-center gap-1">
+                    <a href="index.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">Accueil</a>
+                    <a href="contact.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
+                </nav>
+                <button class="lg:hidden text-dark">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative py-16 lg:py-24 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/dg2-scaled.png" alt="" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/85 to-gray-900/70"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-sm mb-4">
+                <a href="index.html" class="text-white/60 hover:text-white transition">ACONOQ</a>
+                <span class="text-white/40 mx-2">></span>
+                <span class="text-white">Mot du Directeur Général</span>
+            </nav>
+            <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Mot du Directeur Général</h1>
+        </div>
+    </section>
+
+    <!-- DIRECTEUR MESSAGE -->
+    <section class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+                <!-- Left - Photo -->
+                <div class="relative lg:sticky lg:top-28">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                        <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/dg2-scaled.png" alt="Jean Jacques NGOKO MOUYABI - Directeur Général ACONOQ" class="w-full h-auto object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent"></div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-primary text-white rounded-xl px-5 py-3 shadow-xl shadow-primary/30 float-badge">
+                        <p class="text-white/70 text-[10px] uppercase tracking-wider">L'ACONOQ</p>
+                        <p class="text-white text-sm font-bold">Excellence & Qualité</p>
+                    </div>
+                </div>
+
+                <!-- Right - Message -->
+                <div>
+                    <span class="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-semibold tracking-wider uppercase mb-6">Message officiel</span>
+                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark mb-2">Jean Jacques NGOKO MOUYABI</h2>
+                    <p class="text-primary text-sm font-semibold mb-8">Directeur Général de l'ACONOQ</p>
+
+                    <div class="space-y-6 text-dark/90 text-[15px] leading-relaxed">
+                        <p>
+                            Dans un monde où les économies sont de plus en plus interconnectées, les échanges commerciaux internationaux en augmentation constante et, plus proche de nous avec l'avènement de la zone de libre-échange continentale (ZELCAF), les problématiques liées à la norme, à la qualité, à la certification et à la métrologie sont de plus en plus au cœur de toutes les activités socio-économiques.
+                        </p>
+                        <p>
+                            Le Congo notre pays n'est pas en marge de cette dynamique, c'est pourquoi, le Gouvernement a depuis 2015 mis en place un cadre législatif et règlementaire pour construire pas à pas son système national de normalisation et de gestion de la qualité. Ce système ne pouvait se construire sans un pilote, et ce pilote c'est l'agence congolaise de normalisation et de la qualité.
+                        </p>
+                        <p>
+                            L'ACONOQ, mesurant sa responsabilité dans la construction dudit système met tout en œuvre pour créer des bases sereines d'une véritable culture qualité dans notre pays. En sa qualité de boîte à outils, la vision de l'ACONOQ, est de faire en sorte que dans toutes nos entreprises, toutes nos structures socio-économiques, que la qualité et la norme soient au cœur de leur stratégie de développement. A cet effet, l'ACONOQ mettra au centre la formation, pour créer un véritable réseau des qualiticiens, des normalisateurs et des métrologues constituants ainsi, un vivier des acteurs nationaux en ces matières.
+                        </p>
+                        <p>
+                            Elle accompagnera, formera, incitera tous les acteurs du système national de normalisation et de gestion de la qualité à considérer la qualité et la norme comme un levier incontournable.
+                        </p>
+                        <p>
+                            C'est une question d'engagement, de responsabilité pour tous quel que soit, le niveau de chacun dans la structure de l'échelle de décision au sein de l'organisme. Tout cela doit être su et communiqué, car c'est ainsi que nous construirons le système national de normalisation et de gestion de la qualité dans notre pays, et ce, avec au centre de cette approche, les principes sacrosaints de la normalisation tel, le consensus, l'efficacité, l'ouverture, l'impartialité, le réseautage et la cohérence.
+                        </p>
+                        <p>
+                            L'ACONOQ, se fondant sur la construction de l'infrastructure qualité au sein de notre sous-région et au sein de notre région, ne ménagera aucun effort pour qu'aucun pilier de l'infrastructure qualité au niveau national ne soit mis à l'écart, ensemble avec toutes les parties prenantes, nous construirons cet édifice en considérant et en mettant en évidence, la place du consommateur, de sorte que toutes nos stratégies de développement concourent vers la satisfaction des attentes de ce dernier.
+                        </p>
+                        <p>
+                            La normalisation doit être un outil de modernisation et de développement de l'économie nationale.
+                        </p>
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="mt-10 pt-8 border-t border-gray-200">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20">
+                                <i class="fas fa-user-tie text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-dark text-base">Jean Jacques NGOKO MOUYABI</p>
+                                <p class="text-primary text-sm font-medium">Directeur Général</p>
+                                <p class="text-gray-text text-xs">Agence Congolaise de Normalisation et de la Qualité</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-primary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-4">Découvrez l'ACONOQ</h2>
+            <p class="text-white/80 text-base mb-8 max-w-xl mx-auto">Apprenez-en plus sur nos missions, nos services et notre engagement pour la qualité au Congo.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="index.html" class="inline-flex items-center gap-2 bg-white text-primary px-8 py-3.5 rounded-lg text-sm font-semibold hover:bg-gray-100 transition shadow-lg">
+                    <i class="fas fa-home text-xs"></i> Retour à l'accueil
+                </a>
+                <a href="contact.html" class="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-3.5 rounded-lg text-sm font-semibold hover:bg-white/20 transition">
+                    <i class="fas fa-envelope text-xs"></i> Nous contacter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-red-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-1">
+                    <div class="mb-4">
+                        <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/aconoq_logo_white.png" alt="ACONOQ" class="h-10">
+                    </div>
+                    <p class="text-white/70 text-xs leading-relaxed mb-6">
+                        L'Agence congolaise de normalisation et de la qualité est un établissement public à caractère administratif, doté de la personnalité morale et de l'autonomie financière.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-facebook-f text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-twitter text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-white text-xs"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">ACONOQ</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Actualité et annonces</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Présentation des services</a></li>
+                        <li><a href="directeur.html" class="text-white/70 text-xs hover:text-white transition">Mot du Directeur Général</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">À propos de l'ACONOQ</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Organigramme</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Cadre réglementaire</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Nos Directions</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Normalisation</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Métrologie</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Promotion de la qualité</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Évaluation de la conformité</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">PCEC</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Services</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Audit</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Certification</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Labelisation</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Formations</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Marque NCGO</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">ZLECAF</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-white text-xs mt-0.5"></i>
+                            <span class="text-white/70 text-xs">Brazzaville, République du Congo</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">+1 212 946 2700</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">contact@aconoq.cg</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-clock text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">Mon - Fri: 9:00 - 18:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="text-center lg:text-left">
+                        <h3 class="font-bold text-xl text-white mb-2">Restez informé</h3>
+                        <p class="text-white/70 text-sm">Recevez nos actualités et mise à jour directement dans votre boîte mail.</p>
+                    </div>
+                    <form class="flex w-full max-w-md">
+                        <input type="email" name="email" placeholder="Votre adresse email" required class="flex-1 px-5 py-3 bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-l-lg text-sm focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent">
+                        <button type="submit" class="bg-white text-red-600 px-6 py-3 rounded-r-lg text-sm font-bold hover:bg-gray-100 transition inline-flex items-center gap-2 whitespace-nowrap">
+                            S'inscrire <i class="fas fa-arrow-right text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p class="text-white/60 text-xs">&copy; 2025 ACONOQ - Agence Congolaise de Normalisation et de la Qualité. Tous droits réservés.</p>
+                    <div class="flex gap-5">
+                        <a href="#" class="text-white/60 text-xs hover:text-white transition">Politique de confidentialité</a>
+                        <a href="#" class="text-white/60 text-xs hover:text-white transition">Conditions d'utilisation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

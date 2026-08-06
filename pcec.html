@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCEC - ACONOQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2d5a27',
+                        'primary-dark': '#1e3d1a',
+                        'primary-light': '#eef5ed',
+                        'dark': '#111827',
+                        'gray-text': '#6b7280',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #111827; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; padding-top: 8px; opacity: 0; visibility: hidden; transform: translateY(4px); transition: all 0.2s ease; pointer-events: none; }
+        .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .nav-item { position: relative; z-index: 50; }
+        .nav-item::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 8px; }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- TOP BAR -->
+    <div class="bg-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
+                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
+                </a>
+                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
+                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
+                </a>
+                <span class="hidden sm:inline-flex items-center gap-1.5">
+                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[200]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2020/07/aconoq_logo.png" alt="ACONOQ" class="h-10">
+                </a>
+                <nav class="hidden lg:flex items-center gap-1">
+                    <a href="index.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">Accueil</a>
+                    <a href="contact.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
+                </nav>
+                <button class="lg:hidden text-dark">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative py-16 lg:py-24 overflow-hidden bg-gray-900">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/port.png" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-primary/20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex items-center gap-2 text-xs text-white/50 mb-6">
+                <a href="index.html" class="hover:text-white transition">ACONOQ</a>
+                <i class="fas fa-chevron-right text-[8px]"></i>
+                <span class="text-white">PCEC</span>
+            </nav>
+            <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Programme Congolais d'&Eacute;valuation de la Conformit&eacute;</h1>
+        </div>
+    </section>
+
+    <!-- SECTION 1: PRESENTATION -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-info-circle text-white text-sm"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Pr&eacute;sentation</h2>
+                </div>
+                <div class="space-y-5 text-gray-text text-sm lg:text-base leading-relaxed">
+                    <p>
+                        Le PCEC, Programme Congolais d'Evaluation de la Conformit&eacute; est institu&eacute; par loi N&deg;51-2021 du 31 d&eacute;cembre 2021 portant loi de finance pour l'ann&eacute;e 2022 dans son chapitre III des dispositions nouvelles est un programme exportateur qui fixe les conditions d'application et d'entr&eacute;e en vigueur de l'&eacute;valuation de la conformit&eacute; avant embarquement des marchandises &agrave; destination de la R&eacute;publique du Congo.
+                    </p>
+                    <p>
+                        Ce programme exige que toute marchandise &agrave; destination du Congo soit munie d'un certificat de Conformit&eacute; (CoC).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: LES ENJEUX DU PCEC -->
+    <section class="py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-primary-light text-primary px-4 py-2 rounded-full text-xs font-semibold mb-4">
+                    <i class="fas fa-bullseye"></i>
+                    Objectifs
+                </div>
+                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Les enjeux du PCEC</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-shield-alt text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-3">Pr&eacute;venir les importations de produits non conformes</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Pr&eacute;venir les importations des produits ne r&eacute;pondant pas aux normes.</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-ban text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-3">Pr&eacute;venir les produits contrefaits</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Pr&eacute;venir l'importation des produits contrefaits.</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-heartbeat text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-3">Prot&eacute;ger la sant&eacute; et la s&eacute;curit&eacute;</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Prot&eacute;ger la sant&eacute; et la s&eacute;curit&eacute; des consommateurs.</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-recycle text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-3">&Eacute;viter le march&eacute; comme d&eacute;potoir</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">&Eacute;viter que le march&eacute; congolais ne devienne un d&eacute;potoir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: LES ADMINISTRATIONS PUBLIQUES IMPLIQUEES -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-primary-light text-primary px-4 py-2 rounded-full text-xs font-semibold mb-4">
+                    <i class="fas fa-landmark"></i>
+                    Partenaires institutionnels
+                </div>
+                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Les administrations publiques impliqu&eacute;es</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group text-center">
+                    <div class="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-building text-primary group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-2">L'ACONOQ</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Agence Congolaise de Normalisation et de la Qualit&eacute;</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group text-center">
+                    <div class="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-store text-primary group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-2">Le Commerce</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Minist&egrave;re du Commerce et de la Promotion du Secteur Priv&eacute;</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group text-center">
+                    <div class="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-door-open text-primary group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-2">Le GUOT</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Guichet Unique des Op&eacute;rations Transfrontali&egrave;res</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group text-center">
+                    <div class="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-passport text-primary group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-base mb-2">La Douane</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Direction G&eacute;n&eacute;rale des Douanes et Droits Indirects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: METHODES D'EVALUATION DU PCEC -->
+    <section class="py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-primary-light text-primary px-4 py-2 rounded-full text-xs font-semibold mb-4">
+                    <i class="fas fa-route"></i>
+                    M&eacute;thodologie
+                </div>
+                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">M&eacute;thodes d'&eacute;valuation du PCEC</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-truck text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">ROUTE A</div>
+                    <h3 class="font-bold text-dark text-base mb-3">Importations peu fr&eacute;quentes</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Concerne toutes les importations peu fr&eacute;quentes. L'&eacute;valuation est bas&eacute;e sur le contr&ocirc;le documentaire et l'inspection physique syst&eacute;matique, visant des exportateurs peu fr&eacute;quents.</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-ship text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">ROUTE B</div>
+                    <h3 class="font-bold text-dark text-base mb-3">Importations enregistr&eacute;es</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Concerne les importations pr&eacute;alablement enregistr&eacute;es. L'&eacute;valuation est bas&eacute;e sur le contr&ocirc;le documentaire et l'inspection physique inopin&eacute;e, ciblant les exportateurs fr&eacute;quents.</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-industry text-primary group-hover:text-white text-lg"></i>
+                    </div>
+                    <div class="inline-block bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-3">ROUTE C</div>
+                    <h3 class="font-bold text-dark text-base mb-3">Produits sous licence</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Concerne les importations des produits sous licence enregistr&eacute;es. L'&eacute;valuation est bas&eacute;e sur l'audit d'usine, le contr&ocirc;le documentaire et l'inspection physique inopin&eacute;e, s'appliquant aux fabricants, distributeurs officiels et propri&eacute;taires de marques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: LES PRODUITS CONCERNES PAR LE PCEC -->
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <i class="fas fa-box-open text-white text-sm"></i>
+                    </div>
+                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Les produits concern&eacute;s par le PCEC</h2>
+                </div>
+                <p class="text-gray-text text-sm lg:text-base leading-relaxed mb-6">
+                    Le PCEC s'applique &agrave; tous les produits import&eacute;s en R&eacute;publique du Congo &agrave; l'exception des produits suivants :
+                </p>
+                <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 lg:p-8">
+                    <ol class="space-y-3 text-gray-text text-sm lg:text-base leading-relaxed list-decimal list-inside marker:text-primary marker:font-semibold">
+                        <li class="pl-2">L'or et les autres m&eacute;taux pr&eacute;cieux</li>
+                        <li class="pl-2">Les pierres pr&eacute;cieuses</li>
+                        <li class="pl-2">Les objets d'art</li>
+                        <li class="pl-2">Les m&eacute;taux de r&eacute;cup&eacute;ration</li>
+                        <li class="pl-2">Les explosifs, armes, munitions</li>
+                        <li class="pl-2">Les poissons, certains l&eacute;gumes et fruits frais</li>
+                        <li class="pl-2">Les animaux vivants</li>
+                        <li class="pl-2">Les plantes et produits de la floriculture</li>
+                        <li class="pl-2">Les films cin&eacute;matographiques</li>
+                        <li class="pl-2">Les journaux et p&eacute;riodiques</li>
+                        <li class="pl-2">Les effets personnels usag&eacute;s</li>
+                        <li class="pl-2">Les cadeaux personnels</li>
+                        <li class="pl-2">Les colis postaux sans valeur commerciale</li>
+                        <li class="pl-2">&Eacute;chantillons commerciaux</li>
+                        <li class="pl-2">Le p&eacute;trole brut</li>
+                        <li class="pl-2">Certains dons de gouvernements &eacute;trangers</li>
+                        <li class="pl-2">Les fournitures pour missions diplomatiques</li>
+                        <li class="pl-2">Importations &lt; 1 000 000 FCFA FOB</li>
+                        <li class="pl-2">Biens non commerciaux &lt; 3 000 000 FCFA FOB</li>
+                        <li class="pl-2">Biens pour op&eacute;rations p&eacute;troli&egrave;res et mini&egrave;res</li>
+                        <li class="pl-2">Importations li&eacute;es aux r&eacute;gimes francs</li>
+                        <li class="pl-2">Produits du cru ou artisanat traditionnel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: DOCUMENTS GENERES PAR LE PCEC -->
+    <section class="py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-primary-light text-primary px-4 py-2 rounded-full text-xs font-semibold mb-4">
+                    <i class="fas fa-file-alt"></i>
+                    R&eacute;sultats
+                </div>
+                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Documents g&eacute;n&eacute;r&eacute;s par le PCEC</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl border border-gray-200 p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-14 h-14 bg-primary-light rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-certificate text-primary group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-lg mb-3">Certificat de conformit&eacute; (CoC)</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Le processus de v&eacute;rification des exp&eacute;ditions est concluant / positif</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-5 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-file-excel text-red-600 group-hover:text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-dark text-lg mb-3">Rapport de non-conformit&eacute; (RnC)</h3>
+                    <p class="text-gray-text text-sm leading-relaxed">Le processus de v&eacute;rification n'a pas abouti</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-red-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-1">
+                    <div class="mb-4">
+                        <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/aconoq_logo_white.png" alt="ACONOQ" class="h-10">
+                    </div>
+                    <p class="text-white/70 text-xs leading-relaxed mb-6">
+                        L'Agence congolaise de normalisation et de la qualit&eacute; est un &eacute;tablissement public &agrave; caract&egrave;re administratif, dot&eacute; de la personnalit&eacute; morale et de l'autonomie financi&egrave;re.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-facebook-f text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-twitter text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-white text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-white text-xs"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">ACONOQ</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="index.html" class="text-white/70 text-xs hover:text-white transition">Actualit&eacute; et annonces</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Pr&eacute;sentation des services</a></li>
+                        <li><a href="directeur.html" class="text-white/70 text-xs hover:text-white transition">Mot du Directeur G&eacute;n&eacute;ral</a></li>
+                        <li><a href="a-propos.html" class="text-white/70 text-xs hover:text-white transition">&Agrave; propos de l'ACONOQ</a></li>
+                        <li><a href="organigramme.html" class="text-white/70 text-xs hover:text-white transition">Organigramme</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Cadre r&eacute;glementaire</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Nos Directions</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="normalisation.html" class="text-white/70 text-xs hover:text-white transition">Normalisation</a></li>
+                        <li><a href="metrologie.html" class="text-white/70 text-xs hover:text-white transition">M&eacute;trologie</a></li>
+                        <li><a href="qualite.html" class="text-white/70 text-xs hover:text-white transition">Promotion de la qualit&eacute;</a></li>
+                        <li><a href="conformite.html" class="text-white/70 text-xs hover:text-white transition">&Eacute;valuation de la conformit&eacute;</a></li>
+                        <li><a href="pcec.html" class="text-white text-xs font-medium hover:text-white transition">PCEC</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Services</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Audit</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Certification</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Labelisation</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Formations</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">Marque NCGO</a></li>
+                        <li><a href="#" class="text-white/70 text-xs hover:text-white transition">ZLECAF</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm mb-4">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-white text-xs mt-0.5"></i>
+                            <span class="text-white/70 text-xs">Brazzaville, R&eacute;publique du Congo</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">+1 212 946 2700</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">contact@aconoq.cg</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-clock text-white text-xs"></i>
+                            <span class="text-white/70 text-xs">Mon - Fri: 9:00 - 18:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="text-center lg:text-left">
+                        <h3 class="font-bold text-xl text-white mb-2">Restez inform&eacute;</h3>
+                        <p class="text-white/70 text-sm">Recevez nos actualit&eacute;s et mise &agrave; jour directement dans votre bo&icirc;te mail.</p>
+                    </div>
+                    <form class="flex w-full max-w-md">
+                        <input type="email" name="email" placeholder="Votre adresse email" required class="flex-1 px-5 py-3 bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-l-lg text-sm focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent">
+                        <button type="submit" class="bg-white text-red-600 px-6 py-3 rounded-r-lg text-sm font-bold hover:bg-gray-100 transition inline-flex items-center gap-2 whitespace-nowrap">
+                            S'inscrire <i class="fas fa-arrow-right text-xs"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p class="text-white/60 text-xs">&copy; 2025 ACONOQ - Agence Congolaise de Normalisation et de la Qualit&eacute;. Tous droits r&eacute;serv&eacute;s.</p>
+                    <div class="flex gap-5">
+                        <a href="#" class="text-white/60 text-xs hover:text-white transition">Politique de confidentialit&eacute;</a>
+                        <a href="#" class="text-white/60 text-xs hover:text-white transition">Conditions d'utilisation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
