@@ -160,16 +160,25 @@ async function loadNormes() {
 
     window._normesData = data;
     renderNormes(data);
-
     if (countEl) countEl.textContent = data.length;
+    populateNormeFilters(data);
+    bindNormeFilters();
   } catch (err) {
     console.error('Erreur chargement normes:', err);
-    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Données temporairement indisponibles</p>';
+    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Donn\u00e9es temporairement indisponibles</p>';
   }
 }
 
 function renderNormes(normes) {
   const container = document.getElementById('normes-grid');
+  const countEl = document.getElementById('normes-count');
+  if (countEl) countEl.textContent = normes.length;
+
+  if (normes.length === 0) {
+    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune norme ne correspond &agrave; votre recherche.</p>';
+    return;
+  }
+
   container.innerHTML = normes.map(item => `
     <div class="feature-card">
       <div class="flex items-center justify-between mb-3">
@@ -183,6 +192,10 @@ function renderNormes(normes) {
       <h3 class="font-semibold text-base text-dark mb-1">${item.code}</h3>
       <p class="font-medium text-sm text-dark mb-2">${item.titre}</p>
       <p class="text-gray-text text-xs leading-relaxed mb-3">${item.description || ''}</p>
+      <div class="flex items-center gap-2 mb-3">
+        ${item.type_iso ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-blue-50 text-blue-700">${item.type_iso}</span>` : ''}
+        ${item.origine ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-orange-50 text-orange-700">${item.origine}</span>` : ''}
+      </div>
       <div class="flex items-center justify-between">
         <span class="text-xs text-gray-text"><i class="far fa-calendar mr-1"></i>${new Date(item.date_pub).toLocaleDateString('fr-FR')}</span>
         <a href="#" class="text-primary text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
@@ -193,31 +206,65 @@ function renderNormes(normes) {
   `).join('');
 }
 
-function filterNormes(categorie) {
-  const btns = document.querySelectorAll('.norme-filter-btn');
-  btns.forEach(b => {
-    b.classList.toggle('bg-primary', b.dataset.cat === categorie);
-    b.classList.toggle('text-white', b.dataset.cat === categorie);
-    b.classList.toggle('bg-gray-100', b.dataset.cat !== categorie);
-    b.classList.toggle('text-dark', b.dataset.cat !== categorie);
-  });
+function populateNormeFilters(data) {
+  const categories = [...new Set(data.map(n => n.categorie))].sort();
+  const types = [...new Set(data.map(n => n.type_iso).filter(Boolean))].sort();
+  const origins = [...new Set(data.map(n => n.origine).filter(Boolean))].sort();
+  const years = [...new Set(data.map(n => new Date(n.date_pub).getFullYear()))].sort((a, b) => b - a);
 
-  if (!window._normesData) return;
-  const filtered = categorie === 'all'
-    ? window._normesData
-    : window._normesData.filter(n => n.categorie === categorie);
-  renderNormes(filtered);
+  const fillSelect = (id, values) => {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    const first = sel.options[0];
+    sel.innerHTML = '';
+    sel.appendChild(first);
+    values.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v;
+      opt.textContent = v;
+      sel.appendChild(opt);
+    });
+  };
+
+  fillSelect('filter-categorie', categories);
+  fillSelect('filter-type-iso', types);
+  fillSelect('filter-origine', origins);
+  fillSelect('filter-annee', years);
 }
 
-function searchNormes(query) {
-  if (!window._normesData) return;
-  const q = query.toLowerCase();
-  const filtered = window._normesData.filter(n =>
-    n.code.toLowerCase().includes(q) ||
-    n.titre.toLowerCase().includes(q) ||
-    (n.description && n.description.toLowerCase().includes(q))
-  );
-  renderNormes(filtered);
+function bindNormeFilters() {
+  const searchInput = document.getElementById('norme-search-input');
+  const filters = ['filter-categorie', 'filter-type-iso', 'filter-origine', 'filter-annee'];
+
+  const applyFilters = () => {
+    const q = searchInput ? searchInput.value.toLowerCase() : '';
+    const cat = document.getElementById('filter-categorie').value;
+    const typeIso = document.getElementById('filter-type-iso').value;
+    const origine = document.getElementById('filter-origine').value;
+    const annee = document.getElementById('filter-annee').value;
+
+    let results = window._normesData || [];
+
+    if (q) {
+      results = results.filter(n =>
+        n.code.toLowerCase().includes(q) ||
+        n.titre.toLowerCase().includes(q) ||
+        (n.description && n.description.toLowerCase().includes(q))
+      );
+    }
+    if (cat !== 'all') results = results.filter(n => n.categorie === cat);
+    if (typeIso !== 'all') results = results.filter(n => n.type_iso === typeIso);
+    if (origine !== 'all') results = results.filter(n => n.origine === origine);
+    if (annee !== 'all') results = results.filter(n => new Date(n.date_pub).getFullYear() === Number(annee));
+
+    renderNormes(results);
+  };
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+  filters.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', applyFilters);
+  });
 }
 
 // ============================================
@@ -306,12 +353,12 @@ async function loadPartenaires() {
     container.innerHTML = data.map(item => {
       let inner;
       if (item.logo_url && item.logo_url.trim() !== '') {
-        inner = `<img src="${item.logo_url}" alt="${item.nom}" class="h-12 w-auto max-w-[120px] object-contain opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">`;
+        inner = `<img src="${item.logo_url}" alt="${item.nom}" class="h-12 w-auto max-w-[140px] object-contain">`;
       } else {
-        inner = `<span class="text-xl font-bold text-gray-400 group-hover:text-primary transition-colors tracking-wider uppercase">${item.nom}</span>`;
+        inner = `<span class="text-lg font-bold text-gray-800 tracking-wide">${item.nom}</span>`;
       }
       return `
-      <a href="${item.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-8 py-4 bg-white rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group" title="${item.description || item.nom}">
+      <a href="${item.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="${item.description || item.nom}">
         ${inner}
       </a>`;
     }).join('');

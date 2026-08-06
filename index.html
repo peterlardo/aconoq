@@ -385,12 +385,8 @@
         }
 
         /* Normes */
-        .norme-search {
-            max-width: 400px;
-        }
-        .norme-filter-btn {
-            cursor: pointer;
-            transition: all .25s;
+        #filter-categorie, #filter-type-iso, #filter-origine, #filter-annee {
+            min-width: 160px;
         }
 
         /* Événements */
@@ -874,28 +870,30 @@
     <!-- NORMES POPULAIRES -->
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
-                <div>
-                    <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Référence</p>
-                    <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark"><strong>Nos Normes</strong> <span class="text-gray-400 font-normal text-2xl">(<span id="normes-count">0</span>)</span></h2>
-                </div>
-                <div class="flex flex-wrap gap-3 items-center">
-                    <div class="norme-search relative">
-                        <input type="text" placeholder="Rechercher une norme..." oninput="searchNormes(this.value)" class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-                    </div>
-                </div>
+            <div class="mb-10">
+                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">R&eacute;f&eacute;rence</p>
+                <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark"><strong>Nos Normes</strong> <span class="text-gray-400 font-normal text-2xl">(<span id="normes-count">0</span>)</span></h2>
             </div>
-            <div class="flex flex-wrap gap-2 mb-8">
-                <button onclick="filterNormes('all')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-primary text-white transition-all">Toutes</button>
-                <button onclick="filterNormes('Management')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-dark transition-all">Management</button>
-                <button onclick="filterNormes('Alimentation')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-dark transition-all">Alimentation</button>
-                <button onclick="filterNormes('Construction')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-dark transition-all">Construction</button>
-                <button onclick="filterNormes('Électricité')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-dark transition-all">Électricité</button>
-                <button onclick="filterNormes('Métrologie')" class="norme-filter-btn px-4 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-dark transition-all">Métrologie</button>
+            <div class="flex flex-col sm:flex-row flex-wrap gap-3 mb-8">
+                <div class="norme-search relative flex-1 min-w-[200px]">
+                    <input type="text" id="norme-search-input" placeholder="Rechercher par nom, code..." class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+                </div>
+                <select id="filter-categorie" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                    <option value="all">Toutes les cat&eacute;gories</option>
+                </select>
+                <select id="filter-type-iso" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                    <option value="all">Tous les types</option>
+                </select>
+                <select id="filter-origine" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                    <option value="all">Toutes origines</option>
+                </select>
+                <select id="filter-annee" class="px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                    <option value="all">Toutes ann&eacute;es</option>
+                </select>
             </div>
             <div id="normes-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Chargé dynamiquement via Supabase -->
+                <!-- Charg&eacute; dynamiquement via Supabase -->
             </div>
         </div>
     </section>
@@ -1000,11 +998,22 @@
     <section class="partenaires-section py-14 lg:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
             <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Ils nous font confiance</p>
-            <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark"><strong>Nos Partenaires</strong></h2>
+            <h2 class="font-serif text-3xl lg:4xl font-bold text-dark"><strong>Nos Partenaires</strong></h2>
         </div>
         <div class="overflow-hidden">
             <div id="partenaires-track" class="partenaires-track">
-                <!-- Chargé dynamiquement via Supabase -->
+                <a href="https://www.cotecna.com" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="Leader mondial en services d'inspection, d'essais et de certification">
+                    <span class="text-lg font-bold text-gray-800 tracking-wide">COTECNA</span>
+                </a>
+                <a href="https://www.tuv.com" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="Organisme de certification et d'inspection technique">
+                    <span class="text-lg font-bold text-gray-800 tracking-wide">TÜV</span>
+                </a>
+                <a href="https://www.bureauveritas.com" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="Leader mondial de l'évaluation de la conformité">
+                    <span class="text-lg font-bold text-gray-800 tracking-wide">Bureau Veritas</span>
+                </a>
+                <a href="https://www.arso-africa.org" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center px-10 py-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[180px]" title="African Organisation for Standardisation">
+                    <span class="text-lg font-bold text-gray-800 tracking-wide">ARSO</span>
+                </a>
             </div>
         </div>
     </section>

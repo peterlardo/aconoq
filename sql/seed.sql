@@ -42,10 +42,16 @@ CREATE TABLE IF NOT EXISTS normes (
   titre TEXT NOT NULL,
   description TEXT,
   categorie TEXT NOT NULL,
+  type_iso TEXT DEFAULT 'NCGO',
+  origine TEXT DEFAULT 'Congolais',
   date_pub DATE DEFAULT CURRENT_DATE,
   statut TEXT DEFAULT 'active',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Si la table existe déjà sans les colonnes, exécuter :
+-- ALTER TABLE normes ADD COLUMN IF NOT EXISTS type_iso TEXT DEFAULT 'NCGO';
+-- ALTER TABLE normes ADD COLUMN IF NOT EXISTS origine TEXT DEFAULT 'Congolais';
 
 -- 5. ÉVÉNEMENTS
 CREATE TABLE IF NOT EXISTS evenements (
