@@ -38,22 +38,6 @@
     </style>
 </head>
 <body class="bg-white">
-
-    <!-- Top Bar -->
-    <div class="bg-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
-                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
-                </a>
-                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
-                </a>
-                <span class="hidden sm:inline-flex items-center gap-1.5">
-                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
-                </span>
-            </div>
-        </div>
     </div>
 
     <!-- Header -->
@@ -65,7 +49,19 @@
                 </a>
                 <nav class="hidden lg:flex items-center gap-1">
                     <a href="index.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">Accueil</a>
-                    <a href="contact.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
+                    <!-- PROGRAMMES -->
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            PROGRAMMES <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[280px]">
+                                <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Programme Congolais d'&Eacute;valuation de la Conformit&eacute; (PCEC)</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Syst&egrave;me de marquage et de tra&ccedil;abilit&eacute; des produits du tabac</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Sch&eacute;ma national de certification des produits issus de la production agricole</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 <button class="lg:hidden text-dark">
                     <i class="fas fa-bars text-xl"></i>
@@ -76,7 +72,7 @@
 
     <!-- HERO -->
     <section class="relative py-16 lg:py-24 overflow-hidden">
-        <div class="absolute inset-0">
+        <div id="page-hero" class="absolute inset-0">
             <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/certificate.png" alt="" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/85 to-gray-900/70"></div>
         </div>
@@ -86,250 +82,11 @@
                 <span class="text-white/40 mx-2">></span>
                 <span class="text-white">Évaluation de la Conformité</span>
             </nav>
-            <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Évaluation de la Conformité</h1>
+            <h1 class="hero-title font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Évaluation de la Conformité</h1>
         </div>
     </section>
 
-    <!-- Section 1: Présentation -->
-    <section class="py-16 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center">
-                <span class="text-primary text-xs font-semibold tracking-widest uppercase mb-4 inline-block">Présentation</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-dark mb-8">Direction de l'Évaluation de la Conformité</h2>
-                <p class="text-gray-text text-base leading-relaxed mb-6">
-                    La Direction de l'Évaluation de la Conformité (DEC) est l'une des principales directions techniques de l'Agence Congolaise de Normalisation et de la Qualité (ACONOQ). Elle est chargée d'évaluer la conformité aux normes des produits, services, procédés, systèmes, compétence des personnes; contribuant ainsi à la protection des consommateurs et à l'amélioration continue de la qualité au sein du pays.
-                </p>
-                <p class="text-gray-text text-base leading-relaxed mb-8">
-                    Elle est composée de trois services :
-                </p>
-                <div class="grid sm:grid-cols-3 gap-6">
-                    <div class="bg-primary-light rounded-xl p-6 border border-primary/10">
-                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-certificate text-primary text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-dark text-sm">Certification et labellisation</h3>
-                    </div>
-                    <div class="bg-primary-light rounded-xl p-6 border border-primary/10">
-                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-check-double text-primary text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-dark text-sm">Agréments des organismes</h3>
-                    </div>
-                    <div class="bg-primary-light rounded-xl p-6 border border-primary/10">
-                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-search text-primary text-lg"></i>
-                        </div>
-                        <h3 class="font-semibold text-dark text-sm">Audits des organismes</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: Ses missions -->
-    <section class="py-16 lg:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <span class="text-primary text-xs font-semibold tracking-widest uppercase mb-4 inline-block">Missions</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-dark">Ses missions</h2>
-                </div>
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 lg:p-12">
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Assurer la certification des systèmes, des produits, des services et des compétences</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Attribuer le droit d'usage, de suspension et de retrait de la marque nationale de conformité aux normes</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Assurer la promotion de la marque nationale de conformité aux normes</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Assurer la création et la gestion d'autres marques ou labels</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Créer et rendre fonctionnels les comités de certification</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Mettre en œuvre le schéma national de certification des produits issus de la production locale</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Mettre en œuvre le programme d'évaluation de la conformité des produits avant embarquement</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-primary text-xs"></i>
-                            </div>
-                            <p class="text-gray-text text-sm leading-relaxed">Préparer les décisions d'agrément consécutives aux demandes des laboratoires d'analyse</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Ses activités -->
-    <section class="py-16 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-primary text-xs font-semibold tracking-widest uppercase mb-4 inline-block">Activités</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-dark">Ses activités</h2>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-certificate text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Certification des produits, services, processus, systèmes</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Certification conforme aux normes nationales et internationales pour garantir la qualité des produits et services.</p>
-                </div>
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-tag text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Marquage et traçabilité des produits du tabac</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Contrôle du marquage et assurer la traçabilité des produits du tabac sur le territoire national.</p>
-                </div>
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-ship text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Certification des produits avant embarquement</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Évaluation de la conformité des produits avant leur embarquement pour garantir leur conformité aux normes.</p>
-                </div>
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-clipboard-check text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Audits des organismes</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Réalisation d'audits pour vérifier la conformité des organismes aux exigences normatives.</p>
-                </div>
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-eye text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Inspections</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Inspections sur site pour vérifier la conformité des produits et procédés aux normes en vigueur.</p>
-                </div>
-                <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
-                    <div class="absolute top-0 left-0 right-0 h-1 bg-primary transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-400"></div>
-                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                        <i class="fas fa-flask text-primary text-xl group-hover:text-white"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark text-base mb-3">Essais / Analyses / Tests</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Réalisation d'essais, analyses et tests en laboratoire pour valider la conformité des produits.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Processus de Certification -->
-    <section class="py-16 lg:py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary-light text-xs font-semibold tracking-widest uppercase mb-4 inline-block">Processus</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white">Processus de Certification</h2>
-            </div>
-            <div class="relative">
-                <!-- Timeline line -->
-                <div class="hidden lg:block absolute top-8 left-0 right-0 h-0.5 bg-white/10"></div>
-                <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4">
-                    <div class="text-center relative">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 relative z-10 border-4 border-gray-900">
-                            <span class="text-white font-bold text-lg">1</span>
-                        </div>
-                        <h3 class="font-semibold text-white text-sm mb-2">La demande</h3>
-                        <p class="text-white/50 text-xs leading-relaxed">Dépôt de la demande de certification par le demandeur</p>
-                    </div>
-                    <div class="text-center relative">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 relative z-10 border-4 border-gray-900">
-                            <span class="text-white font-bold text-lg">2</span>
-                        </div>
-                        <h3 class="font-semibold text-white text-sm mb-2">L'évaluation</h3>
-                        <p class="text-white/50 text-xs leading-relaxed">Évaluation technique et vérification de la conformité</p>
-                    </div>
-                    <div class="text-center relative">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 relative z-10 border-4 border-gray-900">
-                            <span class="text-white font-bold text-lg">3</span>
-                        </div>
-                        <h3 class="font-semibold text-white text-sm mb-2">La revue</h3>
-                        <p class="text-white/50 text-xs leading-relaxed">Revue des résultats d'évaluation par le comité</p>
-                    </div>
-                    <div class="text-center relative">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 relative z-10 border-4 border-gray-900">
-                            <span class="text-white font-bold text-lg">4</span>
-                        </div>
-                        <h3 class="font-semibold text-white text-sm mb-2">La décision relative à la certification</h3>
-                        <p class="text-white/50 text-xs leading-relaxed">Décision officielle concernant l'attribution de la certification</p>
-                    </div>
-                    <div class="text-center relative">
-                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-5 relative z-10 border-4 border-gray-900">
-                            <span class="text-white font-bold text-lg">5</span>
-                        </div>
-                        <h3 class="font-semibold text-white text-sm mb-2">L'octroi du certificat de conformité aux normes Congolaises</h3>
-                        <p class="text-white/50 text-xs leading-relaxed">Délivrance officielle du certificat de conformité</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: Marque Nationale NCGO -->
-    <section class="py-16 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="text-primary text-xs font-semibold tracking-widest uppercase mb-4 inline-block">Marque Nationale</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-dark mb-6">Marque Nationale de Conformité NCGO</h2>
-                    <p class="text-gray-text text-base leading-relaxed mb-5">
-                        La marque nationale de conformité aux normes NCGO, est la preuve qu'indique avec un niveau suffisant de confiance, que le produit, le procédé ou le service visé est conforme à une norme nationale.
-                    </p>
-                    <p class="text-gray-text text-base leading-relaxed mb-5">
-                        Elle est la seule qui certifie de la Conformité des produits, procédés ou services en République du Congo.
-                    </p>
-                    <p class="text-gray-text text-base leading-relaxed mb-8">
-                        Le sigle « NCGO » signifie <strong class="text-dark">Conformité aux Normes Congolaises</strong>.
-                    </p>
-                    <div class="flex items-center gap-4 bg-primary-light rounded-xl p-5 border border-primary/10">
-                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-shield-alt text-primary text-lg"></i>
-                        </div>
-                        <p class="text-sm text-dark leading-relaxed">Le NCGO est la seule marque officielle garantissant la conformité des produits sur le territoire congolais.</p>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/ngco-a.png" alt="Marque Nationale NCGO" class="max-w-sm w-full rounded-2xl shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="dynamic-sections"></div>
 
     <!-- Footer -->
     <footer class="bg-red-600">
@@ -442,6 +199,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>

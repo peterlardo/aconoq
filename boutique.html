@@ -62,22 +62,6 @@
     </style>
 </head>
 <body class="bg-white">
-
-    <!-- Top Bar -->
-    <div class="bg-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
-                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
-                </a>
-                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
-                </a>
-                <span class="hidden sm:inline-flex items-center gap-1.5">
-                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
-                </span>
-            </div>
-        </div>
     </div>
 
     <!-- Navbar -->
@@ -100,7 +84,19 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
+                    <!-- PROGRAMMES -->
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            PROGRAMMES <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[280px]">
+                                <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Programme Congolais d'&Eacute;valuation de la Conformit&eacute; (PCEC)</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Syst&egrave;me de marquage et de tra&ccedil;abilit&eacute; des produits du tabac</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Sch&eacute;ma national de certification des produits issus de la production agricole</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 <button class="lg:hidden text-dark">
                     <i class="fas fa-bars text-xl"></i>
@@ -111,7 +107,7 @@
 
     <!-- HERO - MOCKUP BOUTIQUE -->
     <section class="relative py-20 lg:py-28 overflow-hidden bg-gray-900">
-        <div class="absolute inset-0 opacity-20">
+        <div id="page-hero" class="absolute inset-0 opacity-20">
             <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="" class="w-full h-full object-cover">
         </div>
         <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-primary/20"></div>
@@ -120,7 +116,7 @@
                 <!-- Left - Text -->
                 <div>
                     <span class="inline-block px-4 py-1.5 bg-primary/20 border border-primary/30 rounded-full text-primary text-xs font-semibold tracking-wider uppercase mb-6">Boutique en ligne</span>
-                    <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">Achetez vos normes <span class="text-primary">directement en ligne</span></h1>
+                    <h1 class="hero-title font-serif text-3xl lg:text-5xl font-bold text-white mb-6 leading-tight">Achetez vos normes <span class="text-primary">directement en ligne</span></h1>
                     <p class="text-gray-300 text-base lg:text-lg leading-relaxed mb-8">
                         D&eacute;couvrez et t&eacute;l&eacute;chargez les normes congolaises NCGO, internationales et africaines sur notre plateforme e-commerce d&eacute;di&eacute;e. Simple, rapide et s&eacute;curis&eacute;.
                     </p>
@@ -251,230 +247,21 @@
     <!-- COMMENT CA MARCHE -->
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Simple &amp; rapide</p>
-                <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-4"><strong>Comment &ccedil;a fonctionne ?</strong></h2>
-                <p class="text-gray-text text-base max-w-2xl mx-auto">Achetez vos normes en quelques &eacute;tapes simples sur notre plateforme s&eacute;curis&eacute;e.</p>
-            </div>
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Step 1 -->
-                <div class="text-center group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                        <i class="fas fa-search text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <div class="w-8 h-0.5 bg-primary/20 mx-auto mb-5 relative">
-                        <div class="absolute right-0 -top-1.5 w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-primary/30"></div>
-                    </div>
-                    <h3 class="font-semibold text-dark mb-2">1. Recherchez</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Parcourez notre catalogue ou utilisez la recherche pour trouver la norme dont vous avez besoin.</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="text-center group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                        <i class="fas fa-cart-plus text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <div class="w-8 h-0.5 bg-primary/20 mx-auto mb-5 relative">
-                        <div class="absolute right-0 -top-1.5 w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-primary/30"></div>
-                    </div>
-                    <h3 class="font-semibold text-dark mb-2">2. Ajoutez au panier</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">S&eacute;lectionnez la norme souhait&eacute;e et ajoutez-la &agrave; votre panier. Vous pouvez en s&eacute;lectionner plusieurs.</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="text-center group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                        <i class="fas fa-credit-card text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <div class="w-8 h-0.5 bg-primary/20 mx-auto mb-5 relative">
-                        <div class="absolute right-0 -top-1.5 w-0 h-0 border-t-4 border-b-4 border-l-6 border-transparent border-l-primary/30"></div>
-                    </div>
-                    <h3 class="font-semibold text-dark mb-2">3. Payez en ligne</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Effectuez un paiement s&eacute;curis&eacute; par carte bancaire, Mobile Money ou virement.</p>
-                </div>
-                <!-- Step 4 -->
-                <div class="text-center group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                        <i class="fas fa-download text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-semibold text-dark mb-2">4. T&eacute;l&eacute;chargez</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">T&eacute;l&eacute;chargez imm&eacute;diatement vos normes en format PDF apr&egrave;s validation du paiement.</p>
-                </div>
-            </div>
+            <div id="dynamic-how-it-works"></div>
         </div>
     </section>
 
     <!-- AVANTAGES -->
     <section class="py-16 lg:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Pourquoi nous choisir</p>
-                    <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><strong>Une plateforme con&ccedil;ue pour vous</strong></h2>
-                    <p class="text-gray-text text-base leading-relaxed mb-8">
-                        Notre boutique en ligne vous offre un acc&egrave;s rapide et s&eacute;curis&eacute; &agrave; l'ensemble des normes publi&eacute;es par l'ACONOQ et ses partenaires internationaux.
-                    </p>
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-shield-alt text-primary text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-dark text-sm mb-1">Paiement 100% s&eacute;curis&eacute;</h4>
-                                <p class="text-gray-text text-xs leading-relaxed">Transactions prot&eacute;g&eacute;es par cryptage SSL. Nous acceptons les cartes bancaires, Mobile Money (M-Pesa, Airtel Money) et les virements bancaires.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-bolt text-primary text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-dark text-sm mb-1">Acc&egrave;s imm&eacute;diat</h4>
-                                <p class="text-gray-text text-xs leading-relaxed">Apr&egrave;s le paiement, vos normes sont disponibles en t&eacute;l&eacute;chargement instantan&eacute; en format PDF certifi&eacute;.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-headset text-primary text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-dark text-sm mb-1">Support d&eacute;di&eacute;</h4>
-                                <p class="text-gray-text text-xs leading-relaxed">Notre &eacute;quipe est disponible par t&eacute;l&eacute;phone, email ou chat pour vous accompagner dans vos achats.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-sync-alt text-primary text-sm"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-dark text-sm mb-1">Mises &agrave; jour gratuites</h4>
-                                <p class="text-gray-text text-xs leading-relaxed">Recevez gratuitement les nouvelles versions de vos normes lors de leurs r&eacute;visions.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right side - info card -->
-                <div class="relative">
-                    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
-                                <i class="fas fa-file-alt text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-dark">Catalogue NCGO</h3>
-                                <p class="text-gray-text text-xs">Normes congolaises</p>
-                            </div>
-                        </div>
-                        <div class="space-y-4 mb-6">
-                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-check text-primary text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-dark text-sm font-medium">Normes Management</p>
-                                        <p class="text-gray-text text-xs">ISO 9001, ISO 14001...</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-primary bg-primary-light px-2.5 py-1 rounded-full">185</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-check text-blue-600 text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-dark text-sm font-medium">Normes Alimentation</p>
-                                        <p class="text-gray-text text-xs">HACCP, &eacute;tiquetage...</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">312</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3 border-b border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-check text-orange-600 text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-dark text-sm font-medium">Normes Construction</p>
-                                        <p class="text-gray-text text-xs">Ciment, b&eacute;ton...</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">224</span>
-                            </div>
-                            <div class="flex items-center justify-between py-3">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-purple-50 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-check text-purple-600 text-xs"></i>
-                                    </div>
-                                    <div>
-                                        <p class="text-dark text-sm font-medium">Autres cat&eacute;gories</p>
-                                        <p class="text-gray-text text-xs">&Eacute;lectricit&eacute;, m&eacute;trologie...</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-semibold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full">529</span>
-                            </div>
-                        </div>
-                        <a href="#" class="block w-full text-center bg-primary text-white py-3.5 rounded-lg text-sm font-semibold hover:bg-primary-dark transition shadow-lg shadow-primary/25">
-                            Explorer le catalogue <i class="fas fa-arrow-right text-xs ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div id="dynamic-advantages"></div>
         </div>
     </section>
 
     <!-- FAQ -->
     <section class="py-16 lg:py-24 bg-white">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Questions fr&eacute;quentes</p>
-                <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark"><strong>Besoin d'aide ?</strong></h2>
-            </div>
-            <div class="space-y-4">
-                <div class="border border-gray-200 rounded-xl p-6 hover:border-primary/30 transition">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-credit-card text-primary text-xs"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-dark text-sm mb-2">Quels modes de paiement acceptez-vous ?</h4>
-                            <p class="text-gray-text text-sm leading-relaxed">Nous acceptons les cartes bancaires (Visa, Mastercard), les paiements Mobile Money (M-Pesa, Airtel Money) ainsi que les virements bancaires. Tous les paiements sont s&eacute;curis&eacute;s par cryptage SSL.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl p-6 hover:border-primary/30 transition">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-clock text-primary text-xs"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-dark text-sm mb-2">Combien de temps pour recevoir ma norme ?</h4>
-                            <p class="text-gray-text text-sm leading-relaxed">Les normes num&eacute;riques sont disponibles en t&eacute;l&eacute;chargement imm&eacute;diat apr&egrave;s validation du paiement. Vous recevrez un email de confirmation avec le lien de t&eacute;l&eacute;chargement.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl p-6 hover:border-primary/30 transition">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-undo text-primary text-xs"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-dark text-sm mb-2">Puis-je obtenir un remboursement ?</h4>
-                            <p class="text-gray-text text-sm leading-relaxed">En tant que produits num&eacute;riques, les normes ne sont pas remboursables une fois t&eacute;l&eacute;charg&eacute;es. En cas de probl&egrave;me technique, contactez notre support pour une solution.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="border border-gray-200 rounded-xl p-6 hover:border-primary/30 transition">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <i class="fas fa-building text-primary text-xs"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-dark text-sm mb-2">Comment acheter pour mon entreprise ?</h4>
-                            <p class="text-gray-text text-sm leading-relaxed">Pour les achats en volume ou les factures entreprise, contactez-nous directement &agrave; <strong>contact@aconoq.cg</strong> pour b&eacute;n&eacute;ficier de tarifs d&eacute;di&eacute;s.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="dynamic-faq"></div>
         </div>
     </section>
 
@@ -590,6 +377,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>

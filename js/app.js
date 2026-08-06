@@ -2,16 +2,45 @@
 // ACONOQ - Application Logic
 // ============================================
 
+function getPageSlug() {
+  const path = window.location.pathname;
+  const file = path.split('/').pop() || 'index.html';
+  return file.replace('.html', '');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  const slug = getPageSlug();
   loadChiffresCles();
   loadDirections();
   loadNormes();
   loadEvenements();
   initFormulaires();
+  loadDynamicPageHero(slug);
+  loadDynamicPageContent(slug);
+
+  if (slug === 'index') {
+    loadDynamicHeroSlides();
+    loadDynamicServices();
+    loadDynamicBanners();
+    loadDynamicProcessus();
+  }
+  if (slug === 'boutique') {
+    loadBoutiqueContent();
+  }
+  if (slug === 'contact') {
+    loadDynamicContactInfo();
+  }
+  if (slug === 'pcec') {
+    loadPcecExceptions();
+    loadCertificationSteps();
+  }
+  if (slug === 'conformite') {
+    loadCertificationSteps();
+  }
 });
 
 // ============================================
-// 1. CHIFFRES CLÉS
+// 1. CHIFFRES CLES
 // ============================================
 async function loadChiffresCles() {
   const container = document.getElementById('chiffres-cles-grid');
@@ -40,8 +69,7 @@ async function loadChiffresCles() {
 
     animateChiffres();
   } catch (err) {
-    console.error('Erreur chargement chiffres clés:', err);
-    container.innerHTML = '<p class="text-white/50 text-center col-span-4">Données temporairement indisponibles</p>';
+    console.error('Erreur chargement chiffres cles:', err);
   }
 }
 
@@ -66,56 +94,7 @@ function animateChiffres() {
 }
 
 // ============================================
-// 2. MOT DU DIRECTEUR
-// ============================================
-async function loadDirecteur() {
-  const container = document.getElementById('directeur-content');
-  if (!container) return;
-
-  try {
-    const { data, error } = await supabaseClient
-      .from('directeur')
-      .select('*')
-      .limit(1)
-      .single();
-
-    if (error) throw error;
-
-    container.innerHTML = `
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="relative">
-          <div class="rounded-2xl overflow-hidden shadow-2xl">
-            <img src="${data.photo_url || 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800'}" 
-                 alt="${data.nom}" class="w-full h-[400px] object-cover">
-          </div>
-          <div class="absolute -bottom-6 -right-6 bg-primary text-white px-6 py-3 rounded-xl shadow-lg">
-            <p class="font-semibold text-sm">${data.titre}</p>
-          </div>
-        </div>
-        <div>
-          <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Mot du Directeur</p>
-          <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6">
-            <strong>${data.nom}</strong>
-          </h2>
-          <div class="relative pl-6 border-l-4 border-primary mb-6">
-            <p class="text-gray-text text-base leading-relaxed italic">
-              "${data.message}"
-            </p>
-          </div>
-          <a href="#" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded text-sm font-medium hover:bg-primary-dark transition">
-            En savoir plus <i class="fas fa-arrow-right text-xs"></i>
-          </a>
-        </div>
-      </div>
-    `;
-  } catch (err) {
-    console.error('Erreur chargement directeur:', err);
-    container.innerHTML = '<p class="text-gray-text text-center">Contenu temporairement indisponible</p>';
-  }
-}
-
-// ============================================
-// 3. NOS DIRECTIONS
+// 2. NOS DIRECTIONS
 // ============================================
 async function loadDirections() {
   const container = document.getElementById('nav-directions');
@@ -136,12 +115,11 @@ async function loadDirections() {
     `).join('');
   } catch (err) {
     console.error('Erreur chargement directions:', err);
-    container.innerHTML = '<p class="px-4 py-2 text-xs text-gray-400">Données indisponibles</p>';
   }
 }
 
 // ============================================
-// 4. NORMES POPULAIRES
+// 3. NORMES POPULAIRES
 // ============================================
 async function loadNormes() {
   const container = document.getElementById('normes-grid');
@@ -174,7 +152,7 @@ function renderNormes(normes) {
   if (countEl) countEl.textContent = normes.length;
 
   if (normes.length === 0) {
-    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune norme ne correspond &agrave; votre recherche.</p>';
+    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune norme ne correspond \u00e0 votre recherche.</p>';
     return;
   }
 
@@ -267,7 +245,7 @@ function bindNormeFilters() {
 }
 
 // ============================================
-// 5. ÉVÉNEMENTS
+// 4. EVENEMENTS
 // ============================================
 async function loadEvenements() {
   const container = document.getElementById('evenements-grid');
@@ -284,14 +262,14 @@ async function loadEvenements() {
     if (error) throw error;
 
     if (data.length === 0) {
-      container.innerHTML = '<p class="text-gray-text text-center col-span-4">Aucun événement à venir pour le moment.</p>';
+      container.innerHTML = '<p class="text-gray-text text-center col-span-4">Aucun \u00e9v\u00e9nement \u00e0 venir pour le moment.</p>';
       return;
     }
 
     const typeColors = {
       formation: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Formation' },
       salon: { bg: 'bg-purple-100', text: 'text-purple-700', label: 'Salon' },
-      evenement: { bg: 'bg-green-100', text: 'text-green-700', label: 'Événement' }
+      evenement: { bg: 'bg-green-100', text: 'text-green-700', label: '\u00c9v\u00e9nement' }
     };
 
     container.innerHTML = data.map(item => {
@@ -321,7 +299,7 @@ async function loadEvenements() {
               <h3 class="font-semibold text-sm text-dark mb-1 line-clamp-2">${item.titre}</h3>
               <p class="text-gray-text text-xs leading-relaxed mb-2 line-clamp-2">${item.description || ''}</p>
               <div class="flex items-center gap-3 text-[11px] text-gray-text">
-                <span><i class="fas fa-map-marker-alt mr-1"></i>${item.lieu || 'Non précisé'}</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>${item.lieu || 'Non pr\u00e9cis\u00e9'}</span>
               </div>
             </div>
           </div>
@@ -329,12 +307,477 @@ async function loadEvenements() {
       `;
     }).join('');
   } catch (err) {
-    console.error('Erreur chargement événements:', err);
-    container.innerHTML = '<p class="text-gray-text text-center col-span-4">Données temporairement indisponibles</p>';
+    console.error('Erreur chargement \u00e9v\u00e9nements:', err);
   }
 }
 
 // ============================================
+// 5. DYNAMIC PAGE HERO
+// ============================================
+async function loadDynamicPageHero(slug) {
+  const heroEl = document.getElementById('page-hero');
+  if (!heroEl) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('page_heroes')
+      .select('*')
+      .eq('page_slug', slug)
+      .single();
+
+    if (error || !data) return;
+
+    if (data.image_url) {
+      heroEl.style.backgroundImage = `url('${data.image_url}')`;
+    }
+    const titleEl = heroEl.querySelector('.hero-title');
+    if (titleEl && data.title) titleEl.textContent = data.title;
+    const subEl = heroEl.querySelector('.hero-subtitle');
+    if (subEl && data.subtitle) subEl.textContent = data.subtitle;
+  } catch (err) {
+    console.error('Erreur chargement hero:', err);
+  }
+}
+
+// ============================================
+// 6. DYNAMIC PAGE CONTENT (page_sections + card_grids)
+// ============================================
+async function loadDynamicPageContent(slug) {
+  const sectionsContainer = document.getElementById('dynamic-sections');
+  if (!sectionsContainer) return;
+
+  try {
+    const [sectionsRes, gridsRes] = await Promise.all([
+      supabaseClient.from('page_sections').select('*').eq('page_slug', slug).order('ordre', { ascending: true }),
+      supabaseClient.from('card_grids').select('*').eq('page_slug', slug).order('ordre', { ascending: true })
+    ]);
+
+    const sections = sectionsRes.data || [];
+    const grids = gridsRes.data || [];
+
+    const groupedGrids = {};
+    grids.forEach(g => {
+      if (!groupedGrids[g.grid_key]) groupedGrids[g.grid_key] = [];
+      groupedGrids[g.grid_key].push(g);
+    });
+
+    sectionsContainer.innerHTML = sections.map(s => renderPageSection(s, groupedGrids)).join('');
+  } catch (err) {
+    console.error('Erreur chargement sections:', err);
+  }
+}
+
+function renderPageSection(section, groupedGrids) {
+  const c = section.content || {};
+  let html = '';
+
+  if (section.badge) {
+    html += `<span class="text-primary text-xs font-semibold tracking-widest uppercase mb-3 block">${section.badge}</span>`;
+  }
+  html += `<h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><i class="${section.icon_class} text-primary mr-3 text-2xl"></i>${section.title}</h2>`;
+
+  if (c.paragraphs && Array.isArray(c.paragraphs)) {
+    html += c.paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${p}</p>`).join('');
+  }
+
+  if (c.description) {
+    html += `<p class="text-gray-text text-base leading-relaxed mb-6">${c.description}</p>`;
+  }
+
+  if (c.list_title) {
+    html += `<h3 class="font-semibold text-lg text-dark mb-3 mt-6">${c.list_title}</h3>`;
+  }
+
+  if (c.list_items && Array.isArray(c.list_items)) {
+    html += '<div class="bg-gray-50 rounded-xl p-6 mb-6">';
+    html += c.list_items.map((item, i) => `
+      <div class="flex items-start gap-3 mb-3">
+        <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-bold">${i + 1}</span>
+        <p class="text-gray-text text-sm leading-relaxed pt-0.5">${item}</p>
+      </div>
+    `).join('');
+    html += '</div>';
+  }
+
+  if (c.items && Array.isArray(c.items)) {
+    html += '<div class="bg-gray-50 rounded-xl p-6 mb-6">';
+    html += c.items.map(item => `
+      <div class="flex items-start gap-3 mb-3">
+        <i class="fas fa-check-circle text-primary mt-1 flex-shrink-0"></i>
+        <p class="text-gray-text text-sm leading-relaxed">${item}</p>
+      </div>
+    `).join('');
+    html += '</div>';
+  }
+
+  if (c.services && Array.isArray(c.services)) {
+    html += '<div class="grid sm:grid-cols-3 gap-6 mt-6">';
+    html += c.services.map(s => `
+      <div class="bg-gray-50 rounded-xl p-5 text-center">
+        <i class="${s.icon} text-primary text-2xl mb-3"></i>
+        <p class="font-semibold text-sm text-dark">${s.name}</p>
+      </div>
+    `).join('');
+    html += '</div>';
+  }
+
+  if (c.cards && Array.isArray(c.cards)) {
+    html += '<div class="grid sm:grid-cols-2 gap-6 mt-6">';
+    html += c.cards.map(card => {
+      const colorClass = card.color === 'red' ? 'bg-red-50 text-red-600' : 'bg-primary-light text-primary';
+      return `
+        <div class="feature-card">
+          <span class="feature-icon ${colorClass}"><i class="${card.icon}"></i></span>
+          <h3 class="font-semibold text-base text-dark mb-2">${card.title}</h3>
+          <p class="text-gray-text text-sm leading-relaxed">${card.description}</p>
+        </div>
+      `;
+    }).join('');
+    html += '</div>';
+  }
+
+  if (c.highlight) {
+    html += `<div class="bg-primary-light border-l-4 border-primary rounded-r-xl p-5 mt-6">
+      <p class="text-primary text-sm font-medium"><i class="fas fa-star mr-2"></i>${c.highlight}</p>
+    </div>`;
+  }
+
+  if (c.name && c.role) {
+    const name = c.name;
+    const role = c.role;
+    const photo = c.photo_url || '';
+    const paragraphs = c.paragraphs || [];
+    const sigName = c.signature_name || name;
+    const sigTitle = c.signature_title || role;
+    const sigOrg = c.signature_org || '';
+
+    html = `
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="relative lg:sticky lg:top-28">
+          ${photo ? `<div class="rounded-2xl overflow-hidden shadow-2xl"><img src="${photo}" alt="${name}" class="w-full h-[400px] object-cover"></div>` : ''}
+        </div>
+        <div>
+          <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">${section.badge || 'Message officiel'}</p>
+          <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><strong>${name}</strong></h2>
+          <p class="text-gray-text text-sm mb-4 italic">${role}</p>
+          ${paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${p}</p>`).join('')}
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <p class="font-bold text-dark">${sigName}</p>
+            <p class="text-gray-text text-sm">${sigTitle}</p>
+            <p class="text-gray-text text-xs">${sigOrg}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    return html;
+  }
+
+  return `<section class="mb-10">${html}</section>`;
+}
+
+// ============================================
+// 7. DYNAMIC SERVICES GRID (index)
+// ============================================
+async function loadDynamicServices() {
+  const container = document.getElementById('dynamic-services');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('services')
+      .select('*')
+      .order('ordre', { ascending: true });
+
+    if (error) throw error;
+
+    container.innerHTML = data.map(item => `
+      <div class="feature-card">
+        <span class="feature-icon"><i class="${item.icon_class}" style="font-size:22px"></i></span>
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        ${item.link_url && item.link_url !== '#' ? `<a href="${item.link_url}" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>` : ''}
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement services:', err);
+  }
+}
+
+// ============================================
+// 8. DYNAMIC HERO SLIDES (index)
+// ============================================
+async function loadDynamicHeroSlides() {
+  const carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('hero_slides')
+      .select('*')
+      .order('ordre', { ascending: true });
+
+    if (error || !data || data.length === 0) return;
+
+    carousel.innerHTML = data.map((s, i) =>
+      `<div class="hero-slide ${i === 0 ? 'active' : ''}" style="background-image: url('${s.image_url}')"></div>`
+    ).join('');
+
+    const dotsContainer = document.getElementById('carouselDots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = data.map((_, i) =>
+        `<button class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></button>`
+      ).join('');
+    }
+
+    const heroText = document.querySelector('.hero-content-inner');
+    if (heroText && data[0]) {
+      const badge = heroText.querySelector('.hero-badge');
+      const title = heroText.querySelector('.hero-title');
+      const subtitle = heroText.querySelector('.hero-subtitle');
+      const cta1 = heroText.querySelector('.hero-cta1');
+      const cta2 = heroText.querySelector('.hero-cta2');
+      if (badge && data[0].badge) badge.textContent = data[0].badge;
+      if (title) title.innerHTML = data[0].title || '';
+      if (subtitle) subtitle.innerHTML = data[0].subtitle || '';
+      if (cta1 && data[0].cta1_label) { cta1.textContent = data[0].cta1_label; cta1.href = data[0].cta1_url || '#'; }
+      if (cta2 && data[0].cta2_label) { cta2.textContent = data[0].cta2_label; cta2.href = data[0].cta2_url || '#'; }
+    }
+
+    window._heroSlides = data;
+    window._heroTotal = data.length;
+  } catch (err) {
+    console.error('Erreur chargement hero slides:', err);
+  }
+}
+
+// ============================================
+// 9. DYNAMIC BANNERS (index)
+// ============================================
+async function loadDynamicBanners() {
+  const container = document.getElementById('dynamic-banners');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('banners')
+      .select('*')
+      .eq('page_slug', 'index')
+      .order('ordre', { ascending: true });
+
+    if (error || !data || data.length === 0) return;
+
+    container.innerHTML = data.map(b => `
+      <section class="relative h-[400px] lg:h-[480px] overflow-hidden mb-8">
+        <img src="${b.image_url}" alt="${b.title}" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-transparent"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-xl text-white">
+              <span class="text-white/80 text-xs font-semibold tracking-widest uppercase">${b.badge}</span>
+              <h2 class="font-serif text-3xl lg:text-5xl font-black mt-3 mb-4">${b.title}</h2>
+              <p class="text-white/80 text-base leading-relaxed mb-6">${b.description}</p>
+              <a href="${b.cta1_url || '#'}" class="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded text-sm font-semibold hover:bg-gray-100 transition">
+                ${b.cta1_label} <i class="fas fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement banners:', err);
+  }
+}
+
+// ============================================
+// 10. DYNAMIC PROCESSUS (index)
+// ============================================
+async function loadDynamicProcessus() {
+  const container = document.getElementById('dynamic-processus');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('processus')
+      .select('*')
+      .order('ordre', { ascending: true });
+
+    if (error || !data || data.length === 0) return;
+
+    container.innerHTML = data.map(item => `
+      <div class="process-slide min-w-[33.333%] px-3">
+        <div class="feature-card h-full">
+          <span class="feature-icon"><i class="${item.icon_class}" style="font-size:22px"></i></span>
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          ${item.link_url && item.link_url !== '#' ? `<a href="${item.link_url}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>` : ''}
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement processus:', err);
+  }
+}
+
+// ============================================
+// 11. CONTACT INFO + SCHEDULE
+// ============================================
+async function loadDynamicContactInfo() {
+  const infoContainer = document.getElementById('dynamic-contact-info');
+  const schedContainer = document.getElementById('dynamic-schedule');
+  if (!infoContainer && !schedContainer) return;
+
+  try {
+    const [infoRes, schedRes] = await Promise.all([
+      supabaseClient.from('contact_info').select('*').order('ordre', { ascending: true }),
+      supabaseClient.from('schedule').select('*').order('ordre', { ascending: true })
+    ]);
+
+    if (infoContainer && infoRes.data) {
+      infoContainer.innerHTML = infoRes.data.map(item => `
+        <div class="feature-card flex items-start gap-4">
+          <span class="feature-icon"><i class="${item.icon_class}"></i></span>
+          <div>
+            <h3 class="font-semibold text-base text-dark mb-1">${item.title}</h3>
+            ${item.link ? `<a href="${item.link}" class="text-primary text-sm hover:underline">${item.value}</a>` : `<p class="text-gray-text text-sm">${item.value}</p>`}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    if (schedContainer && schedRes.data) {
+      schedContainer.innerHTML = schedRes.data.map(item => `
+        <div class="flex items-center justify-between py-2 ${item.ordre < schedRes.data.length ? 'border-b border-gray-100' : ''}">
+          <span class="text-sm text-gray-text">${item.days}</span>
+          <span class="text-sm font-medium ${item.status === 'Ouvert' ? 'text-green-600' : 'text-red-500'}">${item.hours}</span>
+        </div>
+      `).join('');
+    }
+  } catch (err) {
+    console.error('Erreur chargement contact info:', err);
+  }
+}
+
+// ============================================
+// 12. BOUTIQUE: FAQ + ADVANTAGES + HOW IT WORKS
+// ============================================
+async function loadBoutiqueContent() {
+  const faqContainer = document.getElementById('dynamic-faq');
+  const advContainer = document.getElementById('dynamic-advantages');
+  const hiwContainer = document.getElementById('dynamic-how-it-works');
+
+  try {
+    const [faqRes, advRes, hiwRes] = await Promise.all([
+      faqContainer ? supabaseClient.from('faq_items').select('*').eq('page_slug', 'boutique').order('ordre', { ascending: true }) : { data: null },
+      advContainer ? supabaseClient.from('advantages').select('*').eq('page_slug', 'boutique').order('ordre', { ascending: true }) : { data: null },
+      hiwContainer ? supabaseClient.from('how_it_works').select('*').eq('page_slug', 'boutique').order('ordre', { ascending: true }) : { data: null }
+    ]);
+
+    if (faqContainer && faqRes.data && faqRes.data.length) {
+      faqContainer.innerHTML = faqRes.data.map(item => `
+        <div class="feature-card">
+          <div class="flex items-start gap-3 mb-2">
+            <i class="${item.icon_class} text-primary mt-1"></i>
+            <h3 class="font-semibold text-sm text-dark">${item.question}</h3>
+          </div>
+          <p class="text-gray-text text-sm leading-relaxed ml-9">${item.answer}</p>
+        </div>
+      `).join('');
+    }
+
+    if (advContainer && advRes.data && advRes.data.length) {
+      advContainer.innerHTML = advRes.data.map(item => `
+        <div class="flex items-start gap-3 mb-4">
+          <div class="w-10 h-10 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0">
+            <i class="${item.icon_class} text-primary"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-sm text-dark">${item.title}</h4>
+            <p class="text-gray-text text-xs leading-relaxed">${item.description}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    if (hiwContainer && hiwRes.data && hiwRes.data.length) {
+      hiwContainer.innerHTML = hiwRes.data.map(item => `
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-white font-bold text-xl">${item.step_number}</span>
+          </div>
+          <h4 class="font-semibold text-sm text-dark mb-2">${item.title}</h4>
+          <p class="text-gray-text text-xs leading-relaxed">${item.description}</p>
+        </div>
+      `).join('');
+    }
+  } catch (err) {
+    console.error('Erreur chargement boutique:', err);
+  }
+}
+
+// ============================================
+// 13. PCEC EXCEPTIONS
+// ============================================
+async function loadPcecExceptions() {
+  const container = document.getElementById('dynamic-pcec-exceptions');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('pcec_exceptions')
+      .select('*')
+      .limit(1)
+      .single();
+
+    if (error || !data) return;
+
+    const items = data.items || [];
+    container.innerHTML = `
+      <h3 class="font-semibold text-lg text-dark mb-2">${data.title}</h3>
+      <p class="text-gray-text text-sm mb-4">${data.intro_text}</p>
+      <div class="grid sm:grid-cols-2 gap-2">
+        ${items.map((item, i) => `
+          <div class="flex items-start gap-2 bg-gray-50 rounded-lg p-3">
+            <span class="flex-shrink-0 w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-xs font-bold">${i + 1}</span>
+            <p class="text-gray-text text-sm">${item}</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } catch (err) {
+    console.error('Erreur chargement PCEC exceptions:', err);
+  }
+}
+
+// ============================================
+// 14. CERTIFICATION STEPS
+// ============================================
+async function loadCertificationSteps() {
+  const container = document.getElementById('dynamic-certification-steps');
+  if (!container) return;
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('certification_steps')
+      .select('*')
+      .order('ordre', { ascending: true });
+
+    if (error || !data || !data.length) return;
+
+    container.innerHTML = data.map(step => `
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">${step.step_number}</div>
+        <div>
+          <h4 class="font-semibold text-sm text-dark">${step.title}</h4>
+          <p class="text-gray-text text-sm">${step.description}</p>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Erreur chargement certification steps:', err);
+  }
+}
+
 // ============================================
 // FORMULAIRES
 // ============================================
@@ -345,12 +788,14 @@ function initFormulaires() {
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const nom = newsletterForm.querySelector('[name="nom"]').value.trim();
-      const email = newsletterForm.querySelector('[name="email"]').value.trim();
+      const emailInput = newsletterForm.querySelector('[name="email"]');
+      const nomInput = newsletterForm.querySelector('[name="nom"]');
+      const email = emailInput ? emailInput.value.trim() : '';
+      const nom = nomInput ? nomInput.value.trim() : email.split('@')[0];
       const btn = newsletterForm.querySelector('button[type="submit"]');
       const origText = btn.innerHTML;
 
-      if (!nom || !email) return;
+      if (!email) return;
 
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Inscription...';
       btn.disabled = true;
@@ -364,25 +809,25 @@ function initFormulaires() {
 
         btn.innerHTML = '<i class="fas fa-check"></i> Inscrit !';
         btn.classList.add('bg-green-600');
-        btn.classList.remove('bg-primary');
+        btn.classList.remove('bg-white', 'text-red-600');
         newsletterForm.reset();
 
         setTimeout(() => {
           btn.innerHTML = origText;
           btn.classList.remove('bg-green-600');
-          btn.classList.add('bg-primary');
+          btn.classList.add('bg-white', 'text-red-600');
           btn.disabled = false;
         }, 3000);
       } catch (err) {
         console.error('Erreur newsletter:', err);
         btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur';
         btn.classList.add('bg-red-600');
-        btn.classList.remove('bg-primary');
+        btn.classList.remove('bg-white', 'text-red-600');
 
         setTimeout(() => {
           btn.innerHTML = origText;
           btn.classList.remove('bg-red-600');
-          btn.classList.add('bg-primary');
+          btn.classList.add('bg-white', 'text-red-600');
           btn.disabled = false;
         }, 3000);
       }
@@ -411,7 +856,7 @@ function initFormulaires() {
 
         if (error) throw error;
 
-        btn.innerHTML = '<i class="fas fa-check"></i> Envoyé !';
+        btn.innerHTML = '<i class="fas fa-check"></i> Envoy\u00e9 !';
         btn.classList.add('bg-green-600');
         btn.classList.remove('bg-primary');
         contactForm.reset();

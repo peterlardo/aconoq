@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -426,172 +426,132 @@
 </head>
 <body class="bg-white">
 
-    <!-- HERO + HEADER SECTION (carousel background) -->
+    <!-- Navbar -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-[200]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 -ml-4">
+                    <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2020/07/aconoq_logo.png" alt="ACONOQ" class="h-10">
+                </a>
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex items-center gap-1">
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            ACONOQ <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Actualit&eacute; et annonces importantes</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Pr&eacute;sentation des services</a>
+                                <a href="directeur.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Mot du Directeur G&eacute;n&eacute;ral</a>
+                                <a href="a-propos.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">&Agrave; propos de l'ACONOQ</a>
+                                <a href="organigramme.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Organigramme</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Cadre r&eacute;glementaire</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            NOS DIRECTIONS <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div id="nav-directions" class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]"></div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            NORMALISATION <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                <a href="normalisation.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la normalisation</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Processus d'&eacute;laboration des normes</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Comit&eacute;s techniques / comit&eacute;s miroirs</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Normes rendues d'application obligatoire</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            METROLOGIE <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                <a href="metrologie.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la m&eacute;trologie</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la m&eacute;trologie</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            QUALIT&Eacute; <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                <a href="qualite.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la promotion de la qualit&eacute;</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Formations / audits</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            CONFORMIT&Eacute; <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
+                                <a href="conformite.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur l'&eacute;valuation de la conformit&eacute;</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Processus de certification</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Marque nationale de conformit&eacute; NCGO</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            PROGRAMMES <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[280px]">
+                                <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Programme Congolais d'&Eacute;valuation de la Conformit&eacute; (PCEC)</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Syst&egrave;me de marquage et de tra&ccedil;abilit&eacute; des produits du tabac</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Sch&eacute;ma national de certification des produits issus de la production agricole</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <button class="lg:hidden text-dark">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (carousel background) -->
     <section class="relative min-h-[520px] lg:min-h-[580px] overflow-hidden">
         <!-- Carousel -->
         <div class="hero-carousel" id="heroCarousel">
-            <div class="hero-slide active" style="background-image: url('https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')"></div>
-            <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')"></div>
-            <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')"></div>
-            <div class="hero-slide" style="background-image: url('https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2')"></div>
+            <!-- Populated dynamically from hero_slides table -->
         </div>
         <!-- Carousel Controls -->
         <button class="carousel-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
         <button class="carousel-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
         <div class="carousel-dots" id="carouselDots">
             <button class="carousel-dot active" onclick="goToSlide(0)"></button>
-            <button class="carousel-dot" onclick="goToSlide(1)"></button>
-            <button class="carousel-dot" onclick="goToSlide(2)"></button>
-            <button class="carousel-dot" onclick="goToSlide(3)"></button>
         </div>
-
-        <!-- Top Bar -->
-        <div class="relative z-10 bg-red-600">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
-                    <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
-                        <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
-                    </a>
-                    <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
-                        <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
-                    </a>
-                    <span class="hidden sm:inline-flex items-center gap-1.5">
-                        <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navbar (transparent over image) -->
-        <header class="relative z-[200]">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16 lg:h-20">
-                    <!-- Logo -->
-                    <a href="#" class="flex items-center gap-2">
-                        <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2020/07/aconoq_logo.png" alt="ACONOQ" class="h-10">
-                    </a>
-                    <!-- Nav Links -->
-                    <nav class="hidden lg:flex items-center gap-1">
-                        <!-- ACONOQ -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                ACONOQ <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Actualit&eacute; et annonces importantes</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Pr&eacute;sentation des services</a>
-                                    <a href="directeur.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Mot du Directeur G&eacute;n&eacute;ral</a>
-                                    <a href="a-propos.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">&Agrave; propos de l'ACONOQ</a>
-                                    <a href="organigramme.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Organigramme</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Cadre r&eacute;glementaire</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- NOS DIRECTIONS -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                NOS DIRECTIONS <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div id="nav-directions" class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <!-- Chargé dynamiquement via Supabase -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- NORMALISATION -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                NORMALISATION <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="normalisation.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la normalisation</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Processus d'&eacute;laboration des normes</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Comit&eacute;s techniques / comit&eacute;s miroirs</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Normes rendues d'application obligatoire</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- METROLOGIE -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                METROLOGIE <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="metrologie.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la m&eacute;trologie</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la m&eacute;trologie</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- PROMOTION DE LA QUALITE -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                QUALIT&Eacute; <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="qualite.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur la promotion de la qualit&eacute;</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Formations / audits</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- EVALUATION DE LA CONFORMITE -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                CONFORMIT&Eacute; <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="conformite.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur l'&eacute;valuation de la conformit&eacute;</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s r&eacute;alis&eacute;es et en cours</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Processus de certification</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Activit&eacute;s de la direction</a>
-                                    <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Marque nationale de conformit&eacute; NCGO</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- PCEC -->
-                        <div class="relative nav-item">
-                            <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
-                                PCEC <i class="fas fa-chevron-down text-[9px]"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[240px]">
-                                    <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Zoom sur le PCEC</a>
-                                    <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Enjeux majeurs du PCEC</a>
-                                    <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Les administrations publiques impliqu&eacute;es</a>
-                                    <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Les produits concern&eacute;s par le PCEC</a>
-                                    <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Les documents du PCEC</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- CONTACT -->
-                        <a href="contact.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
-                    </nav>
-                    <!-- Mobile Menu Button -->
-                    <button class="lg:hidden text-dark">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </header>
 
         <!-- Hero Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
             <div class="max-w-xl">
                 <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-4">Agence Congolaise de Normalisation et de la Qualit&eacute;</p>
                 <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-dark leading-tight mb-6">
                     <strong>La mesure pr&eacute;cise</strong><br>garantie votre r&eacute;ussite.
                 </h1>
-                <p class="text-gray-text text-base leading-relaxed mb-8">
-                    BrightBuild is a full-service general construction contractor delivering high-quality commercial, residential, and industrial projects with integrity and precision.
-                </p>
                     <div class="flex flex-wrap gap-4">
                     <a href="#" class="bg-primary text-white px-6 py-3 rounded text-sm font-medium hover:bg-primary-dark transition inline-flex items-center gap-2">
                         &Agrave; propos de nous <i class="fas fa-arrow-right text-xs"></i>
@@ -628,122 +588,11 @@
                 </p>
             </div>
             <!-- Services Grid -->
-            <div class="features-grid">
-                <!-- Audit -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-clipboard-check" style="font-size:22px"></i>
-                    </span>
-                    <h3>Audit</h3>
-                    <p>V&eacute;rification et contr&ocirc;le de conformit&eacute; aux normes nationales et internationales.</p>
-                    <a href="#" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                </div>
-                <!-- Certification -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-certificate" style="font-size:22px"></i>
-                    </span>
-                    <h3>Certification</h3>
-                    <p>Certification des produits, proc&eacute;d&eacute;s et services conformes aux normes congolaises NCGO.</p>
-                    <a href="#" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                </div>
-                <!-- Labelisation -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-award" style="font-size:22px"></i>
-                    </span>
-                    <h3>Labelisation</h3>
-                    <p>Attribution de labels et marques nationales de conformit&eacute; aux normes.</p>
-                    <a href="#" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                </div>
-                <!-- Formations -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-graduation-cap" style="font-size:22px"></i>
-                    </span>
-                    <h3>Formations</h3>
-                    <p>Programmes de formation en normalisation, m&eacute;trologie et promotion de la qualit&eacute;.</p>
-                    <a href="#" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                </div>
-            </div>
+                <div id="dynamic-services"></div>
         </div>
     </section>
 
-    <!-- PCEC BANNER IMAGE -->
-    <section class="relative h-[400px] lg:h-[480px] overflow-hidden">
-        <img src="https://images.pexels.com/photos/2310090/pexels-photo-2310090.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2" alt="PCEC - Conformité des produits" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-transparent"></div>
-        <div class="absolute inset-0 flex items-center">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div class="flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
-                    <div class="max-w-xl text-white">
-                        <span class="text-white/80 text-xs font-semibold tracking-widest uppercase">PCEC</span>
-                        <h2 class="font-serif text-3xl lg:text-5xl font-black mt-3 mb-4">Conformit&eacute; sans fronti&egrave;res</h2>
-                        <p class="text-white/80 text-base leading-relaxed mb-6">
-                            Le Programme Congolais d'&Eacute;valuation de la Conformit&eacute; garantit la s&eacute;curit&eacute; et la qualit&eacute; de tous les produits import&eacute;s en R&eacute;publique du Congo.
-                        </p>
-                        <a href="#" class="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded text-sm font-semibold hover:bg-gray-100 transition">
-                            D&eacute;couvrir le PCEC <i class="fas fa-arrow-right text-xs"></i>
-                        </a>
-                    </div>
-                    <div class="hidden lg:flex flex-col items-center gap-4">
-                        <span class="text-white/70 text-xs font-semibold tracking-widest uppercase">Partenaires</span>
-                        <div class="bg-red-600 rounded-xl p-5 flex flex-col gap-4">
-                            <div class="flex items-center justify-center px-6 py-3">
-                                <svg viewBox="0 0 260 35" class="h-10 w-auto" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd">
-                                        <path d="M31.67 7.51L26.01 10.98C24.15 8.13 21.15 6.43 17.48 6.43C11.49 6.43 7.05 10.81 7.05 17.23C7.08 23.85 11.65 28.03 17.48 28.03C21.13 28.03 24.1 26.37 26.08 23.5L31.46 27.37C28.53 31.66 23.56 34.34 17.52 34.34C7.36 34.34 0.19 27.15 0.19 17.23C0.19 7.3 7.36 0.11 17.52 0.11C23.61 0.11 28.98 2.89 31.67 7.51" fill="#FFFFFF"/>
-                                        <path d="M45.4 17.23C45.4 23.64 49.81 28.03 55.86 28.03C61.95 28.03 66.33 23.64 66.33 17.23C66.33 10.81 61.95 6.43 55.86 6.43C49.81 6.43 45.4 10.81 45.4 17.23ZM73.22 17.23C73.22 27.08 66.03 34.34 55.86 34.34C45.7 34.34 38.54 27.08 38.54 17.23C38.54 7.37 45.7 0.11 55.86 0.11C66.03 0.11 73.22 7.37 73.22 17.23Z" fill="#FFFFFF"/>
-                                        <polyline fill="#FFFFFF" points="106.24 6.88 96.01 6.88 96.01 33.73 89.43 33.73 89.43 6.88 79.2 6.88 79.2 0.72 106.24 0.72 106.24 6.88"/>
-                                        <path d="M179.35 7.51L173.69 10.98C171.82 8.13 168.83 6.43 165.15 6.43C159.16 6.43 154.73 10.81 154.73 17.23C154.75 23.85 159.33 28.03 165.15 28.03C168.81 28.03 171.78 26.37 173.76 23.5L179.13 27.37C176.21 31.66 171.24 34.34 165.2 34.34C155.04 34.34 147.87 27.15 147.87 17.23C147.87 7.3 155.04 0.11 165.2 0.11C171.28 0.11 176.66 2.89 179.35 7.51" fill="#FFFFFF"/>
-                                        <polyline fill="#FFFFFF" points="218.04 33.73 211.86 33.73 195.12 11.69 195.1 33.73 188.52 33.73 188.52 0.72 194.68 0.72 211.44 22.77 211.44 0.72 218.04 0.72 218.04 33.73"/>
-                                        <polygon fill="#00BD7B" points="114.42 33.73 138.9 33.73 138.9 27.7 114.42 27.7"/>
-                                        <polyline fill="#00BD7B" points="121 6.76 138.9 6.76 138.9 0.72 114.42 0.72 114.42 6.76 121 6.76"/>
-                                        <polyline fill="#00BD7B" points="119 20.24 131.45 20.24 131.45 14.21 114.42 14.21 114.42 20.24 119 20.24"/>
-                                        <polyline fill="#00BD7B" points="259.87 33.73 247.02 0.72 239 0.72 226.16 33.73 233.18 33.73 243.01 7.41 252.85 33.73 259.87 33.73"/>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="flex items-center justify-center px-6 py-3">
-                                <svg viewBox="0 0 400 105" class="h-12 w-auto" xmlns="http://www.w3.org/2000/svg" style="filter: brightness(0) invert(1);">
-                                    <path d="M185.81 86.61L183.16 82.02C180.62 81.58 177.99 81.35 175.32 81.35C171.6 81.35 168 81.8 164.56 82.69C161.15 83.58 157.5 84.06 153.81 84.06C152.48 84.06 151.2 84.01 149.92 83.87L164.54 58.54L173.39 73.82C170.34 73.95 167.43 74.39 164.56 75.12C162.48 75.66 160.35 76.04 158.17 76.25L155.5 80.87C158.61 80.74 161.65 80.28 164.56 79.55C168 78.66 171.6 78.2 175.32 78.2C177.3 78.2 179.27 78.33 181.19 78.58L178.38 73.73L171.13 61.18L164.56 49.79L143.03 87.08C146.46 88.02 150.07 88.47 153.81 88.47C157.5 88.47 161.15 88.02 164.56 87.08C168 86.23 171.6 85.74 175.32 85.74C179.04 85.74 182.64 86.23 186.1 87.08" fill="#1378c7"/>
-                                    <path d="M205.31 94.32C205.05 93.03 203.92 92.68 202.76 92.68C200.09 92.68 199.14 95.01 199.18 97.05C199.31 99.83 200.16 101.35 203.26 101.41C204 101.41 204.74 101.29 205.44 101.06V97.99L202.96 97.99V96.7L206.94 96.7V102.08C205.7 102.45 204.44 102.71 203.2 102.71C201.68 102.71 200.42 102.51 199.22 101.46C198.03 100.41 197.61 98.58 197.61 97.05C197.61 95.92 197.98 94.68 198.55 93.7C199.48 92.05 201.09 91.39 202.94 91.39C204.76 91.39 206.81 92.23 206.89 94.32" fill="#231f20"/>
-                                    <path d="M214.43 97.98C214.48 96.71 213.89 95.74 212.5 95.74C211.33 95.74 210.61 96.75 210.61 97.98L214.43 97.98ZM210.61 98.97C210.5 100.3 211.04 101.67 212.5 101.67C213.63 101.67 214.17 101.23 214.35 100.13L215.85 100.13C215.63 101.85 214.3 102.71 212.5 102.71C210.07 102.71 209.11 100.99 209.11 98.76C209.11 96.55 210.22 94.7 212.61 94.7C214.87 94.74 215.93 96.17 215.93 98.27V98.97" fill="#231f20"/>
-                                    <path d="M219.52 96.04L219.54 96.04C220.02 95.09 221.08 94.7 221.82 94.7C222.36 94.7 224.69 94.83 224.69 97.26V102.48L223.26 102.48V97.73C223.26 96.47 222.73 95.79 221.52 95.79C221.52 95.79 220.73 95.75 220.15 96.36C219.93 96.56 219.54 96.9 219.54 98.37V102.48L218.11 102.48V94.92L219.52 94.92" fill="#231f20"/>
-                                    <path d="M230.34 98.81C229.47 98.85 228.3 99.17 228.3 100.27C228.3 101.2 228.95 101.67 229.8 101.67C231.47 101.67 231.8 100.2 231.77 98.81L230.34 98.81ZM231.77 97.82C231.77 96.5 231.69 95.74 230.17 95.74C229.45 95.74 228.77 96.16 228.75 96.94L227.25 96.94C227.32 95.29 228.62 94.7 230.1 94.7C231.66 94.7 233.19 95.16 233.19 97.27V100.88C233.19 101.22 233.21 101.85 233.25 102.48L232.3 102.48C232.16 102.48 231.9 102.56 231.88 102.38C231.86 102.03 231.82 101.7 231.82 101.35L231.77 101.35C231.32 102.3 230.47 102.71 229.43 102.71C228.12 102.71 226.8 102.03 226.8 100.56C226.8 98.43 228.69 97.82 230.47 97.82" fill="#231f20"/>
-                                    <path d="M240.83 94.92L242.27 94.92L242.27 102.48L240.88 102.48V101.36C240.27 102.32 239.31 102.71 238.25 102.71C236.66 102.71 235.77 101.5 235.77 99.98V94.92L237.21 94.92V99.39C237.21 100.71 237.51 101.67 238.88 101.67C239.47 101.67 240.25 101.36 240.55 100.58C240.83 99.88 240.83 98.98 240.83 98.81" fill="#231f20"/>
-                                    <path d="M244.88 102.48L246.62 102.48L246.62 100.67L244.88 100.67L244.88 102.48Z" fill="#231f20"/>
-                                    <path d="M254.89 96.28L257.37 96.28C259.04 96.2 259.41 95.45 259.41 94.59C259.41 93.73 259.04 92.98 257.37 92.9L254.89 92.9V96.28ZM254.92 97.57V102.48L253.42 102.48V91.61L257.31 91.61C259.11 91.61 261 92.18 261 94.33C261 95.64 260.22 96.66 258.96 96.96V96.99C260.26 97.3 260.44 97.99 260.61 99.21C260.78 100.3 260.89 101.46 261.28 102.48L259.67 102.48C259.54 101.83 259.35 101.12 259.28 100.48C259.15 99.5 259.15 98.61 258.68 98.07C258.22 97.57 257.63 97.62 257.02 97.57" fill="#231f20"/>
-                                    <path d="M263.59 102.48V94.92L265.02 94.92V102.48L263.59 102.48ZM263.46 91.61L265.15 91.61V93.16L263.46 93.16" fill="#231f20"/>
-                                    <path d="M271.97 97.35C271.91 96.4 271.45 95.74 270.43 95.74C269.06 95.74 268.52 96.92 268.52 98.7C268.52 100.48 269.06 101.67 270.43 101.67C271.37 101.67 271.95 101.05 272.04 99.97L273.47 99.97C273.34 101.67 272.08 102.71 270.41 102.71C267.98 102.71 267.02 100.99 267.02 98.76C267.02 96.55 268.13 94.7 270.52 94.7C272.13 94.7 273.32 95.7 273.41 97.35" fill="#231f20"/>
-                                    <path d="M275.36 102.48V91.61L276.8 91.61V95.93C276.82 95.93 277.36 95.09 278.17 94.7C279.27 94.7 281.25 96.01 281.86 97.36V102.48L280.43 102.48V98.01C280.43 96.68 280.08 95.83 278.75 95.79C278.17 95.78 277.3 96.22 277.04 96.85C276.71 97.63 276.8 98.18 276.8 98.59V102.48" fill="#231f20"/>
-                                    <path d="M284.69 94.92V93.31L286.12 92.86V94.92L287.86 94.88V95.95L286.12 95.93V100.81C286.12 101.35 286.53 101.61 287.03 101.61C287.27 101.61 287.58 101.57 287.79 101.52V102.62C287.47 102.63 287.14 102.71 286.82 102.71C286.47 102.71 286.21 102.69 285.86 102.63C285.62 102.59 285.25 102.47 285.01 102.13C284.75 101.77 284.69 101.74 284.69 100.73V95.93L283.38 95.95V94.88" fill="#231f20"/>
-                                    <path d="M289.68 102.48V94.92L291.12 94.92V102.48L289.68 102.48ZM289.55 91.61L291.25 91.61V93.16L289.55 93.16" fill="#231f20"/>
-                                    <path d="M296.94 101.31C298.48 101.31 299.05 99.98 299.05 98.52C299.05 97.06 298.48 95.74 296.94 95.74C295.27 95.74 294.81 97.33 294.81 98.52C294.81 99.71 295.27 101.31 296.94 101.31ZM299.09 94.92L300.57 94.92C300.53 95.38 300.48 95.83 300.48 96.28V101.59C300.48 104.36 299.29 105.49 296.51 105.49C294.88 105.49 293.73 104.8 293.7 103.05L295.22 103.05C295.27 104.06 295.96 104.45 296.98 104.45C299.01 104.45 299.01 102.77 299.05 101.06L299.01 101.06C298.55 101.97 297.46 102.34 296.53 102.34C294.23 102.34 293.31 100.72 293.31 98.59C293.31 96.41 294.53 94.7 296.81 94.7C297.55 94.7 298.35 95 298.83 95.69C298.85 95.72 299.05 96.16 299.05 96.05" fill="#231f20"/>
-                                    <path d="M303 102.48L304.74 102.48V100.67L303 100.67L303 102.48Z" fill="#231f20"/>
-                                    <circle cx="196.85" cy="64.67" r="8.5" fill="none" stroke="#231f20" stroke-width="2"/>
-                                    <path d="M196.85 64.67L209.87 64.67L209.87 67.34L205.09 67.34L205.09 80.73L201.63 80.73L201.63 67.34L196.85 67.34" fill="#231f20"/>
-                                    <path d="M220.15 62.43L220.15 59.78L222.41 59.78L222.41 62.43L220.15 62.43ZM216.32 62.43L216.32 59.78L218.58 59.78L218.58 62.43L216.32 62.43ZM226.32 64.67L226.32 74.73C226.32 79 223.26 81.07 219.37 81.07C215.48 81.07 212.39 79 212.39 74.73L212.39 64.67L215.85 64.67L215.85 73.39C215.85 76.11 215.98 78.58 219.37 78.58C222.73 78.58 222.89 76.11 222.89 73.39L222.89 64.67" fill="#231f20"/>
-                                    <path d="M228.84 64.67L232.6 64.67L236.77 77.33L236.81 77.33L241.01 64.67L244.42 64.67L238.51 80.73L234.75 80.73" fill="#231f20"/>
-                                    <path d="M249.51 71.57L253.18 71.57C255.65 71.46 256.2 70.34 256.2 69.08C256.2 67.81 255.65 66.7 253.18 66.59L249.51 66.59L249.51 71.57ZM249.55 73.48V80.73L247.33 80.73V64.67L253.07 64.67C255.76 64.67 258.54 65.52 258.54 68.7C258.54 70.63 257.37 72.13 255.52 72.57V72.62C257.46 73.08 257.72 74.1 257.96 75.91C258.2 77.51 258.39 79.22 258.96 80.73L256.59 80.73C256.37 79.78 256.11 78.73 256 77.77C255.83 76.33 255.83 75.02 255.09 74.22C254.44 73.48 253.55 73.55 252.66 73.48" fill="#231f20"/>
-                                    <path d="M262.17 80.73V64.67L264.28 64.67V71.06C264.35 71.06 265.13 69.81 266.35 69.24C267.95 69.24 270.87 71.17 270.87 73.17V80.73L269.67 80.73V74.13C269.67 72.17 269.17 70.9 267.19 70.86C266.35 70.83 265.04 71.48 264.65 72.42C264.15 73.57 264.28 74.37 264.28 75V80.73" fill="#231f20"/>
-                                    <path d="M282.47 74.08C282.51 72.22 281.67 70.77 279.62 70.77C277.86 70.77 276.82 72.26 276.82 74.08L282.47 74.08ZM276.82 75.55C276.67 77.51 277.47 79.53 279.62 79.53C281.27 79.53 282.1 78.89 282.34 77.26L284.56 77.26C284.23 79.8 282.27 81.07 279.6 81.07C276.02 81.07 274.6 78.53 274.6 75.24C274.6 71.97 276.25 69.24 279.77 69.24C283.12 69.3 284.71 71.41 284.71 74.51V75.55" fill="#231f20"/>
-                                    <path d="M287.42 67.55L289.94 67.55V65.27L287.42 65.27L287.42 67.55Z" fill="#231f20"/>
-                                    <path d="M287.62 80.73L289.73 80.73V69.56L287.62 69.56L287.62 80.73Z" fill="#231f20"/>
-                                    <path d="M295.49 71.21C295.53 71.21 296.25 69.81 297.81 69.24C298.92 69.24 303.16 69.43 303.16 73.01V80.73L301.03 80.73V73.7C301.03 71.86 300.24 70.86 298.48 70.86C298.48 70.86 297.31 70.79 296.42 71.68C296.12 71.99 295.53 72.48 295.53 74.66V80.73L293.42 80.73V69.56L295.49 69.56" fill="#231f20"/>
-                                    <path d="M306.7 80.73L308.81 80.73V64.67L306.7 64.67L306.7 80.73Z" fill="#231f20"/>
-                                    <path d="M316.93 75.31C315.65 75.37 313.93 75.84 313.93 77.46C313.93 78.84 314.89 79.53 316.13 79.53C318.63 79.53 319.08 77.37 319.04 75.31L316.93 75.31ZM319.04 73.84C319.04 71.9 318.93 70.77 316.69 70.77C315.63 70.77 314.63 71.39 314.61 72.55L312.37 72.55C312.48 70.1 314.41 69.24 316.61 69.24C318.89 69.24 321.17 69.92 321.17 73.03V78.38C321.17 78.87 321.19 79.8 321.26 80.73L319.82 80.73C319.63 80.73 319.26 80.84 319.24 80.58C319.19 80.06 319.15 79.57 319.11 79.07L319.06 79.07C318.39 80.47 317.13 81.07 315.61 81.07C313.67 81.07 311.72 80.06 311.72 77.89C311.72 74.75 314.5 73.84 317.13 73.84" fill="#231f20"/>
-                                    <path d="M326.62 71.27C326.67 71.27 327.38 69.87 328.95 69.3C330.06 69.3 334.29 69.5 334.29 73.07V80.79L332.17 80.79V73.76C332.17 71.92 331.4 70.92 329.62 70.92C329.62 70.92 328.45 70.85 327.56 71.74C327.25 72.05 326.67 72.54 326.67 74.72V80.79L324.56 80.79V69.63L326.62 69.63" fill="#231f20"/>
-                                    <path d="M342.4 79.66C344.96 79.66 345.57 77.28 345.57 75.19C345.57 73.16 344.81 70.76 342.4 70.76C339.86 70.76 339.25 73.1 339.25 75.19C339.25 77.28 340.03 79.66 342.4 79.66ZM345.53 64.74L347.66 64.74V78.82C347.66 79.48 347.72 80.15 347.77 80.79L345.62 80.79L345.53 79.13V79.02L345.49 79.02C344.75 80.57 343.27 81.13 341.64 81.13C338.34 81.13 337.01 78.08 337.01 75.21C337.01 72.19 338.55 69.3 342.03 69.3C343.44 69.3 344.86 69.8 345.49 71.14L345.53 71.14" fill="#231f20"/>
-                                    <path d="M360.09 67.2C360.09 69.54 358.2 71.43 355.87 71.43C353.53 71.43 351.64 69.54 351.64 67.2C351.64 64.86 353.53 62.97 355.87 62.97C358.2 62.97 360.09 64.86 360.09 67.2Z" fill="none" stroke="#231f20" stroke-width="0.26"/>
-                                    <path d="M354.98 66.77L356.11 66.77C356.85 66.74 357.02 66.4 357.02 66.01C357.02 65.63 356.85 65.29 356.11 65.25L354.98 65.25L354.98 66.77ZM355 67.35V69.55L354.33 69.55V64.67L356.07 64.67C356.89 64.67 357.72 64.93 357.72 65.89C357.72 66.48 357.37 66.94 356.81 67.07V67.08C357.39 67.23 357.48 67.54 357.55 68.08C357.63 68.57 357.68 69.09 357.85 69.55L357.13 69.55C357.07 69.26 357 68.94 356.96 68.65C356.92 68.22 356.92 67.82 356.68 67.57C356.48 67.35 356.22 67.37 355.94 67.35" fill="#231f20"/>
-                                </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="dynamic-banners"></div>
 
     <!-- PCEC SECTION -->
     <section class="py-16 lg:py-24 bg-white">
@@ -755,32 +604,7 @@
                     Le PCEC est un programme exportateur qui fixe les conditions d'application et d'entr&eacute;e en vigueur de l'&eacute;valuation de la conformit&eacute; avant embarquement des produits &agrave; destination du Congo.
                 </p>
             </div>
-            <div class="features-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <!-- Route A -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-truck" style="font-size:22px"></i>
-                    </span>
-                    <h3>Route A</h3>
-                    <p>Concerne toutes les importations peu fr&eacute;quentes. L'&eacute;valuation est bas&eacute;e sur le contr&ocirc;le documentaire et l'inspection physique syst&eacute;matique, visant des exportateurs peu fr&eacute;quents.</p>
-                </div>
-                <!-- Route B -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-ship" style="font-size:22px"></i>
-                    </span>
-                    <h3>Route B</h3>
-                    <p>Concerne les importations pr&eacute;alablement enregistr&eacute;es. L'&eacute;valuation est bas&eacute;e sur le contr&ocirc;le documentaire et l'inspection physique inopin&eacute;e, ciblant les exportateurs fr&eacute;quents.</p>
-                </div>
-                <!-- Route C -->
-                <div class="feature-card">
-                    <span class="feature-icon">
-                        <i class="fas fa-industry" style="font-size:22px"></i>
-                    </span>
-                    <h3>Route C</h3>
-                    <p>Concerne les importations des produits sous licence enregistr&eacute;es. L'&eacute;valuation est bas&eacute;e sur l'audit d'usine, le contr&ocirc;le documentaire et l'inspection physique inopin&eacute;e, s'appliquant aux fabricants, distributeurs officiels et propri&eacute;taires de marques.</p>
-                </div>
-            </div>
+            <div id="dynamic-processus" class="features-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
         </div>
     </section>
 
@@ -1069,51 +893,7 @@
                 <div class="lg:col-span-8 relative">
                     <div class="overflow-hidden rounded-xl">
                         <div id="processCarousel" class="flex transition-transform duration-500 ease-in-out">
-                            <!-- Card 1 -->
-                            <div class="process-slide min-w-[33.333%] px-3">
-                                <div class="feature-card h-full">
-                                    <span class="feature-icon"><i class="fas fa-file-alt" style="font-size:22px"></i></span>
-                                    <h3>Processus d'&eacute;laboration des normes</h3>
-                                    <p>Processus de certification</p>
-                                    <a href="#" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div class="process-slide min-w-[33.333%] px-3">
-                                <div class="feature-card h-full">
-                                    <span class="feature-icon"><i class="fas fa-certificate" style="font-size:22px"></i></span>
-                                    <h3>Processus de certification</h3>
-                                    <p>V&eacute;rification et validation de conformit&eacute; de vos produits et proc&eacute;d&eacute;s aux normes en vigueur.</p>
-                                    <a href="#" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div class="process-slide min-w-[33.333%] px-3">
-                                <div class="feature-card h-full">
-                                    <span class="feature-icon"><i class="fas fa-gavel" style="font-size:22px"></i></span>
-                                    <h3>Normes rendues d'application obligatoires</h3>
-                                    <p>Dispositions l&eacute;gales rendant obligatoire l'application de normes sp&eacute;cifiques sur le territoire national.</p>
-                                    <a href="#" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
-                            <!-- Card 4 -->
-                            <div class="process-slide min-w-[33.333%] px-3">
-                                <div class="feature-card h-full">
-                                    <span class="feature-icon"><i class="fas fa-graduation-cap" style="font-size:22px"></i></span>
-                                    <h3>Formations</h3>
-                                    <p>Programmes de formation en normalisation, m&eacute;trologie et syst&egrave;mes de management de la qualit&eacute;.</p>
-                                    <a href="#" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
-                            <!-- Card 5 -->
-                            <div class="process-slide min-w-[33.333%] px-3">
-                                <div class="feature-card h-full">
-                                    <span class="feature-icon"><i class="fas fa-search" style="font-size:22px"></i></span>
-                                    <h3>Audit et Contr&ocirc;le</h3>
-                                    <p>V&eacute;rification de conformit&eacute; aux normes nationales et internationales pour garantir la s&eacute;curit&eacute; et la qualit&eacute;.</p>
-                                    <a href="#" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
+                            <!-- Populated dynamically from processus table -->
                         </div>
                     </div>
                     <!-- Carousel Controls -->
@@ -1309,22 +1089,29 @@
     </footer>
 
     <script>
-        // Hero Carousel
+        // Hero Carousel - works with dynamic slides
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const totalSlides = slides.length;
+        let slides, dots, totalSlides;
         let autoplayInterval;
 
+        function initCarousel() {
+            slides = document.querySelectorAll('.hero-slide');
+            dots = document.querySelectorAll('.carousel-dot');
+            totalSlides = slides.length;
+            if (totalSlides > 0) startAutoplay();
+        }
+
         function goToSlide(index) {
+            if (!slides || !slides.length) return;
             slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
             currentSlide = index;
             slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.add('active');
         }
 
         function changeSlide(direction) {
+            if (!slides || !slides.length) return;
             let next = currentSlide + direction;
             if (next < 0) next = totalSlides - 1;
             if (next >= totalSlides) next = 0;
@@ -1341,13 +1128,17 @@
             startAutoplay();
         }
 
+        // Init carousel after dynamic content loads
+        setTimeout(initCarousel, 1000);
+
         // Process Carousel
         let processIndex = 0;
-        const processTotal = 3;
-        const processCarousel = document.getElementById('processCarousel');
-        const processDots = document.querySelectorAll('.process-dot');
 
         function moveProcess(dir) {
+            const processCarousel = document.getElementById('processCarousel');
+            if (!processCarousel) return;
+            const items = processCarousel.querySelectorAll('.process-slide');
+            const processTotal = Math.ceil(items.length / 3);
             processIndex += dir;
             if (processIndex < 0) processIndex = processTotal - 1;
             if (processIndex >= processTotal) processIndex = 0;
@@ -1360,20 +1151,44 @@
         }
 
         function updateProcess() {
+            const processCarousel = document.getElementById('processCarousel');
+            if (!processCarousel) return;
+            const processDots = document.querySelectorAll('.process-dot');
             processCarousel.style.transform = 'translateX(-' + (processIndex * 33.333) + '%)';
             processDots.forEach((d, i) => {
                 d.classList.toggle('bg-primary', i === processIndex);
                 d.classList.toggle('bg-gray-300', i !== processIndex);
             });
         }
-
-        startAutoplay();
     </script>
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
     <script src="js/app.js"></script>
+
+    <script>
+    (function(){
+        var h = document.getElementById('main-header');
+        if(!h) return;
+        var links = h.querySelectorAll('.dropdown-trigger, nav > a');
+        function update(){
+            if(window.scrollY > 50){
+                h.style.backgroundColor = '';
+                h.classList.add('bg-white','border-gray-100','shadow-sm');
+                h.classList.remove('border-transparent');
+                links.forEach(function(el){ el.classList.remove('text-white'); el.classList.add('text-dark/80'); });
+            } else {
+                h.style.backgroundColor = 'transparent';
+                h.classList.remove('bg-white','border-gray-100','shadow-sm');
+                h.classList.add('border-transparent');
+                links.forEach(function(el){ el.classList.add('text-white'); el.classList.remove('text-dark/80'); });
+            }
+        }
+        window.addEventListener('scroll', update);
+        update();
+    })();
+    </script>
 
 </body>
 </html>

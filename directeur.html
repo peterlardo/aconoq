@@ -57,22 +57,6 @@
     </style>
 </head>
 <body class="bg-white">
-
-    <!-- Top Bar -->
-    <div class="bg-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
-                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
-                </a>
-                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
-                </a>
-                <span class="hidden sm:inline-flex items-center gap-1.5">
-                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
-                </span>
-            </div>
-        </div>
     </div>
 
     <!-- Navbar -->
@@ -84,7 +68,19 @@
                 </a>
                 <nav class="hidden lg:flex items-center gap-1">
                     <a href="index.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">Accueil</a>
-                    <a href="contact.html" class="text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2">CONTACT</a>
+                    <!-- PROGRAMMES -->
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            PROGRAMMES <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[280px]">
+                                <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Programme Congolais d'&Eacute;valuation de la Conformit&eacute; (PCEC)</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Syst&egrave;me de marquage et de tra&ccedil;abilit&eacute; des produits du tabac</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Sch&eacute;ma national de certification des produits issus de la production agricole</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 <button class="lg:hidden text-dark">
                     <i class="fas fa-bars text-xl"></i>
@@ -95,7 +91,7 @@
 
     <!-- HERO -->
     <section class="relative py-16 lg:py-24 overflow-hidden">
-        <div class="absolute inset-0">
+        <div id="page-hero" class="absolute inset-0">
             <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/dg2-scaled.png" alt="" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/85 to-gray-900/70"></div>
         </div>
@@ -105,74 +101,11 @@
                 <span class="text-white/40 mx-2">></span>
                 <span class="text-white">Mot du Directeur Général</span>
             </nav>
-            <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Mot du Directeur Général</h1>
+            <h1 class="hero-title font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Mot du Directeur Général</h1>
         </div>
     </section>
 
-    <!-- DIRECTEUR MESSAGE -->
-    <section class="py-16 lg:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-
-                <!-- Left - Photo -->
-                <div class="relative lg:sticky lg:top-28">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-                        <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/07/dg2-scaled.png" alt="Jean Jacques NGOKO MOUYABI - Directeur Général ACONOQ" class="w-full h-auto object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent"></div>
-                    </div>
-                    <div class="absolute -bottom-4 -right-4 bg-primary text-white rounded-xl px-5 py-3 shadow-xl shadow-primary/30 float-badge">
-                        <p class="text-white/70 text-[10px] uppercase tracking-wider">L'ACONOQ</p>
-                        <p class="text-white text-sm font-bold">Excellence & Qualité</p>
-                    </div>
-                </div>
-
-                <!-- Right - Message -->
-                <div>
-                    <span class="inline-block px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-semibold tracking-wider uppercase mb-6">Message officiel</span>
-                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark mb-2">Jean Jacques NGOKO MOUYABI</h2>
-                    <p class="text-primary text-sm font-semibold mb-8">Directeur Général de l'ACONOQ</p>
-
-                    <div class="space-y-6 text-dark/90 text-[15px] leading-relaxed">
-                        <p>
-                            Dans un monde où les économies sont de plus en plus interconnectées, les échanges commerciaux internationaux en augmentation constante et, plus proche de nous avec l'avènement de la zone de libre-échange continentale (ZELCAF), les problématiques liées à la norme, à la qualité, à la certification et à la métrologie sont de plus en plus au cœur de toutes les activités socio-économiques.
-                        </p>
-                        <p>
-                            Le Congo notre pays n'est pas en marge de cette dynamique, c'est pourquoi, le Gouvernement a depuis 2015 mis en place un cadre législatif et règlementaire pour construire pas à pas son système national de normalisation et de gestion de la qualité. Ce système ne pouvait se construire sans un pilote, et ce pilote c'est l'agence congolaise de normalisation et de la qualité.
-                        </p>
-                        <p>
-                            L'ACONOQ, mesurant sa responsabilité dans la construction dudit système met tout en œuvre pour créer des bases sereines d'une véritable culture qualité dans notre pays. En sa qualité de boîte à outils, la vision de l'ACONOQ, est de faire en sorte que dans toutes nos entreprises, toutes nos structures socio-économiques, que la qualité et la norme soient au cœur de leur stratégie de développement. A cet effet, l'ACONOQ mettra au centre la formation, pour créer un véritable réseau des qualiticiens, des normalisateurs et des métrologues constituants ainsi, un vivier des acteurs nationaux en ces matières.
-                        </p>
-                        <p>
-                            Elle accompagnera, formera, incitera tous les acteurs du système national de normalisation et de gestion de la qualité à considérer la qualité et la norme comme un levier incontournable.
-                        </p>
-                        <p>
-                            C'est une question d'engagement, de responsabilité pour tous quel que soit, le niveau de chacun dans la structure de l'échelle de décision au sein de l'organisme. Tout cela doit être su et communiqué, car c'est ainsi que nous construirons le système national de normalisation et de gestion de la qualité dans notre pays, et ce, avec au centre de cette approche, les principes sacrosaints de la normalisation tel, le consensus, l'efficacité, l'ouverture, l'impartialité, le réseautage et la cohérence.
-                        </p>
-                        <p>
-                            L'ACONOQ, se fondant sur la construction de l'infrastructure qualité au sein de notre sous-région et au sein de notre région, ne ménagera aucun effort pour qu'aucun pilier de l'infrastructure qualité au niveau national ne soit mis à l'écart, ensemble avec toutes les parties prenantes, nous construirons cet édifice en considérant et en mettant en évidence, la place du consommateur, de sorte que toutes nos stratégies de développement concourent vers la satisfaction des attentes de ce dernier.
-                        </p>
-                        <p>
-                            La normalisation doit être un outil de modernisation et de développement de l'économie nationale.
-                        </p>
-                    </div>
-
-                    <!-- Signature -->
-                    <div class="mt-10 pt-8 border-t border-gray-200">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary/20">
-                                <i class="fas fa-user-tie text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold text-dark text-base">Jean Jacques NGOKO MOUYABI</p>
-                                <p class="text-primary text-sm font-medium">Directeur Général</p>
-                                <p class="text-gray-text text-xs">Agence Congolaise de Normalisation et de la Qualité</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="dynamic-sections"></div>
 
     <!-- CTA -->
     <section class="py-16 bg-primary">
@@ -291,6 +224,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>

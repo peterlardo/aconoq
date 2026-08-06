@@ -38,22 +38,6 @@
     </style>
 </head>
 <body class="bg-white">
-
-    <!-- Top Bar -->
-    <div class="bg-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-end h-9 gap-6 text-xs text-white/80">
-                <a href="tel:+12129462700" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-phone text-[10px]"></i> +1 212 946 2700
-                </a>
-                <a href="mailto:contact@aconoq.cg" class="hover:text-white transition inline-flex items-center gap-1.5">
-                    <i class="fas fa-envelope text-[10px]"></i> contact@aconoq.cg
-                </a>
-                <span class="hidden sm:inline-flex items-center gap-1.5">
-                    <i class="fas fa-clock text-[10px]"></i> Mon - Fri: 9:00 - 18:00
-                </span>
-            </div>
-        </div>
     </div>
 
     <!-- Navbar -->
@@ -76,7 +60,19 @@
                             </div>
                         </div>
                     </div>
-                    <a href="contact.html" class="text-sm font-medium text-primary px-3 py-2">CONTACT</a>
+                    <!-- PROGRAMMES -->
+                    <div class="relative nav-item">
+                        <button class="dropdown-trigger text-sm font-medium text-dark/80 hover:text-primary transition px-3 py-2 flex items-center gap-1">
+                            PROGRAMMES <i class="fas fa-chevron-down text-[9px]"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[280px]">
+                                <a href="pcec.html" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Programme Congolais d'&Eacute;valuation de la Conformit&eacute; (PCEC)</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Syst&egrave;me de marquage et de tra&ccedil;abilit&eacute; des produits du tabac</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">Sch&eacute;ma national de certification des produits issus de la production agricole</a>
+                            </div>
+                        </div>
+                    </div>
                 </nav>
                 <button class="lg:hidden text-dark">
                     <i class="fas fa-bars text-xl"></i>
@@ -87,7 +83,7 @@
 
     <!-- HERO -->
     <section class="relative py-16 lg:py-24 overflow-hidden">
-        <div class="absolute inset-0">
+        <div id="page-hero" class="absolute inset-0">
             <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2025/09/Image-metrologie-scaled-1.jpeg" alt="" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/85 to-gray-900/70"></div>
         </div>
@@ -97,215 +93,11 @@
                 <span class="text-white/40 mx-2">></span>
                 <span class="text-white">Zoom sur la Métrologie</span>
             </nav>
-            <h1 class="font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Zoom sur la Métrologie</h1>
+            <h1 class="hero-title font-serif text-3xl lg:text-5xl font-bold text-white leading-tight">Zoom sur la Métrologie</h1>
         </div>
     </section>
 
-    <!-- SECTION 1: Définition -->
-    <section class="py-16 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="mb-10">
-                    <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">D&eacute;finition</p>
-                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark mb-8">Qu'est-ce que la <span class="text-primary">M&eacute;trologie</span> ?</h2>
-                </div>
-                <div class="space-y-6">
-                    <p class="text-gray-600 text-base leading-relaxed">
-                        La m&eacute;trologie est la science de la mesure. Il ne faut pas confondre la m&eacute;trologie et la &laquo; m&eacute;t&eacute;ologie &raquo; qui est l'&eacute;tude des ph&eacute;nom&egrave;nes atmosph&eacute;riques et des pr&eacute;visions de temps. La m&eacute;trologie concerne les unit&eacute;s de mesure et leurs &eacute;talons, les instruments de mesure et le champ d'application, ainsi que les probl&egrave;mes th&eacute;oriques et pratiques qui se rapportent aux mesures.
-                    </p>
-                    <p class="text-gray-600 text-base leading-relaxed">
-                        La protection des consommateurs repose entre autres sur la justesse des instruments utilis&eacute;s pour les mesures de quantit&eacute; et de qualit&eacute; des produits de consommation, notamment les produits alimentaires en vrac ou conditionn&eacute;s, les carburants liquides, l'eau potable, l'&eacute;lectricit&eacute;.
-                    </p>
-                </div>
-
-                <div class="mt-12 bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                    <h3 class="font-bold text-dark text-lg mb-6 flex items-center gap-3">
-                        <div class="w-10 h-10 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-balance-scale text-primary text-sm"></i>
-                        </div>
-                        Instruments soumis au contr&ocirc;le m&eacute;trologique l&eacute;gal
-                    </h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="w-7 h-7 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span class="text-white text-xs font-bold">1</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed">Instruments utilis&eacute;s dans les transactions commerciales, op&eacute;rations fiscales, expertises judiciaires, s&eacute;curit&eacute; publique</p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-7 h-7 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span class="text-white text-xs font-bold">2</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed">Instruments utilis&eacute;s en tant qu'&eacute;talons</p>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-7 h-7 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span class="text-white text-xs font-bold">3</span>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed">M&eacute;thodes de mesurage utilis&eacute;es lors de la d&eacute;termination officielle</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: Importance -->
-    <section class="py-16 lg:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 lg:p-12">
-                    <div class="flex items-start gap-6">
-                        <div class="w-14 h-14 bg-primary-light rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-star text-primary text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Pourquoi c'est important</p>
-                            <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark mb-6">Importance de la <span class="text-primary">M&eacute;trologie</span></h2>
-                            <p class="text-gray-600 text-base leading-relaxed">
-                                L'importance des mesures est fondamentale pour pratiquement tous les aspects de l'activit&eacute; humaine, du contr&ocirc;le de la production, &agrave; la protection des consommateurs et &agrave; l'assurance de march&eacute;s &eacute;quitables.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: 3 Types de Métrologie -->
-    <section class="py-16 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
-                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Les branches</p>
-                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">Les 3 types de <span class="text-primary">M&eacute;trologie</span></h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Métrologie scientifique -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-flask text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-3">M&eacute;trologie scientifique</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Elle a pour mission d'organiser, d&eacute;velopper et maintenir les &eacute;talons de mesure nationaux et internationaux.</p>
-                </div>
-                <!-- Métrologie industrielle -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-industry text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-3">M&eacute;trologie industrielle</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Elle assure le fonctionnement correct des instruments de mesure utilis&eacute;s dans l'industrie.</p>
-                </div>
-                <!-- Métrologie légale -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-16 h-16 bg-primary-light rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-gavel text-primary text-xl group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-3">M&eacute;trologie l&eacute;gale</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Elle comprend toutes les activit&eacute;s pour lesquelles des exigences l&eacute;gales sont prescrites sur les mesurages.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: Rôle de la métrologie -->
-    <section class="py-16 lg:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
-                <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Domaines d'application</p>
-                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark">R&ocirc;le de la <span class="text-primary">M&eacute;trologie</span></h2>
-            </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Industrie -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-7 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-cogs text-primary group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-2">Industrie</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">La m&eacute;trologie contribue &agrave; la comp&eacute;titivit&eacute; des produits.</p>
-                </div>
-                <!-- Protection du consommateur -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-7 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-shield-alt text-primary group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-2">Protection du consommateur</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Garantir la justesse des mesures pour la s&eacute;curit&eacute; des consommateurs.</p>
-                </div>
-                <!-- Réglementation -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-7 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-clipboard-list text-primary group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-2">R&eacute;glementation</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Application et respect des normes et r&egrave;glementations en vigueur.</p>
-                </div>
-                <!-- Commerce -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-7 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-handshake text-primary group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-2">Commerce</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Assurer l'&eacute;quit&eacute; des &eacute;changes commerciaux gr&acirc;ce &agrave; des mesures fiables.</p>
-                </div>
-                <!-- Protection sanitaire -->
-                <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-7 hover:shadow-2xl hover:border-primary/20 transition-all duration-300 group">
-                    <div class="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-heartbeat text-primary group-hover:text-white transition"></i>
-                    </div>
-                    <h3 class="font-bold text-dark text-lg mb-2">Protection sanitaire</h3>
-                    <p class="text-gray-text text-sm leading-relaxed">Contr&ocirc;le de la qualit&eacute; de l'eau potable, des aliments et des produits de sant&eacute;.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: Missions -->
-    <section class="py-16 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="mb-10">
-                    <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">Objectifs</p>
-                    <h2 class="font-serif text-2xl lg:text-3xl font-bold text-dark mb-4">Missions de la <span class="text-primary">M&eacute;trologie</span></h2>
-                    <p class="text-gray-600 text-base leading-relaxed">Les principales missions assign&eacute;es &agrave; la direction de la m&eacute;trologie au sein de l'ACONOQ.</p>
-                </div>
-                <div class="bg-gray-50 rounded-2xl p-8 lg:p-10 border border-gray-100">
-                    <ul class="space-y-5">
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed pt-1">Participer &agrave; l'&eacute;laboration de la politique nationale en mati&egrave;re de m&eacute;trologie</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed pt-1">Coordonner toutes activit&eacute;s li&eacute;es &agrave; la m&eacute;trologie</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed pt-1">G&eacute;rer le syst&egrave;me national de m&eacute;trologie</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed pt-1">Assurer le raccordement du syst&egrave;me national de mesurage au Syst&egrave;me International d'unit&eacute;s (SI)</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm leading-relaxed pt-1">Promouvoir l'uniformit&eacute; des unit&eacute;s de mesures au plan national</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="dynamic-sections"></div>
 
     <!-- FOOTER -->
     <footer class="bg-red-600 text-white">
@@ -406,6 +198,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>
