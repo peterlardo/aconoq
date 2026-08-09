@@ -290,8 +290,9 @@
             const spn = document.getElementById('forgot-btn-spinner');
             btn.disabled = true; txt.classList.add('hidden'); spn.classList.remove('hidden');
 
+            const REDIRECT_URL = 'https://aconoq-project.netlify.app/admin/login.html';
             const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-                redirectTo: window.location.origin + '/admin/login.html'
+                redirectTo: REDIRECT_URL
             });
 
             if (error) {
