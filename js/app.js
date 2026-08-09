@@ -8,6 +8,9 @@ function getPageSlug() {
   return file.replace('.html', '');
 }
 
+function safe(v) { return v != null ? v : ''; }
+function safeStr(v) { return v != null ? String(v) : ''; }
+
 document.addEventListener('DOMContentLoaded', () => {
   const slug = getPageSlug();
   loadChiffresCles();
@@ -60,14 +63,14 @@ async function loadChiffresCles() {
 
     container.innerHTML = data.map(item => `
       <div class="text-center">
-        <div class="chiffre-icon mx-auto mb-3">
-          <i class="${item.icone}"></i>
+        <div class="chiffre-icon mx-auto mb-2">
+          <i class="${safeStr(item.icone)}"></i>
         </div>
-        <div class="chiffre-value font-serif text-3xl lg:text-4xl font-bold text-white mb-1" data-target="${item.valeur}">
+        <div class="chiffre-value font-serif text-xl lg:text-2xl font-bold text-white mb-0.5" data-target="${safeStr(item.valeur)}">
           0
         </div>
-        <p class="text-white/80 text-sm font-medium">${item.label}</p>
-        <p class="text-white/50 text-xs mt-1">${item.description}</p>
+        <p class="text-white/80 text-xs font-medium">${safeStr(item.label)}</p>
+        <p class="text-white/50 text-[10px] mt-0.5">${safeStr(item.description)}</p>
       </div>
     `).join('');
 
@@ -113,8 +116,8 @@ async function loadDirections() {
     if (error) throw error;
 
     container.innerHTML = data.map(item => `
-      <a href="#" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">
-        ${item.nom}
+      <a href="${item.url || '#'}" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">
+        ${safeStr(item.nom)}
       </a>
     `).join('');
   } catch (err) {
@@ -164,21 +167,21 @@ function renderNormes(normes) {
     <div class="feature-card">
       <div class="flex items-center justify-between mb-3">
         <span class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary-light text-primary">
-          ${item.categorie}
+          ${safeStr(item.categorie)}
         </span>
         <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-green-100 text-green-700">
-          ${item.statut}
+          ${safeStr(item.statut)}
         </span>
       </div>
-      <h3 class="font-semibold text-base text-dark mb-1">${item.code}</h3>
-      <p class="font-medium text-sm text-dark mb-2">${item.titre}</p>
-      <p class="text-gray-text text-xs leading-relaxed mb-3">${item.description || ''}</p>
+      <h3 class="font-semibold text-base text-dark mb-1">${safeStr(item.code)}</h3>
+      <p class="font-medium text-sm text-dark mb-2">${safeStr(item.titre)}</p>
+      <p class="text-gray-text text-xs leading-relaxed mb-3">${safeStr(item.description)}</p>
       <div class="flex items-center gap-2 mb-3">
-        ${item.type_iso ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-blue-50 text-blue-700">${item.type_iso}</span>` : ''}
-        ${item.origine ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-orange-50 text-orange-700">${item.origine}</span>` : ''}
+        ${item.type_iso ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-blue-50 text-blue-700">${safeStr(item.type_iso)}</span>` : ''}
+        ${item.origine ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-orange-50 text-orange-700">${safeStr(item.origine)}</span>` : ''}
       </div>
       <div class="flex items-center justify-between">
-        <span class="text-xs text-gray-text"><i class="far fa-calendar mr-1"></i>${new Date(item.date_pub).toLocaleDateString('fr-FR')}</span>
+        <span class="text-xs text-gray-text"><i class="far fa-calendar mr-1"></i>${item.date_pub ? new Date(item.date_pub).toLocaleDateString('fr-FR') : ''}</span>
         <a href="#" class="text-primary text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
           Consulter <i class="fas fa-arrow-right"></i>
         </a>
@@ -287,9 +290,13 @@ async function loadEvenements() {
         <div class="feature-card group">
           ${item.image_url ? `
             <div class="overflow-hidden rounded-lg mb-4">
-              <img src="${item.image_url}" alt="${item.titre}" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
+              <img src="${item.image_url}" alt="${safeStr(item.titre)}" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
             </div>
-          ` : ''}
+          ` : `
+            <div class="overflow-hidden rounded-lg mb-4 bg-gradient-to-br from-[rgba(15,113,64,0.1)] to-[rgba(15,113,64,0.05)] h-44 flex items-center justify-center">
+              <i class="fas fa-calendar-alt text-[#0f7140] text-3xl opacity-30"></i>
+            </div>
+          `}
           <div class="flex items-start gap-4">
             <div class="text-center flex-shrink-0 bg-primary-light rounded-xl px-3 py-2">
               <div class="text-2xl font-bold text-primary leading-none">${day}</div>
@@ -300,10 +307,10 @@ async function loadEvenements() {
               <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${type.bg} ${type.text} mb-2">
                 ${type.label}
               </span>
-              <h3 class="font-semibold text-sm text-dark mb-1 line-clamp-2">${item.titre}</h3>
-              <p class="text-gray-text text-xs leading-relaxed mb-2 line-clamp-2">${item.description || ''}</p>
+              <h3 class="font-semibold text-sm text-dark mb-1 line-clamp-2">${safeStr(item.titre)}</h3>
+              <p class="text-gray-text text-xs leading-relaxed mb-2 line-clamp-2">${safeStr(item.description)}</p>
               <div class="flex items-center gap-3 text-[11px] text-gray-text">
-                <span><i class="fas fa-map-marker-alt mr-1"></i>${item.lieu || 'Non pr\u00e9cis\u00e9'}</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>${safeStr(item.lieu) || 'Non précisé'}</span>
               </div>
             </div>
           </div>
@@ -338,6 +345,8 @@ async function loadDynamicPageHero(slug) {
     if (titleEl && data.title) titleEl.textContent = data.title;
     const subEl = heroEl.querySelector('.hero-subtitle');
     if (subEl && data.subtitle) subEl.textContent = data.subtitle;
+    const badgeEl = heroEl.querySelector('.hero-badge');
+    if (badgeEl && data.badge) badgeEl.textContent = data.badge;
   } catch (err) {
     console.error('Erreur chargement hero:', err);
   }
@@ -378,18 +387,39 @@ function renderPageSection(section, groupedGrids) {
   if (section.badge) {
     html += `<span class="text-primary text-xs font-semibold tracking-widest uppercase mb-3 block">${section.badge}</span>`;
   }
-  html += `<h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><i class="${section.icon_class} text-primary mr-3 text-2xl"></i>${section.title}</h2>`;
+  const iconHtml = section.icon_class ? `<i class="${section.icon_class} text-primary mr-3 text-2xl"></i>` : '';
+  const titleText = section.title || '';
+  html += `<h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6">${iconHtml}${titleText}</h2>`;
+
+  // Render grouped card_grids for this section
+  const sectionKey = section.section_key;
+  if (sectionKey && groupedGrids[sectionKey]) {
+    const cards = groupedGrids[sectionKey];
+    html += '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">';
+    html += cards.map(card => {
+      const colorClass = card.card_color === 'red' ? 'bg-red-50 text-red-600' : 'bg-primary-light text-primary';
+      return `
+        <div class="feature-card">
+          ${card.card_number ? `<div class="text-3xl font-bold text-primary/15 mb-2">${card.card_number}</div>` : ''}
+          ${card.card_icon ? `<span class="feature-icon ${colorClass}"><i class="${safeStr(card.card_icon)}"></i></span>` : ''}
+          <h3 class="font-semibold text-base text-dark mb-2">${safeStr(card.card_title)}</h3>
+          <p class="text-gray-text text-sm leading-relaxed">${safeStr(card.card_description)}</p>
+        </div>
+      `;
+    }).join('');
+    html += '</div>';
+  }
 
   if (c.paragraphs && Array.isArray(c.paragraphs)) {
-    html += c.paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${p}</p>`).join('');
+    html += c.paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${safeStr(p)}</p>`).join('');
   }
 
   if (c.description) {
-    html += `<p class="text-gray-text text-base leading-relaxed mb-6">${c.description}</p>`;
+    html += `<p class="text-gray-text text-base leading-relaxed mb-6">${safeStr(c.description)}</p>`;
   }
 
   if (c.list_title) {
-    html += `<h3 class="font-semibold text-lg text-dark mb-3 mt-6">${c.list_title}</h3>`;
+    html += `<h3 class="font-semibold text-lg text-dark mb-3 mt-6">${safeStr(c.list_title)}</h3>`;
   }
 
   if (c.list_items && Array.isArray(c.list_items)) {
@@ -397,7 +427,7 @@ function renderPageSection(section, groupedGrids) {
     html += c.list_items.map((item, i) => `
       <div class="flex items-start gap-3 mb-3">
         <span class="flex-shrink-0 w-7 h-7 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-bold">${i + 1}</span>
-        <p class="text-gray-text text-sm leading-relaxed pt-0.5">${item}</p>
+        <p class="text-gray-text text-sm leading-relaxed pt-0.5">${safeStr(item)}</p>
       </div>
     `).join('');
     html += '</div>';
@@ -408,7 +438,7 @@ function renderPageSection(section, groupedGrids) {
     html += c.items.map(item => `
       <div class="flex items-start gap-3 mb-3">
         <i class="fas fa-check-circle text-primary mt-1 flex-shrink-0"></i>
-        <p class="text-gray-text text-sm leading-relaxed">${item}</p>
+        <p class="text-gray-text text-sm leading-relaxed">${safeStr(item)}</p>
       </div>
     `).join('');
     html += '</div>';
@@ -418,8 +448,8 @@ function renderPageSection(section, groupedGrids) {
     html += '<div class="grid sm:grid-cols-3 gap-6 mt-6">';
     html += c.services.map(s => `
       <div class="bg-gray-50 rounded-xl p-5 text-center">
-        <i class="${s.icon} text-primary text-2xl mb-3"></i>
-        <p class="font-semibold text-sm text-dark">${s.name}</p>
+        <i class="${safeStr(s.icon)} text-primary text-2xl mb-3"></i>
+        <p class="font-semibold text-sm text-dark">${safeStr(s.name)}</p>
       </div>
     `).join('');
     html += '</div>';
@@ -431,9 +461,9 @@ function renderPageSection(section, groupedGrids) {
       const colorClass = card.color === 'red' ? 'bg-red-50 text-red-600' : 'bg-primary-light text-primary';
       return `
         <div class="feature-card">
-          <span class="feature-icon ${colorClass}"><i class="${card.icon}"></i></span>
-          <h3 class="font-semibold text-base text-dark mb-2">${card.title}</h3>
-          <p class="text-gray-text text-sm leading-relaxed">${card.description}</p>
+          <span class="feature-icon ${colorClass}"><i class="${safeStr(card.icon)}"></i></span>
+          <h3 class="font-semibold text-base text-dark mb-2">${safeStr(card.title)}</h3>
+          <p class="text-gray-text text-sm leading-relaxed">${safeStr(card.description)}</p>
         </div>
       `;
     }).join('');
@@ -442,7 +472,7 @@ function renderPageSection(section, groupedGrids) {
 
   if (c.highlight) {
     html += `<div class="bg-primary-light border-l-4 border-primary rounded-r-xl p-5 mt-6">
-      <p class="text-primary text-sm font-medium"><i class="fas fa-star mr-2"></i>${c.highlight}</p>
+      <p class="text-primary text-sm font-medium"><i class="fas fa-star mr-2"></i>${safeStr(c.highlight)}</p>
     </div>`;
   }
 
@@ -458,17 +488,17 @@ function renderPageSection(section, groupedGrids) {
     html = `
       <div class="grid lg:grid-cols-2 gap-12 items-start">
         <div class="relative lg:sticky lg:top-28">
-          ${photo ? `<div class="rounded-2xl overflow-hidden shadow-2xl"><img src="${photo}" alt="${name}" class="w-full h-[400px] object-cover"></div>` : ''}
+          ${photo ? `<div class="rounded-2xl overflow-hidden shadow-2xl"><img src="${photo}" alt="${safeStr(name)}" class="w-full h-[400px] object-cover"></div>` : ''}
         </div>
         <div>
           <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">${section.badge || 'Message officiel'}</p>
-          <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><strong>${name}</strong></h2>
-          <p class="text-gray-text text-sm mb-4 italic">${role}</p>
-          ${paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${p}</p>`).join('')}
+          <h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6"><strong>${safeStr(name)}</strong></h2>
+          <p class="text-gray-text text-sm mb-4 italic">${safeStr(role)}</p>
+          ${paragraphs.map(p => `<p class="text-gray-text text-base leading-relaxed mb-4">${safeStr(p)}</p>`).join('')}
           <div class="mt-8 pt-6 border-t border-gray-200">
-            <p class="font-bold text-dark">${sigName}</p>
-            <p class="text-gray-text text-sm">${sigTitle}</p>
-            <p class="text-gray-text text-xs">${sigOrg}</p>
+            <p class="font-bold text-dark">${safeStr(sigName)}</p>
+            <p class="text-gray-text text-sm">${safeStr(sigTitle)}</p>
+            <p class="text-gray-text text-xs">${safeStr(sigOrg)}</p>
           </div>
         </div>
       </div>
@@ -496,9 +526,9 @@ async function loadDynamicServices() {
 
     container.innerHTML = data.map(item => `
       <div class="feature-card">
-        <span class="feature-icon"><i class="${item.icon_class}" style="font-size:22px"></i></span>
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
+        <span class="feature-icon"><i class="${safeStr(item.icon_class)}" style="font-size:22px"></i></span>
+        <h3>${safeStr(item.title)}</h3>
+        <p>${safeStr(item.description)}</p>
         ${item.link_url && item.link_url !== '#' ? `<a href="${item.link_url}" class="link-more"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>` : ''}
       </div>
     `).join('');
@@ -570,21 +600,21 @@ async function loadDynamicBanners() {
 
     if (error || !data || data.length === 0) return;
 
-    const filtered = data.filter(b => b.badge !== 'Boutique en ligne');
+    const filtered = data.filter(b => b.badge !== 'Boutique en ligne' && b.badge !== 'PCEC');
     if (filtered.length === 0) { container.remove(); return; }
 
     container.innerHTML = filtered.map(b => `
       <section class="relative h-[400px] lg:h-[480px] overflow-hidden mb-8">
-        <img src="${b.image_url}" alt="${b.title}" class="w-full h-full object-cover">
+        <img src="${b.image_url || ''}" alt="${safeStr(b.title)}" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/50 to-transparent"></div>
         <div class="absolute inset-0 flex items-center">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="max-w-xl text-white">
-              <span class="text-white/80 text-xs font-semibold tracking-widest uppercase">${b.badge}</span>
-              <h2 class="font-serif text-3xl lg:text-5xl font-black mt-3 mb-4">${b.title}</h2>
-              <p class="text-white/80 text-base leading-relaxed mb-6">${b.description}</p>
+              <span class="text-white/80 text-xs font-semibold tracking-widest uppercase">${safeStr(b.badge)}</span>
+              <h2 class="font-serif text-3xl lg:text-5xl font-black mt-3 mb-4">${safeStr(b.title)}</h2>
+              <p class="text-white/80 text-base leading-relaxed mb-6">${safeStr(b.description)}</p>
               <a href="${b.cta1_url || '#'}" class="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded text-sm font-semibold hover:bg-gray-100 transition">
-                ${b.cta1_label} <i class="fas fa-arrow-right text-xs"></i>
+                ${safeStr(b.cta1_label)} <i class="fas fa-arrow-right text-xs"></i>
               </a>
             </div>
           </div>
@@ -614,9 +644,9 @@ async function loadDynamicProcessus() {
     container.innerHTML = data.map(item => `
       <div class="process-slide min-w-[33.333%] px-3">
         <div class="feature-card h-full">
-          <span class="feature-icon"><i class="${item.icon_class}" style="font-size:22px"></i></span>
-          <h3>${item.title}</h3>
-          <p>${item.description}</p>
+          <span class="feature-icon"><i class="${safeStr(item.icon_class)}" style="font-size:22px"></i></span>
+          <h3>${safeStr(item.title)}</h3>
+          <p>${safeStr(item.description)}</p>
           <a href="${item.link_url || '#'}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
         </div>
       </div>
@@ -643,10 +673,10 @@ async function loadDynamicContactInfo() {
     if (infoContainer && infoRes.data) {
       infoContainer.innerHTML = infoRes.data.map(item => `
         <div class="feature-card flex items-start gap-4">
-          <span class="feature-icon"><i class="${item.icon_class}"></i></span>
+          <span class="feature-icon"><i class="${safeStr(item.icon_class)}"></i></span>
           <div>
-            <h3 class="font-semibold text-base text-dark mb-1">${item.title}</h3>
-            ${item.link ? `<a href="${item.link}" class="text-primary text-sm hover:underline">${item.value}</a>` : `<p class="text-gray-text text-sm">${item.value}</p>`}
+            <h3 class="font-semibold text-base text-dark mb-1">${safeStr(item.title)}</h3>
+            ${item.link ? `<a href="${item.link}" class="text-primary text-sm hover:underline">${safeStr(item.value)}</a>` : `<p class="text-gray-text text-sm">${safeStr(item.value)}</p>`}
           </div>
         </div>
       `).join('');
@@ -684,10 +714,10 @@ async function loadBoutiqueContent() {
       faqContainer.innerHTML = faqRes.data.map(item => `
         <div class="feature-card">
           <div class="flex items-start gap-3 mb-2">
-            <i class="${item.icon_class} text-primary mt-1"></i>
-            <h3 class="font-semibold text-sm text-dark">${item.question}</h3>
+            <i class="${safeStr(item.icon_class)} text-primary mt-1"></i>
+            <h3 class="font-semibold text-sm text-dark">${safeStr(item.question)}</h3>
           </div>
-          <p class="text-gray-text text-sm leading-relaxed ml-9">${item.answer}</p>
+          <p class="text-gray-text text-sm leading-relaxed ml-9">${safeStr(item.answer)}</p>
         </div>
       `).join('');
     }
@@ -696,11 +726,11 @@ async function loadBoutiqueContent() {
       advContainer.innerHTML = advRes.data.map(item => `
         <div class="flex items-start gap-3 mb-4">
           <div class="w-10 h-10 bg-primary-light rounded-lg flex items-center justify-center flex-shrink-0">
-            <i class="${item.icon_class} text-primary"></i>
+            <i class="${safeStr(item.icon_class)} text-primary"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-sm text-dark">${item.title}</h4>
-            <p class="text-gray-text text-xs leading-relaxed">${item.description}</p>
+            <h4 class="font-semibold text-sm text-dark">${safeStr(item.title)}</h4>
+            <p class="text-gray-text text-xs leading-relaxed">${safeStr(item.description)}</p>
           </div>
         </div>
       `).join('');
@@ -710,10 +740,10 @@ async function loadBoutiqueContent() {
       hiwContainer.innerHTML = hiwRes.data.map(item => `
         <div class="text-center">
           <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-white font-bold text-xl">${item.step_number}</span>
+            <span class="text-white font-bold text-xl">${safeStr(item.step_number)}</span>
           </div>
-          <h4 class="font-semibold text-sm text-dark mb-2">${item.title}</h4>
-          <p class="text-gray-text text-xs leading-relaxed">${item.description}</p>
+          <h4 class="font-semibold text-sm text-dark mb-2">${safeStr(item.title)}</h4>
+          <p class="text-gray-text text-xs leading-relaxed">${safeStr(item.description)}</p>
         </div>
       `).join('');
     }
@@ -740,13 +770,13 @@ async function loadPcecExceptions() {
 
     const items = data.items || [];
     container.innerHTML = `
-      <h3 class="font-semibold text-lg text-dark mb-2">${data.title}</h3>
-      <p class="text-gray-text text-sm mb-4">${data.intro_text}</p>
+      <h3 class="font-semibold text-lg text-dark mb-2">${safeStr(data.title)}</h3>
+      <p class="text-gray-text text-sm mb-4">${safeStr(data.intro_text)}</p>
       <div class="grid sm:grid-cols-2 gap-2">
         ${items.map((item, i) => `
           <div class="flex items-start gap-2 bg-gray-50 rounded-lg p-3">
             <span class="flex-shrink-0 w-6 h-6 bg-primary/10 text-primary rounded-full flex items-center justify-center text-xs font-bold">${i + 1}</span>
-            <p class="text-gray-text text-sm">${item}</p>
+            <p class="text-gray-text text-sm">${safeStr(item)}</p>
           </div>
         `).join('')}
       </div>
@@ -773,10 +803,10 @@ async function loadCertificationSteps() {
 
     container.innerHTML = data.map(step => `
       <div class="flex items-start gap-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">${step.step_number}</div>
+        <div class="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold">${safeStr(step.step_number)}</div>
         <div>
-          <h4 class="font-semibold text-sm text-dark">${step.title}</h4>
-          <p class="text-gray-text text-sm">${step.description}</p>
+          <h4 class="font-semibold text-sm text-dark">${safeStr(step.title)}</h4>
+          <p class="text-gray-text text-sm">${safeStr(step.description)}</p>
         </div>
       </div>
     `).join('');
@@ -801,14 +831,24 @@ async function loadPartenaires() {
     if (error) throw error;
     if (!data || data.length === 0) return;
 
-    const items = data.map(p => `
-      <a href="${p.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center gap-3 px-10 py-6 bg-white rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[200px]" title="${p.description || ''}">
-        <img src="${p.logo_url || ''}" alt="${p.nom}" class="h-10 w-10 object-contain">
-        <span class="text-base font-bold text-gray-700 group-hover:text-primary transition-colors">${p.nom}</span>
-      </a>
-    `).join('');
+    const fallbackLogos = {
+      'COTECNA': 'https://cdn.brandfetch.io/id11m9B62s/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX',
+      'TÜV': 'https://static.cdnlogo.com/logos/t/90/tuv-rheinland.svg',
+      'Bureau Veritas': 'https://companieslogo.com/img/orig/BVI.PA_BIG-ce76bf51.png',
+      'ARSO': 'https://latestlogo.com/wp-content/uploads/2024/08/arso.png'
+    };
+    const items = data.map(p => {
+      const imgUrl = p.logo_url || fallbackLogos[p.nom] || '';
+      const logoHtml = imgUrl
+        ? `<img src="${imgUrl}" alt="${safeStr(p.nom)}" class="h-12 object-contain">`
+        : `<span class="text-xl font-black tracking-tight">${safeStr(p.nom)}</span>`;
+      return `
+      <a href="${p.site_web || '#'}" target="_blank" rel="noopener" class="partenaire-item flex-shrink-0 flex items-center justify-center gap-3 px-10 py-6 bg-white rounded-xl border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group min-w-[200px]" title="${safeStr(p.description)}">
+        ${logoHtml}
+      </a>`;
+    }).join('');
 
-    container.innerHTML = items + items;
+    container.innerHTML = items;
   } catch (err) {
     console.error('Erreur chargement partenaires:', err);
   }
@@ -837,11 +877,10 @@ async function loadActualites() {
     container.innerHTML = data.map(item => `
       <div class="feature-card group">
         <div class="overflow-hidden rounded-lg mb-4">
-          <img src="${item.image_url || ''}" alt="${item.titre}" class="w-full h-52 object-cover group-hover:scale-105 transition duration-500">
+          <img src="${item.image_url || ''}" alt="${safeStr(item.titre)}" class="w-full h-52 object-cover group-hover:scale-105 transition duration-500">
         </div>
-        <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-primary-light text-primary mb-2">${item.categorie || ''}</span>
-        <h3 class="font-semibold text-sm text-dark mb-1">${item.titre}</h3>
-        <p class="text-gray-text text-xs leading-relaxed mb-2">${item.contenu || ''}</p>
+        <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-primary-light text-primary mb-2">${safeStr(item.categorie)}</span>
+        <h3 class="font-semibold text-sm text-dark mb-1">${safeStr(item.titre)}</h3>
         <span class="text-[11px] text-gray-text"><i class="far fa-calendar mr-1"></i>${item.date_pub ? new Date(item.date_pub).toLocaleDateString('fr-FR') : ''}</span>
         <a href="#" class="text-primary text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all mt-3">Lire la suite <i class="fas fa-arrow-right text-xs"></i></a>
       </div>
@@ -871,9 +910,9 @@ async function loadDynamicPcecRoutes() {
 
     container.innerHTML = data.map(item => `
       <div class="feature-card">
-        <span class="feature-icon"><i class="${item.icon_class || 'fas fa-route'}" style="font-size:22px"></i></span>
-        <h3>${item.title}</h3>
-        <p>${item.description || ''}</p>
+        <span class="feature-icon"><i class="${safeStr(item.card_icon) || 'fas fa-route'}" style="font-size:22px"></i></span>
+        <h3>${safeStr(item.card_title)}</h3>
+        <p>${safeStr(item.card_description)}</p>
       </div>
     `).join('');
   } catch (err) {
@@ -898,46 +937,55 @@ async function loadDynamicFooter() {
     if (error || !data) return;
 
     const val = data.value || {};
-    const links = val.links || {};
+    const columns = val.columns || [];
     const contact = val.contact || {};
+    const socialLinks = val.social_links || [];
+    const brandDesc = val.brand_description || val.description || '';
+    const logoUrl = val.logo_url || val.logo || 'aconoq_logo.png';
+    const legal = val.legal || [];
+    const copyrightText = val.copyright || '';
+
+    const aconoqLinks = columns[0] ? columns[0].links || [] : [];
+    const dirLinks = columns[1] ? columns[1].links || [] : [];
+    const servLinks = columns[2] ? columns[2].links || [] : [];
 
     container.innerHTML = `
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
           <div class="col-span-2 md:col-span-1">
             <a href="/" class="flex items-center gap-2 mb-4">
-              <img src="${val.logo || 'aconoq_logo.png'}" alt="ACONOQ" class="h-10">
+              <img src="${logoUrl}" alt="ACONOQ" class="h-10" style="background: transparent;">
             </a>
-            <p class="text-white/70 text-sm leading-relaxed mb-4">${val.description || ''}</p>
+            <p class="text-white/70 text-sm leading-relaxed mb-4">${safeStr(brandDesc)}</p>
             <div class="flex gap-3">
-              ${(val.social || []).map(s => `<a href="${s.url}" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition"><i class="${s.icon} text-white text-sm"></i></a>`).join('')}
+              ${socialLinks.map(s => `<a href="${safeStr(s.url)}" target="_blank" rel="noopener" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition"><i class="${safeStr(s.icon)} text-white text-sm"></i></a>`).join('')}
             </div>
           </div>
           <div>
-            <h4 class="text-white font-semibold mb-4">ACONOQ</h4>
+            <h4 class="text-white font-semibold mb-4">${safeStr(columns[0] ? columns[0].title : 'ACONOQ')}</h4>
             <ul class="space-y-2">
-              ${(links.aconoq || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+              ${aconoqLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
-            <h4 class="text-white font-semibold mb-4">Directions</h4>
+            <h4 class="text-white font-semibold mb-4">${safeStr(columns[1] ? columns[1].title : 'Directions')}</h4>
             <ul class="space-y-2">
-              ${(links.directions || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+              ${dirLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
-            <h4 class="text-white font-semibold mb-4">Services</h4>
+            <h4 class="text-white font-semibold mb-4">${safeStr(columns[2] ? columns[2].title : 'Services')}</h4>
             <ul class="space-y-2">
-              ${(links.services || []).map(l => `<li><a href="${l.url}" class="text-white/70 text-sm hover:text-white transition">${l.label}</a></li>`).join('')}
+              ${servLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
             <h4 class="text-white font-semibold mb-4">Contact</h4>
             <ul class="space-y-3">
-              ${contact.address ? `<li class="flex items-start gap-2 text-white/70 text-sm"><i class="fas fa-map-marker-alt mt-1"></i><span>${contact.address}</span></li>` : ''}
-              ${contact.phone ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-phone"></i><a href="tel:${contact.phone}" class="hover:text-white transition">${contact.phone}</a></li>` : ''}
-              ${contact.email ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-envelope"></i><a href="mailto:${contact.email}" class="hover:text-white transition">${contact.email}</a></li>` : ''}
-              ${contact.hours ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-clock"></i><span>${contact.hours}</span></li>` : ''}
+              ${contact.address ? `<li class="flex items-start gap-2 text-white/70 text-sm"><i class="fas fa-map-marker-alt mt-1"></i><span>${safeStr(contact.address)}</span></li>` : ''}
+              ${contact.phone ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-phone"></i><a href="tel:${safeStr(contact.phone)}" class="hover:text-white transition">${safeStr(contact.phone)}</a></li>` : ''}
+              ${contact.email ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-envelope"></i><a href="mailto:${safeStr(contact.email)}" class="hover:text-white transition">${safeStr(contact.email)}</a></li>` : ''}
+              ${contact.hours ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-clock"></i><span>${safeStr(contact.hours)}</span></li>` : ''}
             </ul>
             <div class="mt-4">
               <form id="footer-newsletter" class="flex gap-2">
@@ -950,9 +998,9 @@ async function loadDynamicFooter() {
       </div>
       <div class="border-t border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-white/50 text-xs">&copy; ${new Date().getFullYear()} ACONOQ. Tous droits réservés.</p>
+          <p class="text-white/50 text-xs">&copy; ${new Date().getFullYear()} ACONOQ. Tous droits r&eacute;serv&eacute;s.</p>
           <div class="flex gap-4">
-            ${(val.legal || []).map(l => `<a href="${l.url}" class="text-white/50 text-xs hover:text-white transition">${l.label}</a>`).join('')}
+            ${legal.map(l => `<a href="${safeStr(l.url)}" class="text-white/50 text-xs hover:text-white transition">${safeStr(l.label)}</a>`).join('')}
           </div>
         </div>
       </div>

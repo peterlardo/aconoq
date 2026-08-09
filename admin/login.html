@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Administration ACONOQ</title>
+    <link rel="icon" href="../aconoq_logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f7140 0%, #0a5c32 50%, #073d21 100%);
+        }
+        .login-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .input-group {
+            position: relative;
+        }
+        .input-group .icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+        .input-group input:focus ~ .icon,
+        .input-group input:focus + .icon {
+            color: #0f7140;
+        }
+        .btn-login {
+            background: #0f7140;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover:not(:disabled) {
+            background: #0a5c32;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 113, 64, 0.4);
+        }
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+
+    <div class="login-card w-full max-w-md rounded-2xl shadow-2xl p-8 fade-in">
+
+        <div class="text-center mb-8">
+            <img src="https://www.aconoq-apps.com/aconoq/wp-content/uploads/2020/07/aconoq_logo.png"
+                 alt="ACONOQ Logo"
+                 class="mx-auto mb-4 h-16 object-contain">
+            <h1 class="text-2xl font-bold text-gray-800">Administration ACONOQ</h1>
+            <p class="text-gray-500 text-sm mt-1">Connectez-vous pour accéder au tableau de bord</p>
+        </div>
+
+        <div id="error-message" class="hidden mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="error-text"></span>
+            </div>
+        </div>
+
+        <form id="login-form" class="space-y-5">
+            <div class="input-group">
+                <input type="email"
+                       id="email"
+                       placeholder="Adresse e-mail"
+                       required
+                       autocomplete="email"
+                       class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition text-gray-800">
+                <i class="fas fa-envelope icon"></i>
+            </div>
+
+            <div class="input-group">
+                <input type="password"
+                       id="password"
+                       placeholder="Mot de passe"
+                       required
+                       autocomplete="current-password"
+                       class="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent outline-none transition text-gray-800">
+                <i class="fas fa-lock icon"></i>
+                <button type="button"
+                        id="toggle-password"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
+                        tabindex="-1">
+                    <i class="fas fa-eye" id="eye-icon"></i>
+                </button>
+            </div>
+
+            <button type="submit"
+                    id="login-btn"
+                    class="btn-login w-full text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
+                <i class="fas fa-sign-in-alt"></i>
+                <span id="btn-text">Se connecter</span>
+                <span id="btn-spinner" class="spinner hidden"></span>
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <a href="../index.html" class="text-sm text-gray-500 hover:text-green-700 transition">
+                <i class="fas fa-arrow-left mr-1"></i> Retour au site
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://lzwqgymlbbzyhbfshrpu.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6d3FneW1sYmJ6eWhiZnNocnB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5Nzk2MzMsImV4cCI6MjEwMTU1NTYzM30.qYp6V_KdLkjjUQQxW48Z5RXRYnLJavXEkek5rqL1iCg';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById('login-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const errorMsg = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+        const togglePassword = document.getElementById('toggle-password');
+        const eyeIcon = document.getElementById('eye-icon');
+
+        async function checkSession() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+        checkSession();
+
+        togglePassword.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            eyeIcon.className = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
+        });
+
+        function setLoading(loading) {
+            loginBtn.disabled = loading;
+            btnText.classList.toggle('hidden', loading);
+            btnSpinner.classList.toggle('hidden', !loading);
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            errorMsg.classList.remove('hidden');
+        }
+
+        function hideError() {
+            errorMsg.classList.add('hidden');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showError('Veuillez remplir tous les champs.');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) {
+                    let msg = 'Erreur de connexion.';
+                    if (error.message.includes('Invalid login credentials')) {
+                        msg = 'Adresse e-mail ou mot de passe incorrect.';
+                    } else if (error.message.includes('Email not confirmed')) {
+                        msg = 'Veuillez confirmer votre adresse e-mail.';
+                    } else if (error.message.includes('Too many requests')) {
+                        msg = 'Trop de tentatives. Veuillez réessayer plus tard.';
+                    }
+                    showError(msg);
+                    setLoading(false);
+                    return;
+                }
+
+                if (data.session) {
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (err) {
+                showError('Une erreur inattendue est survenue. Vérifiez votre connexion.');
+                setLoading(false);
+            }
+        });
+    </script>
+</body>
+</html>

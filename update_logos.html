@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Update Logos</title></head>
+<body style="font-family:sans-serif;padding:40px">
+<h2>Mise à jour des logos partenaires</h2>
+<div id="out"></div>
+<script type="module">
+const URL = 'https://lzwqgymlbbzyhbfshrpu.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6d3FneW1sYmJ6eWhiZnNocnB1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTk3OTYzMywiZXhwIjoyMTAxNTU1NjMzfQ.Cw1XhdFNkknHGZZzmMjM8Rl8a70xpgct33PVuDRSS7A';
+const out = document.getElementById('out');
+
+const updates = [
+  { nom: 'COTECNA', logo_url: 'https://cdn.brandfetch.io/id11m9B62s/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX' },
+  { nom: 'T\u00fcV', logo_url: 'https://logowik.com/content/uploads/images/tuv-sud7852.logowik.com.webp' },
+  { nom: 'Bureau Veritas', logo_url: 'https://companieslogo.com/img/orig/BVI.PA_BIG-ce76bf51.png' },
+  { nom: 'ARSO', logo_url: 'https://latestlogo.com/wp-content/uploads/2024/08/arso.png' }
+];
+
+for (const u of updates) {
+  try {
+    const res = await fetch(URL + '/rest/v1/partenaires?nom=eq.' + encodeURIComponent(u.nom), {
+      method: 'PATCH',
+      headers: {
+        'apikey': KEY,
+        'Authorization': 'Bearer ' + KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({ logo_url: u.logo_url })
+    });
+    const data = await res.json();
+    out.innerHTML += '<p style="color:green">&#10003; ' + u.nom + ' — logo_url mis à jour (' + data.length + ' ligne(s))</p>';
+  } catch (e) {
+    out.innerHTML += '<p style="color:red">&#10007; ' + u.nom + ' — ' + e.message + '</p>';
+  }
+}
+out.innerHTML += '<br><b>Terminé ! Ferme cette page et rafraîchis le site.</b>';
+</script>
+</body>
+</html>
