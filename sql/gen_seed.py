@@ -194,7 +194,7 @@ footer_json = jsonb_val({
     ],
     'contact': {'address': 'Brazzaville, République du Congo', 'phone': '+1 212 946 2700', 'email': 'contact@aconoq.cg', 'hours': 'Mon - Fri: 9:00 - 18:00'},
     'newsletter': {'title': 'Restez informé', 'description': 'Recevez nos actualités et mise à jour directement dans votre boîte mail.'},
-    'legal': [{'label': 'Politique de confidentialité', 'url': '#'}, {'label': 'Conditions d\'utilisation', 'url': '#'}]
+    'legal': [{'label': 'Politique de confidentialité', 'url': 'politique-confidentialite.php'}, {'label': 'Conditions d\'utilisation', 'url': '#'}]
 })
 lines.append("-- 1. SITE SETTINGS")
 lines.append(f"INSERT INTO site_settings (key, value) VALUES ('footer', '{footer_json}'::jsonb)")

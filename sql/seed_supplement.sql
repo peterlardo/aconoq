@@ -77,7 +77,7 @@ INSERT INTO site_settings (key, value) VALUES
     "description": "Recevez nos actualités et mise à jour directement dans votre boîte mail."
   },
   "legal": [
-    {"label": "Politique de confidentialité", "url": "#"},
+    {"label": "Politique de confidentialité", "url": "politique-confidentialite.php"},
     {"label": "Conditions d''utilisation", "url": "#"}
   ]
 }'::jsonb)

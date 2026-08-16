@@ -167,13 +167,13 @@ INSERT INTO directions (nom, description, icone, couleur, ordre) VALUES
 ('PCEC', 'Programme Congolais d''Évaluation de la Conformité avant embarquement.', 'fas fa-shield-alt', '#7c3aed', 5);
 
 -- Normes
-INSERT INTO normes (code, titre, description, categorie, date_pub, statut) VALUES
-('NCGO 001-2024', 'Systèmes de management de la qualité', 'Exigences relatives aux systèmes de management de la qualité pour les organisations', 'Management', '2024-01-15', 'active'),
-('NCGO 002-2024', 'Sécurité alimentaire - HACCP', 'Principes et applications du système HACCP pour la sécurité des denrées alimentaires', 'Alimentation', '2024-03-20', 'active'),
-('NCGO 003-2024', 'Étiquetage des produits alimentaires', 'Exigences d''étiquetage nutritionnel et sanitaire des denrées alimentaires préemballées', 'Alimentation', '2024-05-10', 'active'),
-('NCGO 004-2024', 'Matériaux de construction - Ciment', 'Spécifications techniques pour les ciments destinés à la construction', 'Construction', '2024-07-01', 'active'),
-('NCGO 005-2024', 'Équipements électriques - Sécurité', 'Exigences de sécurité pour les équipements électriques à usage domestique', 'Électricité', '2024-09-15', 'active'),
-('NCGO 006-2024', 'Métrologie légale - Instruments de mesure', 'Réglementation sur la vérification des instruments de mesure commerciaux', 'Métrologie', '2024-11-01', 'active');
+INSERT INTO normes (code, titre, description, categorie, date_pub, statut, image_url) VALUES
+('NCGO 001-2024', 'Systèmes de management de la qualité', 'Exigences relatives aux systèmes de management de la qualité pour les organisations', 'Management', '2024-01-15', 'active', 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'),
+('NCGO 002-2024', 'Sécurité alimentaire - HACCP', 'Principes et applications du système HACCP pour la sécurité des denrées alimentaires', 'Alimentation', '2024-03-20', 'active', 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800'),
+('NCGO 003-2024', 'Étiquetage des produits alimentaires', 'Exigences d''étiquetage nutritionnel et sanitaire des denrées alimentaires préemballées', 'Alimentation', '2024-05-10', 'active', 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800'),
+('NCGO 004-2024', 'Matériaux de construction - Ciment', 'Spécifications techniques pour les ciments destinés à la construction', 'Construction', '2024-07-01', 'active', 'https://images.pexels.com/photos/3184464/pexels-photo-3184464.jpeg?auto=compress&cs=tinysrgb&w=800'),
+('NCGO 005-2024', 'Équipements électriques - Sécurité', 'Exigences de sécurité pour les équipements électriques à usage domestique', 'Électricité', '2024-09-15', 'active', 'https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=800'),
+('NCGO 006-2024', 'Métrologie légale - Instruments de mesure', 'Réglementation sur la vérification des instruments de mesure commerciaux', 'Métrologie', '2024-11-01', 'active', 'https://images.pexels.com/photos/3184649/pexels-photo-3184649.jpeg?auto=compress&cs=tinysrgb&w=800');
 
 -- Événements
 INSERT INTO evenements (titre, description, date_debut, date_fin, lieu, type_event, image_url) VALUES

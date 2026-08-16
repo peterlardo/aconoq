@@ -4,12 +4,13 @@
 
 function getPageSlug() {
   const path = window.location.pathname;
-  const file = path.split('/').pop() || 'index.html';
-  return file.replace('.html', '');
+  const file = path.split('/').pop() || 'index.php';
+  return file.replace('.php', '').replace('.html', '');
 }
 
 function safe(v) { return v != null ? v : ''; }
 function safeStr(v) { return v != null ? String(v) : ''; }
+function fixUrl(u) { return safeStr(u).replace(/\.html/g, '.php'); }
 
 document.addEventListener('DOMContentLoaded', () => {
   const slug = getPageSlug();
@@ -17,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadDirections();
   loadNormes();
   loadEvenements();
+  loadEvenementsGallery();
   loadPartenaires();
   loadActualites();
-  loadDynamicPcecRoutes();
   loadDynamicFooter();
   initFormulaires();
   loadDynamicPageHero(slug);
@@ -115,11 +116,10 @@ async function loadDirections() {
 
     if (error) throw error;
 
-    container.innerHTML = data.map(item => `
-      <a href="${item.url || '#'}" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">
-        ${safeStr(item.nom)}
-      </a>
-    `).join('');
+    container.innerHTML = data.map(item => {
+      const url = (item.url || '#').replace(/\.html/g, '.php');
+      return `<a href="${url}" class="block px-4 py-2 text-xs text-gray-600 hover:bg-primary-light hover:text-primary transition">${safeStr(item.nom)}</a>`;
+    }).join('');
   } catch (err) {
     console.error('Erreur chargement directions:', err);
   }
@@ -153,43 +153,54 @@ async function loadNormes() {
   }
 }
 
+function normeIllustration(categorie) {
+  const images = {
+    'Qualité':'https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'Environnement':'https://images.pexels.com/photos/3305/garden-apple-tree-countryside.jpg?auto=compress&cs=tinysrgb&w=900',
+    'Santé et sécurité':'https://images.pexels.com/photos/3768131/pexels-photo-3768131.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'Agroalimentaire':'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'Sécurité de l’information':'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'Métrologie':'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=900'
+  };
+  return images[categorie] || 'https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=900';
+}
+
+let normesPage = 1;
+const normesPageSize = 4;
+
+function renderNormesPagination(totalPages) {
+  const el = document.getElementById('normes-pagination');
+  if (!el || totalPages <= 1) { if (el) el.innerHTML = ''; return; }
+  let html = `<button data-norme-page="prev" ${normesPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>`;
+  for (let i = 1; i <= totalPages; i++) html += `<button data-norme-page="${i}" class="${i === normesPage ? 'is-active' : ''}">${i}</button>`;
+  html += `<button data-norme-page="next" ${normesPage === totalPages ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button>`;
+  el.innerHTML = html;
+}
 function renderNormes(normes) {
   const container = document.getElementById('normes-grid');
   const countEl = document.getElementById('normes-count');
   if (countEl) countEl.textContent = normes.length;
-
   if (normes.length === 0) {
-    container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune norme ne correspond \u00e0 votre recherche.</p>';
+    container.innerHTML = '<p class="text-gray-text text-center col-span-4">Aucune norme ne correspond à votre recherche.</p>';
     return;
   }
-
-  container.innerHTML = normes.map(item => `
-    <div class="feature-card">
-      <div class="flex items-center justify-between mb-3">
-        <span class="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary-light text-primary">
-          ${safeStr(item.categorie)}
-        </span>
-        <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-green-100 text-green-700">
-          ${safeStr(item.statut)}
-        </span>
+  const totalPages = Math.max(1, Math.ceil(normes.length / normesPageSize));
+  if (normesPage > totalPages) normesPage = totalPages;
+  const pageRows = normes.slice((normesPage - 1) * normesPageSize, normesPage * normesPageSize);
+  renderNormesPagination(totalPages);
+  container.innerHTML = pageRows.map(item => `
+    <article class="home-norme-card">
+      <div class="home-norme-cover"><img src="${normeIllustration(item.categorie)}" alt="Illustration ${safeStr(item.categorie)}" loading="lazy"><span>${safeStr(item.origine || 'Nationale')}</span></div>
+      <div class="home-norme-body">
+        <small>${safeStr(item.categorie || 'Norme')}</small>
+        <h3>${safeStr(item.code)}</h3>
+        <p class="home-norme-title">${safeStr(item.titre)}</p>
+        <p class="home-norme-description">${safeStr(item.description || 'Référence disponible dans le catalogue ACONOQ.')}</p>
+        <div class="home-norme-actions"><a href="norme.php?code=${encodeURIComponent(item.code)}">Détails <i class="fas fa-arrow-right"></i></a><a href="boutique.php" class="home-norme-buy">Acheter</a></div>
       </div>
-      <h3 class="font-semibold text-base text-dark mb-1">${safeStr(item.code)}</h3>
-      <p class="font-medium text-sm text-dark mb-2">${safeStr(item.titre)}</p>
-      <p class="text-gray-text text-xs leading-relaxed mb-3">${safeStr(item.description)}</p>
-      <div class="flex items-center gap-2 mb-3">
-        ${item.type_iso ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-blue-50 text-blue-700">${safeStr(item.type_iso)}</span>` : ''}
-        ${item.origine ? `<span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded bg-orange-50 text-orange-700">${safeStr(item.origine)}</span>` : ''}
-      </div>
-      <div class="flex items-center justify-between">
-        <span class="text-xs text-gray-text"><i class="far fa-calendar mr-1"></i>${item.date_pub ? new Date(item.date_pub).toLocaleDateString('fr-FR') : ''}</span>
-        <a href="#" class="text-primary text-xs font-medium inline-flex items-center gap-1 hover:gap-2 transition-all">
-          Consulter <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
+    </article>
   `).join('');
 }
-
 function populateNormeFilters(data) {
   const categories = [...new Set(data.map(n => n.categorie))].sort();
   const types = [...new Set(data.map(n => n.type_iso).filter(Boolean))].sort();
@@ -244,6 +255,20 @@ function bindNormeFilters() {
     renderNormes(results);
   };
 
+  const pagination = document.getElementById('normes-pagination');
+  if (pagination && !pagination.dataset.bound) {
+    pagination.dataset.bound = 'true';
+    pagination.addEventListener('click', e => {
+      const button = e.target.closest('[data-norme-page]');
+      if (!button) return;
+      const total = Math.max(1, Math.ceil((window._normesData || []).length / normesPageSize));
+      if (button.dataset.normePage === 'prev') normesPage = Math.max(1, normesPage - 1);
+      else if (button.dataset.normePage === 'next') normesPage = Math.min(total, normesPage + 1);
+      else normesPage = Number(button.dataset.normePage);
+      applyFilters();
+      window.scrollTo({top: document.getElementById('normes-grid').offsetTop - 120, behavior: 'smooth'});
+    });
+  }
   if (searchInput) searchInput.addEventListener('input', applyFilters);
   filters.forEach(id => {
     const el = document.getElementById(id);
@@ -267,16 +292,15 @@ async function loadEvenements() {
       .limit(4);
 
     if (error) throw error;
-
-    if (data.length === 0) {
-      container.innerHTML = '<p class="text-gray-text text-center col-span-4">Aucun \u00e9v\u00e9nement \u00e0 venir pour le moment.</p>';
+    if (!data || data.length === 0) {
+      container.innerHTML = '<p class="text-gray-text text-center col-span-4">Aucun événement à venir pour le moment.</p>';
       return;
     }
 
     const typeColors = {
       formation: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Formation' },
       salon: { bg: 'bg-purple-100', text: 'text-purple-700', label: 'Salon' },
-      evenement: { bg: 'bg-green-100', text: 'text-green-700', label: '\u00c9v\u00e9nement' }
+      evenement: { bg: 'bg-green-100', text: 'text-green-700', label: 'Événement' }
     };
 
     container.innerHTML = data.map(item => {
@@ -285,44 +309,100 @@ async function loadEvenements() {
       const day = dateStart.toLocaleDateString('fr-FR', { day: '2-digit' });
       const month = dateStart.toLocaleDateString('fr-FR', { month: 'short' });
       const year = dateStart.getFullYear();
-
       return `
-        <div class="feature-card group">
-          ${item.image_url ? `
-            <div class="overflow-hidden rounded-lg mb-4">
-              <img src="${item.image_url}" alt="${safeStr(item.titre)}" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500">
-            </div>
-          ` : `
-            <div class="overflow-hidden rounded-lg mb-4 bg-gradient-to-br from-[rgba(15,113,64,0.1)] to-[rgba(15,113,64,0.05)] h-44 flex items-center justify-center">
-              <i class="fas fa-calendar-alt text-[#0f7140] text-3xl opacity-30"></i>
-            </div>
-          `}
+        <a href="evenement.php?id=${encodeURIComponent(item.id)}" class="feature-card group block">
+          ${item.image_url ? `<div class="overflow-hidden rounded-lg mb-4"><img src="${item.image_url}" alt="${safeStr(item.titre)}" class="w-full h-44 object-cover group-hover:scale-105 transition duration-500"></div>` : `<div class="overflow-hidden rounded-lg mb-4 bg-gradient-to-br from-[rgba(15,113,64,0.1)] to-[rgba(15,113,64,0.05)] h-44 flex items-center justify-center"><i class="fas fa-calendar-alt text-[#0f7140] text-3xl opacity-30"></i></div>`}
           <div class="flex items-start gap-4">
-            <div class="text-center flex-shrink-0 bg-primary-light rounded-xl px-3 py-2">
-              <div class="text-2xl font-bold text-primary leading-none">${day}</div>
-              <div class="text-xs text-primary uppercase font-medium">${month}</div>
-              <div class="text-[10px] text-gray-text">${year}</div>
-            </div>
-            <div class="flex-1 min-w-0">
-              <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${type.bg} ${type.text} mb-2">
-                ${type.label}
-              </span>
-              <h3 class="font-semibold text-sm text-dark mb-1 line-clamp-2">${safeStr(item.titre)}</h3>
-              <p class="text-gray-text text-xs leading-relaxed mb-2 line-clamp-2">${safeStr(item.description)}</p>
-              <div class="flex items-center gap-3 text-[11px] text-gray-text">
-                <span><i class="fas fa-map-marker-alt mr-1"></i>${safeStr(item.lieu) || 'Non précisé'}</span>
-              </div>
-            </div>
+            <div class="text-center flex-shrink-0 bg-primary-light rounded-xl px-3 py-2"><div class="text-2xl font-bold text-primary leading-none">${day}</div><div class="text-xs text-primary uppercase font-medium">${month}</div><div class="text-[10px] text-gray-text">${year}</div></div>
+            <div class="flex-1 min-w-0"><span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${type.bg} ${type.text} mb-2">${type.label}</span><h3 class="font-semibold text-sm text-dark mb-1 line-clamp-2">${safeStr(item.titre)}</h3><p class="text-gray-text text-xs leading-relaxed mb-2 line-clamp-2">${safeStr(item.description)}</p><div class="flex items-center gap-3 text-[11px] text-gray-text"><span><i class="fas fa-map-marker-alt mr-1"></i>${safeStr(item.lieu) || 'Non précisé'}</span></div><span class="text-primary text-xs font-semibold inline-flex items-center gap-2 mt-3">Voir l’événement <i class="fas fa-arrow-right"></i></span></div>
           </div>
-        </div>
-      `;
+        </a>`;
     }).join('');
   } catch (err) {
-    console.error('Erreur chargement \u00e9v\u00e9nements:', err);
+    console.error('Erreur chargement événements:', err);
   }
 }
-
 // ============================================
+
+async function loadEvenementsGallery() {
+  const container = document.getElementById('events-gallery-grid');
+  if (!container) return;
+  const fallbackImages = ['https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg?auto=compress&cs=tinysrgb&w=1200','https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=900','https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=900'];
+  try {
+    const { data, error } = await supabaseClient.from('evenements').select('id,titre,date_debut,image_url').order('date_debut', { ascending: false }).limit(5);
+    if (error) throw error;
+    if (!data || !data.length) { container.innerHTML = '<div class="events-gallery-empty">Les photos de nos événements seront bientôt disponibles.</div>'; return; }
+
+    const items = data.map((item, index) => ({
+      ...item,
+      image: item.image_url || fallbackImages[index % fallbackImages.length],
+      date: item.date_debut ? new Date(item.date_debut).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) : 'ACONOQ'
+    }));
+
+    // First card becomes a carousel of all event images
+    const first = items[0];
+    const carouselSlides = items.map((it, i) =>
+      `<div class="egc-slide${i === 0 ? ' active' : ''}" data-index="${i}">
+        <img src="${it.image}" alt="${safeStr(it.titre)}" loading="${i === 0 ? 'eager' : 'lazy'}">
+        <span class="events-gallery-caption"><small>${it.date}</small><strong>${safeStr(it.titre)}</strong></span>
+      </div>`
+    ).join('');
+    const carouselDots = items.map((_, i) =>
+      `<button class="egc-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`
+    ).join('');
+
+    const carouselCard = `
+      <div class="events-gallery-card events-gallery-carousel" id="eventsGalleryCarousel">
+        <div class="egc-slides">${carouselSlides}</div>
+        <button class="egc-arrow egc-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+        <button class="egc-arrow egc-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+        <div class="egc-dots">${carouselDots}</div>
+      </div>`;
+
+    // Remaining cards (index 1..N)
+    const otherCards = items.slice(1).map(it =>
+      `<a href="evenement.php?id=${encodeURIComponent(it.id)}" class="events-gallery-card">
+        <img src="${it.image}" alt="${safeStr(it.titre)}" loading="lazy">
+        <span class="events-gallery-caption"><small>${it.date}</small><strong>${safeStr(it.titre)}</strong></span>
+      </a>`
+    ).join('');
+
+    container.innerHTML = carouselCard + otherCards;
+
+    // Initialize carousel logic
+    initEventsGalleryCarousel();
+  } catch (err) { console.error('Erreur galerie événements:', err); container.innerHTML = '<div class="events-gallery-empty">Les photos de nos événements seront bientôt disponibles.</div>'; }
+}
+
+function initEventsGalleryCarousel() {
+  const wrapper = document.getElementById('eventsGalleryCarousel');
+  if (!wrapper) return;
+  const slides = wrapper.querySelectorAll('.egc-slide');
+  const dots = wrapper.querySelectorAll('.egc-dot');
+  const total = slides.length;
+  if (total <= 1) return;
+  let current = 0;
+  let autoplayTimer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  wrapper.querySelector('.egc-prev').addEventListener('click', () => { goTo(current - 1); resetAutoplay(); });
+  wrapper.querySelector('.egc-next').addEventListener('click', () => { goTo(current + 1); resetAutoplay(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.index)); resetAutoplay(); }));
+
+  resetAutoplay();
+}
 // 5. DYNAMIC PAGE HERO
 // ============================================
 async function loadDynamicPageHero(slug) {
@@ -374,7 +454,12 @@ async function loadDynamicPageContent(slug) {
       groupedGrids[g.grid_key].push(g);
     });
 
-    sectionsContainer.innerHTML = sections.map(s => renderPageSection(s, groupedGrids)).join('');
+    const bgAltern = ['acq-section--cream', 'acq-section--white'];
+    sectionsContainer.innerHTML = sections.map((s, i) => {
+      const bg = bgAltern[i % 2];
+      const inner = renderPageSection(s, groupedGrids);
+      return `<section id="${safeStr(s.section_key)}" class="acq-section ${bg}"><div class="acq-container">${inner}</div></section>`;
+    }).join('');
   } catch (err) {
     console.error('Erreur chargement sections:', err);
   }
@@ -387,9 +472,11 @@ function renderPageSection(section, groupedGrids) {
   if (section.badge) {
     html += `<span class="text-primary text-xs font-semibold tracking-widest uppercase mb-3 block">${section.badge}</span>`;
   }
-  const iconHtml = section.icon_class ? `<i class="${section.icon_class} text-primary mr-3 text-2xl"></i>` : '';
+  const iconHtml = '';
   const titleText = section.title || '';
-  html += `<h2 class="font-serif text-3xl lg:text-4xl font-bold text-dark mb-6">${iconHtml}${titleText}</h2>`;
+  const headingTag = titleText === "Qu'est-ce que la normalisation ?" ? 'h4' : 'h3';
+  const headingSize = headingTag === 'h4' ? 'text-xl lg:text-2xl' : 'text-2xl lg:text-3xl';
+  html += `<${headingTag} class="font-serif ${headingSize} font-bold text-dark mb-6">${iconHtml}${titleText}</${headingTag}>`;
 
   // Render grouped card_grids for this section
   const sectionKey = section.section_key;
@@ -398,13 +485,16 @@ function renderPageSection(section, groupedGrids) {
     html += '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">';
     html += cards.map(card => {
       const colorClass = card.card_color === 'red' ? 'bg-red-50 text-red-600' : 'bg-primary-light text-primary';
+      const link = fixUrl(card.card_link || '');
+      const wrapOpen = link ? `<a href="${link}" class="feature-card" style="text-decoration:none;display:block">` : '<div class="feature-card">';
+      const wrapClose = link ? '</a>' : '</div>';
       return `
-        <div class="feature-card">
+        ${wrapOpen}
           ${card.card_number ? `<div class="text-3xl font-bold text-primary/15 mb-2">${card.card_number}</div>` : ''}
           ${card.card_icon ? `<span class="feature-icon ${colorClass}"><i class="${safeStr(card.card_icon)}"></i></span>` : ''}
           <h3 class="font-semibold text-base text-dark mb-2">${safeStr(card.card_title)}</h3>
           <p class="text-gray-text text-sm leading-relaxed">${safeStr(card.card_description)}</p>
-        </div>
+        ${wrapClose}
       `;
     }).join('');
     html += '</div>';
@@ -488,7 +578,7 @@ function renderPageSection(section, groupedGrids) {
     html = `
       <div class="grid lg:grid-cols-2 gap-12 items-start">
         <div class="relative lg:sticky lg:top-28">
-          ${photo ? `<div class="rounded-2xl overflow-hidden shadow-2xl"><img src="${photo}" alt="${safeStr(name)}" class="w-full h-[400px] object-cover"></div>` : ''}
+          ${photo ? `<div class="rounded-2xl overflow-hidden shadow-2xl"><img src="${photo}" alt="${safeStr(name)}" class="w-full h-[460px] object-cover director-photo"></div>` : ''}
         </div>
         <div>
           <p class="text-primary text-xs font-semibold tracking-widest uppercase mb-3">${section.badge || 'Message officiel'}</p>
@@ -524,7 +614,14 @@ async function loadDynamicServices() {
 
     if (error) throw error;
 
-    container.innerHTML = data.map(item => `
+    const seen = new Set();
+    const unique = data.filter(item => {
+      if (seen.has(item.title)) return false;
+      seen.add(item.title);
+      return true;
+    });
+
+    container.innerHTML = unique.map(item => `
       <div class="feature-card">
         <span class="feature-icon"><i class="${safeStr(item.icon_class)}" style="font-size:22px"></i></span>
         <h3>${safeStr(item.title)}</h3>
@@ -542,43 +639,71 @@ async function loadDynamicServices() {
 // ============================================
 async function loadDynamicHeroSlides() {
   const carousel = document.getElementById('heroCarousel');
+  const heroContainer = document.getElementById('heroTextContainer');
   if (!carousel) return;
 
   try {
-    const { data, error } = await supabaseClient
+    const { data: dbSlides, error } = await supabaseClient
       .from('hero_slides')
       .select('*')
+      .eq('active', true)
       .order('ordre', { ascending: true });
 
-    if (error || !data || data.length === 0) return;
+    const slides = [...(dbSlides || [])];
 
-    carousel.innerHTML = data.map((s, i) =>
+    slides.push({
+      image_url: 'images/pcec.jpg',
+      badge: 'Programme Congolais d\'Evaluation de la Conformite',
+      title: 'Le PCEC',
+      subtitle: 'Programme national d\'evaluation de la conformite des produits importes au Congo.',
+      cta1_label: 'Decouvrir le PCEC',
+      cta1_url: 'pcec.php',
+      cta2_label: 'Nos Programmes',
+      cta2_url: '#programmes'
+    });
+
+    carousel.innerHTML = slides.map((s, i) =>
       `<div class="hero-slide ${i === 0 ? 'active' : ''}" style="background-image: url('${s.image_url}')"></div>`
     ).join('');
 
     const dotsContainer = document.getElementById('carouselDots');
     if (dotsContainer) {
-      dotsContainer.innerHTML = data.map((_, i) =>
+      dotsContainer.innerHTML = slides.map((_, i) =>
         `<button class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></button>`
       ).join('');
     }
 
-    const heroText = document.querySelector('.hero-content-inner');
-    if (heroText && data[0]) {
-      const badge = heroText.querySelector('.hero-badge');
-      const title = heroText.querySelector('.hero-title');
-      const subtitle = heroText.querySelector('.hero-subtitle');
-      const cta1 = heroText.querySelector('.hero-cta1');
-      const cta2 = heroText.querySelector('.hero-cta2');
-      if (badge && data[0].badge) badge.textContent = data[0].badge;
-      if (title) title.innerHTML = data[0].title || '';
-      if (subtitle) subtitle.innerHTML = data[0].subtitle || '';
-      if (cta1 && data[0].cta1_label) { cta1.textContent = data[0].cta1_label; cta1.href = data[0].cta1_url || '#'; }
-      if (cta2 && data[0].cta2_label) { cta2.textContent = data[0].cta2_label; cta2.href = data[0].cta2_url || '#'; }
+    if (heroContainer) {
+      heroContainer.innerHTML = slides.map((s, i) => {
+        const badge = s.badge || '';
+        const title = s.title || '';
+        const subtitle = s.subtitle || '';
+        const cta1Label = s.cta1_label || '';
+        const cta1Url = s.cta1_url || '#';
+        const cta2Label = s.cta2_label || '';
+        const cta2Url = s.cta2_url || '#';
+
+        return `
+          <div class="hero-text-group ${i === 0 ? 'active' : ''}" data-slide-index="${i}">
+            <div class="max-w-xl">
+              ${badge ? `<div class="hero-badge-anim inline-block mb-4 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase" style="background:rgba(245,201,8,0.15); color:#f5c908; border:1px solid rgba(245,201,8,0.3);">${badge}</div>` : ''}
+              ${title ? `<h1 class="hero-title-anim text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" style="letter-spacing:-0.03em">${title}</h1>` : ''}
+              ${subtitle ? `<p class="hero-subtitle-anim text-white/75 text-base leading-relaxed mb-8 max-w-md">${subtitle}</p>` : ''}
+              ${(cta1Label || cta2Label) ? `
+                <div class="hero-cta-anim flex flex-wrap gap-4">
+                  ${cta1Label ? `<a href="${cta1Url}" class="hero-btn-primary group" style="border-radius:30px; padding: 4px 4px 4px 24px;"><span class="hero-btn-label" style="background:#fff; color:#0f7140; padding:10px 20px; border-radius:30px; font-weight:600;">${cta1Label}</span></a>` : ''}
+                  ${cta2Label ? `<a href="${cta2Url}" class="hero-btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff; border-radius:30px; padding:12px 28px; font-size:14px; font-weight:600; display:inline-flex; align-items:center; text-decoration:none;">${cta2Label}</a>` : ''}
+                </div>
+              ` : ''}
+            </div>
+          </div>`;
+      }).join('');
     }
 
-    window._heroSlides = data;
-    window._heroTotal = data.length;
+    window._heroSlides = slides;
+    window._heroTotal = slides.length;
+
+    if (typeof initCarousel === 'function') initCarousel();
   } catch (err) {
     console.error('Erreur chargement hero slides:', err);
   }
@@ -629,6 +754,15 @@ async function loadDynamicBanners() {
 // ============================================
 // 10. DYNAMIC PROCESSUS (index)
 // ============================================
+function processLink(item) {
+  if (item.link_url && item.link_url !== '#') return item.link_url;
+  const title = safeStr(item.title).toLowerCase();
+  if (title.includes('certification')) return 'processus.php?type=certification';
+  if (title.includes('obligatoire')) return 'processus.php?type=normes-obligatoires';
+  if (title.includes('formation')) return 'processus.php?type=formations';
+  if (title.includes('audit') || title.includes('contrôle')) return 'processus.php?type=audit-controle';
+  return 'processus.php?type=normes';
+}
 async function loadDynamicProcessus() {
   const container = document.getElementById('processCarousel') || document.getElementById('dynamic-processCarousel') || document.getElementById('dynamic-processus');
   if (!container) return;
@@ -647,7 +781,7 @@ async function loadDynamicProcessus() {
           <span class="feature-icon"><i class="${safeStr(item.icon_class)}" style="font-size:22px"></i></span>
           <h3>${safeStr(item.title)}</h3>
           <p>${safeStr(item.description)}</p>
-          <a href="${item.link_url || '#'}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
+          <a href="${processLink(item)}" class="link-more link-more-red mt-4"><span class="link-more-inner">En savoir plus</span><span class="link-more-arrow"><i class="fas fa-arrow-right"></i></span></a>
         </div>
       </div>
     `).join('');
@@ -857,66 +991,68 @@ async function loadPartenaires() {
 // ============================================
 // 16. ACTUALITES
 // ============================================
+// ============================================
+// 17. DYNAMIC ACTUALITÉS (with pagination)
+// ============================================
+let actualitesPage = 0;
+const ACTUALITES_PER_PAGE = 4;
+
 async function loadActualites() {
+  actualitesPage = 0;
+  await fetchActualites();
+}
+
+async function fetchActualites() {
   const container = document.getElementById('dynamic-actualites');
   if (!container) return;
+
+  const from = actualitesPage * ACTUALITES_PER_PAGE;
+  const to = from + ACTUALITES_PER_PAGE - 1;
 
   try {
     const { data, error } = await supabaseClient
       .from('actualites')
       .select('*')
       .order('date_pub', { ascending: false })
-      .limit(6);
+      .range(from, to);
 
     if (error) throw error;
-    if (!data || data.length === 0) {
+
+    if (actualitesPage === 0 && (!data || data.length === 0)) {
       container.innerHTML = '<p class="text-gray-text text-center col-span-3">Aucune actualité pour le moment.</p>';
       return;
     }
 
-    container.innerHTML = data.map(item => `
-      <div class="feature-card group">
+    const cards = (data || []).map(item => `
+      <a href="actualite.php?id=${encodeURIComponent(item.id)}" class="feature-card group block">
         <div class="overflow-hidden rounded-lg mb-4">
           <img src="${item.image_url || ''}" alt="${safeStr(item.titre)}" class="w-full h-52 object-cover group-hover:scale-105 transition duration-500">
         </div>
-        <span class="inline-block px-2 py-0.5 text-[10px] font-medium rounded-full bg-primary-light text-primary mb-2">${safeStr(item.categorie)}</span>
         <h3 class="font-semibold text-sm text-dark mb-1">${safeStr(item.titre)}</h3>
         <span class="text-[11px] text-gray-text"><i class="far fa-calendar mr-1"></i>${item.date_pub ? new Date(item.date_pub).toLocaleDateString('fr-FR') : ''}</span>
-        <a href="#" class="text-primary text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all mt-3">Lire la suite <i class="fas fa-arrow-right text-xs"></i></a>
-      </div>
+        <span class="text-primary text-sm font-medium inline-flex items-center gap-2 hover:gap-3 transition-all mt-3">Lire la suite <i class="fas fa-arrow-right text-xs"></i></span>
+      </a>
     `).join('');
+
+    if (actualitesPage === 0) {
+      container.innerHTML = cards;
+    } else {
+      container.insertAdjacentHTML('beforeend', cards);
+    }
+
+    const existingBtn = document.getElementById('actualites-load-more');
+    if (existingBtn) existingBtn.remove();
+
+    if (data && data.length === ACTUALITES_PER_PAGE) {
+      actualitesPage++;
+      const btnWrap = document.createElement('div');
+      btnWrap.id = 'actualites-load-more';
+      btnWrap.className = 'col-span-full text-center mt-8';
+      btnWrap.innerHTML = '<button onclick="fetchActualites()" class="inline-flex items-center gap-2 text-primary text-sm font-semibold border-2 border-primary rounded-full px-6 py-2.5 hover:bg-primary hover:text-white transition-all duration-300">Voir plus d\'actualités <i class="fas fa-arrow-right"></i></button>';
+      container.parentElement.appendChild(btnWrap);
+    }
   } catch (err) {
     console.error('Erreur chargement actualités:', err);
-  }
-}
-
-// ============================================
-// 17. DYNAMIC PCEC ROUTES (card_grids)
-// ============================================
-async function loadDynamicPcecRoutes() {
-  const container = document.getElementById('dynamic-pcec-routes');
-  if (!container) return;
-
-  try {
-    const { data, error } = await supabaseClient
-      .from('card_grids')
-      .select('*')
-      .eq('page_slug', 'index')
-      .eq('grid_key', 'pcec-routes')
-      .order('ordre', { ascending: true });
-
-    if (error) throw error;
-    if (!data || data.length === 0) return;
-
-    container.innerHTML = data.map(item => `
-      <div class="feature-card">
-        <span class="feature-icon"><i class="${safeStr(item.card_icon) || 'fas fa-route'}" style="font-size:22px"></i></span>
-        <h3>${safeStr(item.card_title)}</h3>
-        <p>${safeStr(item.card_description)}</p>
-      </div>
-    `).join('');
-  } catch (err) {
-    console.error('Erreur chargement PCEC routes:', err);
   }
 }
 
@@ -942,18 +1078,26 @@ async function loadDynamicFooter() {
     const socialLinks = val.social_links || [];
     const brandDesc = val.brand_description || val.description || '';
     const logoUrl = val.logo_url || val.logo || 'aconoq_logo.png';
-    const legal = val.legal || [];
+    const legal = (val.legal || []).map(l => {
+      if (l.label && l.label.toLowerCase().includes('confidentialit') && (!l.url || l.url === '#')) l.url = 'politique-confidentialite.php';
+      return l;
+    });
     const copyrightText = val.copyright || '';
 
-    const aconoqLinks = columns[0] ? columns[0].links || [] : [];
+    const aconoqLinks = [...(columns[0] ? columns[0].links || [] : []), {label:'Documents utiles',url:'documents.php'}, {label:'Demander un devis',url:'devis.php'}, {label:'Politique RGPD',url:'politique-confidentialite.php'}];
     const dirLinks = columns[1] ? columns[1].links || [] : [];
     const servLinks = columns[2] ? columns[2].links || [] : [];
 
     container.innerHTML = `
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        <svg class="absolute -right-2 top-1/2 opacity-25 pointer-events-none select-none" viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:200px;width:auto">
+          <path d="M60 0 C25 20 10 60 15 100 C18 130 40 150 60 155 C45 130 35 90 40 55 C44 25 55 5 60 0 Z" fill="#0f7140"/>
+          <path d="M45 15 C15 40 5 80 10 115 C13 140 30 155 45 158 C32 140 25 110 28 75 C30 45 40 25 45 15 Z" fill="#f5c908"/>
+          <path d="M30 35 C10 55 2 85 8 118 C12 138 25 152 35 155 C25 140 20 115 22 85 C23 60 28 42 30 35 Z" fill="#dc2626"/>
+        </svg>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative z-10">
           <div class="col-span-2 md:col-span-1">
-            <a href="/" class="flex items-center gap-2 mb-4">
+            <a href="index.php" class="flex items-center gap-2 mb-4">
               <img src="${logoUrl}" alt="ACONOQ" class="h-10" style="background: transparent;">
             </a>
             <p class="text-white/70 text-sm leading-relaxed mb-4">${safeStr(brandDesc)}</p>
@@ -964,19 +1108,19 @@ async function loadDynamicFooter() {
           <div>
             <h4 class="text-white font-semibold mb-4">${safeStr(columns[0] ? columns[0].title : 'ACONOQ')}</h4>
             <ul class="space-y-2">
-              ${aconoqLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
+              ${aconoqLinks.map(l => `<li><a href="${fixUrl(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
             <h4 class="text-white font-semibold mb-4">${safeStr(columns[1] ? columns[1].title : 'Directions')}</h4>
             <ul class="space-y-2">
-              ${dirLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
+              ${dirLinks.map(l => `<li><a href="${fixUrl(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
             <h4 class="text-white font-semibold mb-4">${safeStr(columns[2] ? columns[2].title : 'Services')}</h4>
             <ul class="space-y-2">
-              ${servLinks.map(l => `<li><a href="${safeStr(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
+              ${servLinks.map(l => `<li><a href="${fixUrl(l.url)}" class="text-white/70 text-sm hover:text-white transition">${safeStr(l.label)}</a></li>`).join('')}
             </ul>
           </div>
           <div>
@@ -987,12 +1131,16 @@ async function loadDynamicFooter() {
               ${contact.email ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-envelope"></i><a href="mailto:${safeStr(contact.email)}" class="hover:text-white transition">${safeStr(contact.email)}</a></li>` : ''}
               ${contact.hours ? `<li class="flex items-center gap-2 text-white/70 text-sm"><i class="fas fa-clock"></i><span>${safeStr(contact.hours)}</span></li>` : ''}
             </ul>
-            <div class="mt-4">
-              <form id="footer-newsletter" class="flex gap-2">
-                <input type="email" name="email" placeholder="Votre email" class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded text-white text-sm placeholder-white/50 focus:outline-none focus:border-white/40">
-                <button type="submit" class="px-4 py-2 bg-white text-red-600 rounded text-sm font-semibold hover:bg-gray-100 transition"><i class="fas fa-paper-plane"></i></button>
-              </form>
-            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mt-0">
+          <div class="col-span-2 md:col-start-3 md:col-span-3">
+            <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+            <p class="text-white/70 text-sm mb-4">Restez informé de nos actualités et événements.</p>
+            <form id="footer-newsletter" class="flex gap-2">
+              <input type="email" name="email" placeholder="Votre email" class="flex-1 px-4 py-3 bg-white border border-white/20 rounded-lg text-gray-800 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/40">
+              <button type="submit" class="px-5 py-3 bg-white text-red-600 rounded-lg text-sm font-semibold hover:bg-gray-100 transition"><i class="fas fa-paper-plane"></i> S'abonner</button>
+            </form>
           </div>
         </div>
       </div>
@@ -1000,7 +1148,7 @@ async function loadDynamicFooter() {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p class="text-white/50 text-xs">&copy; ${new Date().getFullYear()} ACONOQ. Tous droits r&eacute;serv&eacute;s.</p>
           <div class="flex gap-4">
-            ${legal.map(l => `<a href="${safeStr(l.url)}" class="text-white/50 text-xs hover:text-white transition">${safeStr(l.label)}</a>`).join('')}
+            ${legal.map(l => `<a href="${fixUrl(l.url)}" class="text-white/50 text-xs hover:text-white transition">${safeStr(l.label)}</a>`).join('')}
           </div>
         </div>
       </div>
