@@ -376,7 +376,7 @@
         }
         .hero-slide-content > .max-w-xl { pointer-events: auto; }
         .hero-text-group {
-            position: absolute; inset: 0; display: flex; align-items: flex-start; padding-top: 80px;
+            position: absolute; inset: 0; display: flex; align-items: flex-start; padding-top: 200px;
             opacity: 0; transform: translateX(80px);
             transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
             pointer-events: none;
