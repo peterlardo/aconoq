@@ -40,7 +40,7 @@ ALTER TABLE public.admin_users ALTER COLUMN prenom DROP NOT NULL;
 UPDATE public.admin_users
 SET full_name = NULLIF(TRIM(CONCAT_WS(' ', prenom, nom)), '')
 WHERE full_name IS NULL;
-DO 
+DO $$
 DECLARE
   table_name text;
 BEGIN
@@ -73,3 +73,4 @@ CREATE POLICY "Admin storage access" ON storage.objects
   FOR ALL TO authenticated
   USING (bucket_id = 'admin-images' AND public.is_admin())
   WITH CHECK (bucket_id = 'admin-images' AND public.is_admin());
+
