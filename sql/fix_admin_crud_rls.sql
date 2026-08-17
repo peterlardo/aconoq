@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS public.admin_users (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 ALTER TABLE public.admin_users ADD COLUMN IF NOT EXISTS full_name TEXT;
+ALTER TABLE public.admin_users ADD COLUMN IF NOT EXISTS nom TEXT;
+ALTER TABLE public.admin_users ADD COLUMN IF NOT EXISTS prenom TEXT;
 ALTER TABLE public.admin_users ADD COLUMN IF NOT EXISTS auth_user_id UUID;
 ALTER TABLE public.admin_users ALTER COLUMN nom DROP NOT NULL;
 ALTER TABLE public.admin_users ALTER COLUMN prenom DROP NOT NULL;
@@ -73,4 +75,5 @@ CREATE POLICY "Admin storage access" ON storage.objects
   FOR ALL TO authenticated
   USING (bucket_id = 'admin-images' AND public.is_admin())
   WITH CHECK (bucket_id = 'admin-images' AND public.is_admin());
+
 
