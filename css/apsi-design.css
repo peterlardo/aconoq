@@ -1601,3 +1601,16 @@ h6 { font-size: 15px; font-weight: 500; }
         height: 32px !important;
     }
 }
+@media (max-width: 768px) {
+    #mobile-menu-panel #mobile-nav,
+    #mobile-menu-panel #mobile-nav a,
+    #mobile-menu-panel #mobile-nav summary {
+        color: #0a1f0a !important;
+    }
+    #mobile-menu-panel #mobile-nav a {
+        text-decoration: none;
+    }
+    #mobile-menu-panel #mobile-nav details {
+        border-color: #dfe8df !important;
+    }
+}
