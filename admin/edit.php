@@ -288,6 +288,7 @@ function buildForm(data = {}) {
     document.getElementById('fields').innerHTML = fields.map(f => {
         let val = data[f.key] ?? f.default ?? '';
         if (val === true || val === false) val = val;
+        if (f.type === 'datetime-local' && val) val = String(val).slice(0, 16);
         if (typeof val === 'object') val = JSON.stringify(val, null, 2);
 
         const disabled = f.disabled ? 'disabled' : '';
@@ -438,7 +439,7 @@ document.getElementById('form').onsubmit = async (e) => {
     btn.textContent = 'Enregistrement…';
 
     // Sync TinyMCE content
-    tinymce.triggerSave();
+    if (typeof tinymce !== 'undefined') tinymce.triggerSave();
 
     const formData = new FormData(e.target);
     const data = {};
@@ -468,12 +469,19 @@ document.getElementById('form').onsubmit = async (e) => {
                 if (existing) data[k] = existing;
             }
         } else {
-            if (typeof v === 'string' && v.trim()) {
-                try { data[k] = v.trim().startsWith('{') || v.trim().startsWith('[') ? JSON.parse(v) : v.trim(); }
-                catch { data[k] = v.trim(); }
+            if (typeof v === 'string') {
+                const raw = v.trim();
+                if (raw === '') data[k] = '';
+                else {
+                    try { data[k] = raw.startsWith('{') || raw.startsWith('[') ? JSON.parse(raw) : raw; }
+                    catch { data[k] = raw; }
+                }
             }
         }
     }
+
+    // FormData omits unchecked checkboxes; send false explicitly so updates can disable flags.
+    fields.filter(f => f.type === 'checkbox' && !formData.has(f.key)).forEach(f => { data[f.key] = false; });
 
     try {
         if (id) {

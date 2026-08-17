@@ -123,16 +123,16 @@ function render() {
             '<td class="json">' + fmtVal(r[f], f) + '</td>'
         ).join('') + '<td class="actions">' +
             '<a href="edit.php?table=' + table + '&id=' + r.id + '" style="color:var(--primary);font-size:13px;font-weight:600">Modifier</a>' +
-            '<button onclick="del(' + i + ')" style="color:var(--red);font-size:13px;font-weight:600;margin-left:12px">Supprimer</button>' +
+            '<button onclick="delById(' + r.id + ')" style="color:var(--red);font-size:13px;font-weight:600;margin-left:12px">Supprimer</button>' +
         '</td></tr>').join('') || '<tr><td colspan="' + (cfg.cols.length + 1) + '" class="empty">Aucun contenu trouvé.</td></tr>';
 }
 
 document.getElementById('search').oninput = render;
 
-window.del = async (i) => {
+window.delById = async (id) => {
     if (!confirm('Supprimer définitivement cet élément ?')) return;
     try {
-        await AconoqData.remove(table, rows[i].id);
+        await AconoqData.remove(table, id);
         await load();
     } catch(e) { alert('Suppression refusée : ' + e.message); }
 };
