@@ -1563,4 +1563,21 @@ h6 { font-size: 15px; font-weight: 500; }
         z-index: 250;
     }
 }
-
+/* Mobile header layout: logo / contact / menu */
+@media (max-width: 768px) {
+    .header-home .navbar > .container { position: relative; width: 94%; }
+    .header-home .navbar > .container > div:last-child { margin-left: auto; gap: 4px; }
+    .header-home .navbar > .container > div:last-child > a[href="contact.php"] {
+        display: inline-flex !important;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0 !important;
+        white-space: nowrap;
+    }
+    .header-home .navbar > .container > div:last-child > a[href="contact.php"] .btn-inner {
+        padding: 7px 10px !important;
+        font-size: 11px !important;
+    }
+    .header-home .nav-mobile-btn { margin-left: auto; }
+}
