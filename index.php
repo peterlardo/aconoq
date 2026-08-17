@@ -376,7 +376,7 @@
         }
         .hero-slide-content > .max-w-xl { pointer-events: auto; }
         .hero-text-group {
-            position: absolute; inset: 0; display: flex; align-items: flex-start; padding-top: 200px;
+            position: absolute; inset: 0; display: flex; align-items: center;
             opacity: 0; transform: translateX(80px);
             transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.22,1,.36,1);
             pointer-events: none;
@@ -384,6 +384,7 @@
         .hero-text-group.active {
             opacity: 1; transform: translateX(0);
             pointer-events: auto;
+            margin-left: 100px;
         }
         .hero-text-group.exit {
             opacity: 0; transform: translateX(-60px);
@@ -447,7 +448,7 @@
             <button class="carousel-dot active" onclick="goToSlide(0)"></button>
         </div>
         <!-- Hero Content (dynamic per-slide text) -->
-        <div class="relative z-10 px-6 lg:px-12 pt-10 pb-6" id="heroTextContainer"></div>
+        <div class="absolute inset-0 z-10 px-6 lg:px-12 flex items-center" id="heroTextContainer"></div>
     </section>
 
     <!-- THE BENEFIT -->

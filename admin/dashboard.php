@@ -193,7 +193,15 @@
 
     async function safeQuery(table, params) {
         try { return await AconoqData.query(table, params); }
-        catch(e) { console.warn('Query failed for', table, e.message); return []; }
+        catch(e) {
+            console.warn('Query failed for', table, e.message);
+            // Show error in dashboard stats area for debugging
+            const el = document.getElementById('stats-content');
+            if (el && el.textContent.includes('Chargement')) {
+                el.innerHTML = '<div class="empty-msg" style="color:#dc2626">Erreur de connexion à Supabase: ' + e.message.substring(0, 120) + '<br><small>Vérifiez la console pour plus de détails.</small></div>';
+            }
+            return [];
+        }
     }
 
     try {

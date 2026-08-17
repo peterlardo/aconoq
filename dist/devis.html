@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de Devis - ACONOQ</title>
+<meta name="description" content="Catalogue des normes internationales et nationales proposées par l’ACONOQ.">
+<meta property="og:title" content="Demande de Devis - ACONOQ">
+<meta property="og:description" content="Catalogue des normes internationales et nationales proposées par l’ACONOQ.">
+<meta property="og:image" content="aconoq_logo.png">
+<meta property="og:site_name" content="ACONOQ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/apsi-design.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: '#0f7140',
+                    'primary-dark': '#0a4b2a',
+                    'primary-light': '#eaf4ef',
+                    'lime': '#c5e84a',
+                    'dark': '#0a1f0a',
+                    'gray-text': '#4a5a4c',
+                },
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    serif: ['Inter', 'sans-serif'],
+                }
+            }
+        }
+    }
+</script>
+    <style>
+        #activites { background: transparent !important; }
+        #activites .bg-gray-50 { background: transparent !important; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; padding-top: 8px; opacity: 0; visibility: hidden; transform: translateY(4px); transition: all 0.2s ease; pointer-events: none; }
+        .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto; }
+        .nav-item { position: relative; z-index: 50; }
+        .nav-item::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 8px; }
+        .norm-page{padding:90px 0 80px;background:linear-gradient(180deg,#f7f8f4 0%,#f7f8f4 60%,#ffffff 100%);min-height:100vh}
+        .norm-container{width:min(1080px,calc(100% - 32px));margin:auto}
+        .norm-card{background:#fff;border-radius:18px;padding:42px;overflow:hidden;position:relative}
+        .norm-card::before{content:"";position:absolute;inset:0;border-radius:18px;box-shadow:0 8px 24px rgba(15,113,64,.07);mask-image:linear-gradient(to bottom,black 75%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,black 75%,transparent 100%);pointer-events:none}
+        .norm-card h1{color:#0a1f0a;font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 12px}
+        .norm-card h2{color:#0f7140;font-size:21px;margin:32px 0 10px;font-weight:700}
+        .norm-card h3{color:#0a1f0a;font-size:16px;margin:20px 0 8px}
+        .norm-card p,.norm-card li{color:#4a5a4c;font-size:16px;line-height:1.75}
+        .norm-card ul{padding-left:22px}
+        .norm-meta{color:#687669;font-size:12px;margin-bottom:28px}
+        .norm-callout{border-left:4px solid #f5c908;background:#fffdf0;padding:16px 18px;border-radius:0 10px 10px 0;margin:18px 0}
+        .devis-form{display:grid;gap:16px;margin-top:26px}
+        .devis-form input,.devis-form select,.devis-form textarea{padding:13px;border:1px solid #dfe8df;border-radius:9px;font-size:15px;color:#0a1f0a;width:100%;box-sizing:border-box}
+        .devis-form input:focus,.devis-form select:focus,.devis-form textarea:focus{outline:none;border-color:#0f7140;box-shadow:0 0 0 3px rgba(15,113,64,.1)}
+        .devis-form textarea{resize:vertical}
+        .devis-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        @media(max-width:650px){.norm-card{padding:24px}.devis-grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+    <header id="main-header" class="header-inner">
+    <div class="navbar" id="navbar">
+        <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:min(1320px,92%);">
+            <a href="index.html" style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+                <img src="aconoq_logo_inner.png" alt="ACONOQ" style="height:38px;">
+            </a>
+            <nav style="display:flex; align-items:center; gap:4px;" class="nav-links-desktop">
+                <div class="nav-dropdown">
+                    <button class="nav-link">ACONOQ <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="a-propos.html">À propos de l'ACONOQ</a>
+                        <a href="index.html#dynamic-services">Présentation des services</a>
+                        <a href="directeur.html">Mot du Directeur Général</a>
+                        <a href="organigramme.html">Organigramme</a>                        <a href="actualites.html">Actualités</a>
+                        <a href="evenements.html">Événements</a>
+                        <a href="documents.html">Documents utiles</a>
+                        <a href="telechargements.html">Espace Téléchargements</a>
+                        <a href="devis.html">Demander un devis</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">DIRECTIONS <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu" id="nav-directions"></div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">NORMALISATION <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="normalisation.html">Zoom sur la normalisation</a>
+                        <a href="normalisation.html">Activités de la direction</a>
+                        <a href="normalisation.html">Processus d'élaboration des normes</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">MÉTROLOGIE <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="metrologie.html">Zoom sur la métrologie</a>
+                        <a href="activites-metrologie.html">Activités de la métrologie</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">QUALITÉ <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="qualite.html">Promotion de la qualité</a>
+                        <a href="activites-qualite.html">Activités de la direction</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">CONFORMITÉ <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="conformite.html">Évaluation de la conformité</a>
+                        <a href="conformite.html">Processus de certification</a>
+                        <a href="conformite.html">Marque nationale NCGO</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">PROGRAMMES <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <a href="pcec.html">Programme Congolais d'Évaluation de la Conformité (PCEC)</a>
+                        <a href="pcec.html">Marquage tabac</a>
+                        <a href="pcec.html">Certification agricole</a>
+                    </div>
+                </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">FORMULAIRES <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Evaluation de la conformité</span>
+                        <a href="formulaires.html">Formulaire de demande de certification</a>
+                        <hr style="border:none;border-top:1px solid #ddd;margin:4px 12px;">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Métrologie</span>
+                        <a href="formulaires-agrement.html">Formulaire de demande d'agrément</a>
+                        <a href="formulaires-verification.html">Formulaire de demande de vérification</a>
+                        <hr style="border:none;border-top:1px solid #ddd;margin:4px 12px;">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Promotion de la qualité</span>
+                        <a href="formulaires-formation.html">Formulaire de demande de formation</a>
+                        <a href="formulaires-agrement-qualite.html">Formulaire de demande d'agrément</a>
+                    </div>
+                </div>
+            </nav>
+            <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+                <a href="contact.html" class="btn" style="padding:4px; font-size:13px; display:inline-flex; background:transparent;">
+                    <span class="btn-inner" style="padding:10px 20px; font-size:13px; gap:8px; background:#fff; color:#0f7140; border:2px solid #0f7140;">Contactez-nous <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+                </a>
+                <button class="nav-mobile-btn" onclick="openMobileMenu()">
+                    <i class="fas fa-bars" style="font-size:22px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" style="display:none; position:fixed; inset:0; z-index:9999;">
+    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.5);" onclick="closeMobileMenu()"></div>
+    <div id="mobile-menu-panel" style="position:absolute; top:0; right:0; width:320px; max-width:85vw; height:100%; background:var(--white); box-shadow:0 24px 60px rgba(0,0,0,0.12); transform:translateX(100%); transition:transform 0.3s ease; overflow-y:auto;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border-light);">
+            <a href="index.html"><img src="aconoq_logo_white.png" alt="ACONOQ" style="height:36px;"></a>
+            <button onclick="closeMobileMenu()" style="width:36px; height:36px; border-radius:10px; background:var(--acq-light); display:grid; place-items:center; color:var(--text); border:none; cursor:pointer;"><i class="fas fa-times" style="font-size:14px;"></i></button>
+        </div>
+        <nav id="mobile-nav" style="padding:12px 16px;"></nav>
+    </div>
+</div>
+
+<script>
+function openMobileMenu(){
+    var m=document.getElementById('mobile-menu');
+    var p=document.getElementById('mobile-menu-panel');
+    if(!m||!p)return;
+    m.style.display='block';
+    requestAnimationFrame(function(){p.style.transform='translateX(0)';});
+
+    var nav=document.getElementById('mobile-nav');
+    if(!nav.dataset.loaded){
+        nav.innerHTML=`
+        <a href="index.html" style="display:block;padding:12px 0;font-weight:600;color:var(--text);">Accueil</a>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">ACONOQ</summary><div style="padding-left:12px;"><a href="a-propos.html" style="display:block;padding:8px 0;color:var(--text-light);">À propos</a><a href="directeur.html" style="display:block;padding:8px 0;color:var(--text-light);">Directeur Général</a><a href="organigramme.html" style="display:block;padding:8px 0;color:var(--text-light);">Organigramme</a><a href="actualites.html" style="display:block;padding:8px 0;color:var(--text-light);">Actualités</a><a href="evenements.html" style="display:block;padding:8px 0;color:var(--text-light);">Événements</a><a href="documents.html" style="display:block;padding:8px 0;color:var(--text-light);">Documents utiles</a><a href="telechargements.html" style="display:block;padding:8px 0;color:var(--text-light);">Espace Téléchargements</a><a href="devis.html" style="display:block;padding:8px 0;color:var(--text-light);">Demander un devis</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Directions</summary><div id="mobile-directions" style="padding-left:12px;"></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Normalisation</summary><div style="padding-left:12px;"><a href="normalisation.html" style="display:block;padding:8px 0;color:var(--text-light);">Zoom sur la normalisation</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Métrologie</summary><div style="padding-left:12px;"><a href="metrologie.html" style="display:block;padding:8px 0;color:var(--text-light);">Zoom sur la métrologie</a><a href="activites-metrologie.html" style="display:block;padding:8px 0;color:var(--text-light);">Activités de la métrologie</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Qualité</summary><div style="padding-left:12px;"><a href="qualite.html" style="display:block;padding:8px 0;color:var(--text-light);">Promotion de la qualité</a><a href="activites-qualite.html" style="display:block;padding:8px 0;color:var(--text-light);">Activités de la direction</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Conformité</summary><div style="padding-left:12px;"><a href="conformite.html" style="display:block;padding:8px 0;color:var(--text-light);">Évaluation de la conformité</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Programmes</summary><div style="padding-left:12px;"><a href="pcec.html" style="display:block;padding:8px 0;color:var(--text-light);">PCEC</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Formulaires</summary><div style="padding-left:12px;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Evaluation de la conformité</p><a href="formulaires.html" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de certification</a><hr style="border:none;border-top:1px solid #ddd;margin:6px 0;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Métrologie</p><a href="formulaires-agrement.html" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande d'agrément</a><a href="formulaires-verification.html" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de vérification</a><hr style="border:none;border-top:1px solid #ddd;margin:6px 0;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Promotion de la qualité</p><a href="formulaires-formation.html" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de formation</a><a href="formulaires-agrement-qualite.html" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande d'agrément</a></div></details>
+        <a href="contact.html" style="display:block;padding:12px 0;font-weight:600;color:var(--primary);">Contactez-nous</a>`;
+        nav.dataset.loaded='1';
+    }
+}
+function closeMobileMenu(){
+    var m=document.getElementById('mobile-menu');
+    var p=document.getElementById('mobile-menu-panel');
+    if(!m||!p)return;
+    p.style.transform='translateX(100%)';
+    setTimeout(function(){m.style.display='none';},300);
+}
+</script>
+
+    <main class="norm-page">
+        <div class="norm-container">
+            <div class="flex items-center justify-between mb-8">
+                <a href="index.html" class="text-primary text-sm font-medium inline-flex items-center gap-2"><i class="fas fa-arrow-left"></i> Accueil</a>
+                <p class="text-sm"><a href="index.html" class="text-primary hover:underline">Accueil</a> <span class="mx-1 text-gray-400">/</span> <span class="text-dark font-medium">Demande de Devis</span></p>
+            </div>
+            <article class="norm-card">
+                <div style="margin:-42px -42px 28px;border-radius:18px 18px 0 0;overflow:hidden;height:150px">
+                    <img src="images/header-devis.jpg" alt="Demande de Devis" style="width:100%;height:100%;object-fit:cover">
+                </div>
+                <p class="section-tag">Devis</p>
+                <h1><strong>Demande</strong> de <em>Devis</em></h1>
+                <p>Présentez-nous votre besoin : notre équipe vous orientera vers le service compétent et vous communiquera les prochaines étapes.</p>
+                <form id="devis-form" class="devis-form">
+                    <input type="hidden" name="sujet" value="Demande de devis">
+                    <div class="devis-grid">
+                        <input required name="nom" placeholder="Nom complet">
+                        <input required type="email" name="email" placeholder="Adresse email">
+                    </div>
+                    <input name="organisation" placeholder="Organisation / entreprise">
+                    <select name="service">
+                        <option value="Normalisation">Normalisation</option>
+                        <option value="Métrologie">Métrologie</option>
+                        <option value="Qualité">Qualité</option>
+                        <option value="Évaluation de la conformité">Évaluation de la conformité</option>
+                        <option value="Formation">Formation</option>
+                    </select>
+                    <textarea required name="message" rows="6" placeholder="Décrivez votre besoin, les produits concernés et les délais souhaités…"></textarea>
+                    <div>
+                        <button type="submit" class="btn" style="justify-content:center">
+                            <span class="btn-inner">Envoyer la demande <i class="fas fa-paper-plane"></i></span>
+                        </button>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </main>
+
+    <!-- ACONOQ Footer -->
+<footer id="dynamic-footer" class="footer"></footer>
+
+<style>.acq-consent{position:fixed;left:20px;right:20px;bottom:20px;z-index:10000;display:none;align-items:center;justify-content:space-between;gap:18px;padding:16px 20px;background:#0a4b2a;color:#fff;border-radius:14px;box-shadow:0 12px 35px rgba(0,0,0,.22);font-size:12px}.acq-consent p{margin:0;color:rgba(255,255,255,.82);line-height:1.5}.acq-consent a{color:#f5c908;text-decoration:underline}.acq-consent button{border:0;background:#f5c908;color:#0a4b2a;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;white-space:nowrap}@media(max-width:600px){.acq-consent{left:12px;right:12px;bottom:12px;align-items:flex-start;flex-direction:column}.acq-consent button{width:100%}}</style>
+<div id="acq-consent" class="acq-consent"><p>Nous utilisons uniquement des cookies nécessaires au fonctionnement du site. <a href="politique-confidentialite.html">En savoir plus</a></p><button type="button" onclick="acceptAcoqConsent()">J’ai compris</button></div>
+<script>function acceptAcoqConsent(){localStorage.setItem('aconoq-consent','accepted');var b=document.getElementById('acq-consent');if(b)b.style.display='none'}(function(){var b=document.getElementById('acq-consent');if(b&&!localStorage.getItem('aconoq-consent'))b.style.display='flex'})();</script><!-- Back to Top -->
+<button id="back-to-top" class="btn--back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up" style="font-size:14px;"></i>
+</button>
+
+<!-- Supabase SDK + App -->
+<script src="js/supabase-js.min.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/app.js"></script>
+
+<!-- Scroll Reveal -->
+<script>
+(function(){
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .acq-reveal').forEach(function(el) { obs.observe(el); });
+})();
+</script>
+
+<!-- Header scroll -->
+<script>
+(function(){
+    var h = document.getElementById('navbar');
+    if(!h) return;
+    function update(){
+        if(window.scrollY > 60){
+            h.classList.add('navbar--scrolled');
+        } else {
+            h.classList.remove('navbar--scrolled');
+        }
+    }
+    window.addEventListener('scroll', update);
+    update();
+})();
+</script>
+
+<!-- Back to Top visibility -->
+<script>
+window.addEventListener('scroll', function() {
+    var btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    if (window.scrollY > 400) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+    } else {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+    }
+});
+</script>
+
+</body>
+</html>

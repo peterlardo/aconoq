@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="nav-dropdown">
-                    <button class="nav-link">NOS DIRECTIONS <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <button class="nav-link">DIRECTIONS <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
                     <div class="nav-dropdown-menu" id="nav-directions"></div>
                 </div>
                 <div class="nav-dropdown">
@@ -61,10 +61,25 @@
                         <a href="pcec.php">Certification agricole</a>
                     </div>
                 </div>
+                <div class="nav-dropdown">
+                    <button class="nav-link">FORMULAIRES <i class="fas fa-chevron-down" style="font-size:9px; margin-left:2px;"></i></button>
+                    <div class="nav-dropdown-menu">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Evaluation de la conformité</span>
+                        <a href="formulaires.php">Formulaire de demande de certification</a>
+                        <hr style="border:none;border-top:1px solid #ddd;margin:4px 12px;">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Métrologie</span>
+                        <a href="formulaires-agrement.php">Formulaire de demande d'agrément</a>
+                        <a href="formulaires-verification.php">Formulaire de demande de vérification</a>
+                        <hr style="border:none;border-top:1px solid #ddd;margin:4px 12px;">
+                        <span style="display:block;padding:8px 12px 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;cursor:default;">Promotion de la qualité</span>
+                        <a href="formulaires-formation.php">Formulaire de demande de formation</a>
+                        <a href="formulaires-agrement-qualite.php">Formulaire de demande d'agrément</a>
+                    </div>
+                </div>
             </nav>
             <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
-                <a href="contact.php" class="btn btn--lime" style="padding:4px; font-size:13px; display:inline-flex;">
-                    <span class="btn-inner" style="padding:10px 20px; font-size:13px; gap:8px;">Contactez-nous <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+                <a href="contact.php" class="btn" style="padding:4px; font-size:13px; display:inline-flex; background:transparent;">
+                    <span class="btn-inner" style="padding:10px 20px; font-size:13px; gap:8px; background:#fff; color:#0f7140; border:2px solid #0f7140;">Contactez-nous <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
                 </a>
                 <button class="nav-mobile-btn" onclick="openMobileMenu()">
                     <i class="fas fa-bars" style="font-size:22px;"></i>
@@ -99,12 +114,13 @@ function openMobileMenu(){
         nav.innerHTML=`
         <a href="index.php" style="display:block;padding:12px 0;font-weight:600;color:var(--text);">Accueil</a>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">ACONOQ</summary><div style="padding-left:12px;"><a href="a-propos.php" style="display:block;padding:8px 0;color:var(--text-light);">À propos</a><a href="directeur.php" style="display:block;padding:8px 0;color:var(--text-light);">Directeur Général</a><a href="organigramme.php" style="display:block;padding:8px 0;color:var(--text-light);">Organigramme</a><a href="actualites.php" style="display:block;padding:8px 0;color:var(--text-light);">Actualités</a><a href="evenements.php" style="display:block;padding:8px 0;color:var(--text-light);">Événements</a><a href="documents.php" style="display:block;padding:8px 0;color:var(--text-light);">Documents utiles</a><a href="telechargements.php" style="display:block;padding:8px 0;color:var(--text-light);">Espace Téléchargements</a><a href="devis.php" style="display:block;padding:8px 0;color:var(--text-light);">Demander un devis</a></div></details>
-        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Nos Directions</summary><div id="mobile-directions" style="padding-left:12px;"></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Directions</summary><div id="mobile-directions" style="padding-left:12px;"></div></details>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Normalisation</summary><div style="padding-left:12px;"><a href="normalisation.php" style="display:block;padding:8px 0;color:var(--text-light);">Zoom sur la normalisation</a></div></details>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Métrologie</summary><div style="padding-left:12px;"><a href="metrologie.php" style="display:block;padding:8px 0;color:var(--text-light);">Zoom sur la métrologie</a><a href="activites-metrologie.php" style="display:block;padding:8px 0;color:var(--text-light);">Activités de la métrologie</a></div></details>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Qualité</summary><div style="padding-left:12px;"><a href="qualite.php" style="display:block;padding:8px 0;color:var(--text-light);">Promotion de la qualité</a><a href="activites-qualite.php" style="display:block;padding:8px 0;color:var(--text-light);">Activités de la direction</a></div></details>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Conformité</summary><div style="padding-left:12px;"><a href="conformite.php" style="display:block;padding:8px 0;color:var(--text-light);">Évaluation de la conformité</a></div></details>
         <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Programmes</summary><div style="padding-left:12px;"><a href="pcec.php" style="display:block;padding:8px 0;color:var(--text-light);">PCEC</a></div></details>
+        <details style="border-bottom:1px solid var(--border-light);"><summary style="padding:12px 0;cursor:pointer;font-weight:600;color:var(--text);">Formulaires</summary><div style="padding-left:12px;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Evaluation de la conformité</p><a href="formulaires.php" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de certification</a><hr style="border:none;border-top:1px solid #ddd;margin:6px 0;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Métrologie</p><a href="formulaires-agrement.php" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande d'agrément</a><a href="formulaires-verification.php" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de vérification</a><hr style="border:none;border-top:1px solid #ddd;margin:6px 0;"><p style="padding:12px 0 4px;font-size:11px;font-weight:700;color:#0f7140;text-transform:uppercase;letter-spacing:.5px;margin:0;">Promotion de la qualité</p><a href="formulaires-formation.php" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande de formation</a><a href="formulaires-agrement-qualite.php" style="display:block;padding:8px 0;color:var(--text-light);">Formulaire de demande d'agrément</a></div></details>
         <a href="contact.php" style="display:block;padding:12px 0;font-weight:600;color:var(--primary);">Contactez-nous</a>`;
         nav.dataset.loaded='1';
     }

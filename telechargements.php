@@ -13,7 +13,7 @@
         .norm-card{background:#fff;border-radius:18px;padding:42px;overflow:hidden;position:relative}
         .norm-card::before{content:"";position:absolute;inset:0;border-radius:18px;box-shadow:0 8px 24px rgba(15,113,64,.07);mask-image:linear-gradient(to bottom,black 75%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,black 75%,transparent 100%);pointer-events:none}
         .norm-card h1{color:#0a1f0a;font-size:clamp(28px,4vw,44px);line-height:1.1;margin:0 0 12px}
-        .norm-card h2{color:#0f7140;font-size:21px;margin:32px 0 10px}
+        .norm-card h2{color:#0f7140;font-size:21px;margin:32px 0 10px;font-weight:700}
         .norm-card h3{color:#0a1f0a;font-size:16px;margin:20px 0 8px}
         .norm-card p,.norm-card li{color:#4a5a4c;font-size:16px;line-height:1.75}
         .dl-filters{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:14px;margin:24px 0;padding:18px 20px;background:#fff;border:1px solid #e2ece3;border-radius:14px;align-items:center}
