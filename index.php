@@ -850,13 +850,19 @@
     <script>
 // Mobile Menu
 function openMobileMenu() {
-    document.getElementById('mobile-menu').classList.remove('hidden');
-    document.getElementById('mobile-menu-panel').classList.remove('-translate-x-full');
+    var menu = document.getElementById('mobile-menu');
+    var panel = document.getElementById('mobile-menu-panel');
+    if (!menu || !panel) return;
+    menu.style.display = 'block';
+    requestAnimationFrame(function () { panel.style.transform = 'translateX(0)'; });
     document.body.style.overflow = 'hidden';
 }
 function closeMobileMenu() {
-    document.getElementById('mobile-menu').classList.add('hidden');
-    document.getElementById('mobile-menu-panel').classList.add('-translate-x-full');
+    var menu = document.getElementById('mobile-menu');
+    var panel = document.getElementById('mobile-menu-panel');
+    if (!menu || !panel) return;
+    panel.style.transform = 'translateX(100%)';
+    setTimeout(function () { menu.style.display = 'none'; }, 300);
     document.body.style.overflow = '';
 }
 function toggleMobileAccordion(btn) {
@@ -932,3 +938,4 @@ function toggleFaq(btn) {
 
 </body>
 </html>
+
