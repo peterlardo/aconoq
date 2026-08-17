@@ -436,11 +436,14 @@
     <?php include 'components/header.php'; ?>
 
     <!-- HERO SECTION (carousel background) -->
-    <section class="relative min-h-[520px] lg:min-h-[580px] overflow-hidden bg-[#0f7140]">
+    <section class="relative min-h-[520px] lg:min-h-[580px] overflow-hidden bg-[#0f7140]" style="background:#0f7140;">
         <!-- Dot Pattern Overlay -->
         <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 24px 24px; z-index: 1; pointer-events: none;"></div>
         <!-- Carousel -->
-        <div class="hero-carousel" id="heroCarousel"></div>
+        <div class="hero-carousel" id="heroCarousel">
+            <!-- Immediate fallback while Supabase hero slides are loading -->
+            <div class="hero-slide active" style="background-image: url('images/pcec.jpg')"></div>
+        </div>
         <!-- Carousel Controls -->
         <button class="carousel-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
         <button class="carousel-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
@@ -448,7 +451,18 @@
             <button class="carousel-dot active" onclick="goToSlide(0)"></button>
         </div>
         <!-- Hero Content (dynamic per-slide text) -->
-        <div class="absolute inset-0 z-10 px-6 lg:px-12 flex items-center" id="heroTextContainer"></div>
+        <div class="absolute inset-0 z-10 px-6 lg:px-12 flex items-center" id="heroTextContainer">
+            <!-- Immediate fallback content; replaced when dynamic slides load -->
+            <div class="hero-text-group active" data-slide-index="0">
+                <div class="max-w-xl">
+                    <h1 class="hero-title-anim text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" style="letter-spacing:-0.03em">Le PCEC</h1>
+                    <p class="hero-subtitle-anim text-white/75 text-base leading-relaxed mb-8 max-w-md">Programme national d'evaluation de la conformite des produits importes au Congo.</p>
+                    <div class="hero-cta-anim flex flex-wrap gap-4">
+                        <a href="pcec.php" class="hero-btn-primary group" style="border-radius:30px; padding: 4px 4px 4px 24px;"><span class="hero-btn-label" style="background:#fff; color:#0f7140; padding:10px 20px; border-radius:30px; font-weight:600;">Decouvrir le PCEC</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- THE BENEFIT -->
@@ -773,6 +787,7 @@
         let autoplayInterval;
 
         function initCarousel() {
+            clearInterval(autoplayInterval);
             slides = document.querySelectorAll('.hero-slide');
             dots = document.querySelectorAll('.carousel-dot');
             totalSlides = slides.length;
@@ -814,7 +829,7 @@
         }
 
         // Init carousel after dynamic content loads (fallback if loadDynamicHeroSlides already called it)
-        setTimeout(initCarousel, 2500);
+        initCarousel();
 
         // Process Carousel
         let processIndex = 0;
