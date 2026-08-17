@@ -1554,5 +1554,13 @@ h6 { font-size: 15px; font-weight: 500; }
 
 .contact-page .cta-full h2, .contact-page .cta-full p { color:#000 !important; }
 
-
+/* Ensure the mobile menu control remains visible over the home hero */
+@media (max-width: 768px) {
+    .header-home .nav-mobile-btn {
+        display: block !important;
+        color: #fff !important;
+        position: relative;
+        z-index: 250;
+    }
+}
 
