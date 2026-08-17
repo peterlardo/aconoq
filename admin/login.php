@@ -201,12 +201,7 @@
         const successMsg = document.getElementById('success-message');
         const successText = document.getElementById('success-text');
 
-        // Auth check
-        (async () => {
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (session) window.location.href = 'dashboard.php';
-        })();
-
+        // La session PHP Render fait foi. Une session Supabase locale peut être périmée.
         // View switching
         function showView(view) {
             hideMessages();
