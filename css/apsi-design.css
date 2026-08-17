@@ -1581,3 +1581,23 @@ h6 { font-size: 15px; font-weight: 500; }
     }
     .header-home .nav-mobile-btn { margin-left: auto; }
 }
+/* Centered mobile navigation panel */
+@media (max-width: 768px) {
+    #mobile-menu-panel {
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        width: calc(100% - 32px) !important;
+        max-width: 420px !important;
+        height: auto !important;
+        max-height: 82vh !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+        border-radius: 18px !important;
+    }
+    #mobile-menu-panel > div:first-child {
+        background: var(--acq-900) !important;
+    }
+    #mobile-menu-panel > div:first-child a img {
+        height: 32px !important;
+    }
+}
