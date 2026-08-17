@@ -169,6 +169,15 @@
             </div>
         </div>
 
+        <!-- ===== VIEW: RESET PASSWORD ===== -->
+        <div id="view-reset" class="view">
+            <form id="reset-form" class="space-y-5">
+                <input type="password" id="new-password" placeholder="Nouveau mot de passe" minlength="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800">
+                <input type="password" id="confirm-password" placeholder="Confirmer le mot de passe" minlength="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800">
+                <button type="submit" id="reset-btn" class="btn-login w-full text-white font-semibold py-3 rounded-lg">Enregistrer le nouveau mot de passe</button>
+            </form>
+            <div class="mt-4 text-center"><button type="button" id="reset-back-login" class="text-sm text-gray-500 hover:text-green-700 transition">Retour à la connexion</button></div>
+        </div>
         <div class="mt-6 text-center">
             <a href="../index.php" class="text-sm text-gray-500 hover:text-green-700 transition">
                 <i class="fas fa-arrow-left mr-1"></i> Retour au site
@@ -186,6 +195,7 @@
         const viewSubtitle = document.getElementById('view-subtitle');
         const viewLogin = document.getElementById('view-login');
         const viewForgot = document.getElementById('view-forgot');
+        const viewReset = document.getElementById('view-reset');
         const errorMsg = document.getElementById('error-message');
         const errorText = document.getElementById('error-text');
         const successMsg = document.getElementById('success-message');
@@ -202,14 +212,19 @@
             hideMessages();
             viewLogin.classList.remove('active');
             viewForgot.classList.remove('active');
+            viewReset.classList.remove('active');
             if (view === 'login') {
                 viewLogin.classList.add('active');
                 viewTitle.textContent = 'Administration ACONOQ';
-                viewSubtitle.textContent = 'Connectez-vous pour acc\u00e9der au tableau de bord';
+                viewSubtitle.textContent = 'Connectez-vous pour accéder au tableau de bord';
+            } else if (view === 'reset') {
+                viewReset.classList.add('active');
+                viewTitle.textContent = 'Nouveau mot de passe';
+                viewSubtitle.textContent = 'Choisissez un nouveau mot de passe sécurisé';
             } else {
                 viewForgot.classList.add('active');
-                viewTitle.textContent = 'Mot de passe oubli\u00e9';
-                viewSubtitle.textContent = 'Entrez votre e-mail pour recevoir un lien de r\u00e9initialisation';
+                viewTitle.textContent = 'Mot de passe oublié';
+                viewSubtitle.textContent = 'Entrez votre e-mail pour recevoir un lien de réinitialisation';
             }
         }
 
@@ -248,6 +263,9 @@
             forgotEmail.focus();
         });
         document.getElementById('show-login').addEventListener('click', () => showView('login'));
+        document.getElementById('reset-back-login').addEventListener('click', () => showView('login'));
+        supabaseClient.auth.onAuthStateChange((event) => { if (event === 'PASSWORD_RECOVERY') showView('reset'); });
+        if (window.location.hash.includes('access_token=') || window.location.hash.includes('type=recovery')) setTimeout(() => showView('reset'), 0);
 
         // Login form
         document.getElementById('login-form').addEventListener('submit', async (e) => {
@@ -272,14 +290,43 @@
                     showError(msg);
                 } else if (data.session) {
                     sessionStorage.setItem('aconoq_access_token', data.session.access_token);
-                    window.location.href = 'auth-callback.php?token=' + encodeURIComponent(data.session.access_token);
+                    const sessionResponse = await fetch('auth-session.php', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ access_token: data.session.access_token })
+                    });
+                    if (!sessionResponse.ok) {
+                        const detail = await sessionResponse.text();
+                        throw new Error(detail || 'Session administrateur refusée.');
+                    }
+                    window.location.href = 'dashboard.php';
                 }
             } catch (err) {
-                showError('Une erreur inattendue est survenue. V\u00e9rifiez votre connexion.');
+                const detail = String(err.message || '');
+                if (detail.includes('Accès refusé')) showError('Ce compte n’a pas les droits administrateur. Ajoutez le rôle admin dans Supabase.');
+                else showError(detail || 'Une erreur inattendue est survenue. Vérifiez votre connexion.');
             }
             btn.disabled = false; txt.classList.remove('hidden'); spn.classList.add('hidden');
         });
 
+        // Reset password form
+        document.getElementById('reset-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); hideMessages();
+            const password = document.getElementById('new-password').value;
+            const confirmation = document.getElementById('confirm-password').value;
+            if (password.length < 6) { showError('Le mot de passe doit contenir au moins 6 caractères.'); return; }
+            if (password !== confirmation) { showError('Les mots de passe ne correspondent pas.'); return; }
+            const btn = document.getElementById('reset-btn'); btn.disabled = true;
+            try {
+                const { error } = await supabaseClient.auth.updateUser({ password });
+                if (error) throw error;
+                await supabaseClient.auth.signOut();
+                history.replaceState(null, '', window.location.pathname);
+                showView('login'); showSuccess('Mot de passe mis à jour. Vous pouvez maintenant vous connecter.');
+            } catch (err) { showError('Impossible de modifier le mot de passe : ' + err.message); }
+            btn.disabled = false;
+        });
         // Forgot password form
         document.getElementById('forgot-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -307,3 +354,6 @@
     </script>
 </body>
 </html>
+
+
+
