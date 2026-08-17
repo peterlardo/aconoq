@@ -402,16 +402,21 @@ function initTinyMCE() {
             'link image media table | ' +
             'forecolor backcolor emoticons codesample | ' +
             'removeformat code fullscreen',
-        images_upload_url: '',
         automatic_uploads: false,
         content_style: 'body { font-family: Inter, -apple-system, sans-serif; font-size: 14px; padding: 12px; }',
         language: 'fr_FR',
+        language_url: 'https://cdn.tiny.cloud/1/fwwpl52a8etb2e7wdn90ougk01jl20ffw2kxwmhvu5r2jwtm/tinymce/6/langs/fr_FR.js',
         convert_urls: false,
         branding: false,
         promotion: false,
         setup: function(editor) {
             editor.on('change', function() { editor.save(); });
         }
+    }).then(editors => {
+        editors.forEach(editor => editor.save());
+    }).catch(error => {
+        console.error('TinyMCE initialization error:', error);
+        showMsg('Éditeur de texte indisponible : utilisez le champ texte puis rechargez la page.', false);
     });
 }
 
@@ -516,4 +521,5 @@ document.getElementById('form').onsubmit = async (e) => {
 })();
 </script>
 <?php admin_footer(); ?>
+
 
