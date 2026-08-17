@@ -471,7 +471,7 @@ document.getElementById('form').onsubmit = async (e) => {
         } else {
             if (typeof v === 'string') {
                 const raw = v.trim();
-                if (raw === '') data[k] = '';
+                if (raw === '') data[k] = (field && ['date','datetime-local','time','number'].includes(field.type)) ? null : '';
                 else {
                     try { data[k] = raw.startsWith('{') || raw.startsWith('[') ? JSON.parse(raw) : raw; }
                     catch { data[k] = raw; }
@@ -516,3 +516,4 @@ document.getElementById('form').onsubmit = async (e) => {
 })();
 </script>
 <?php admin_footer(); ?>
+
